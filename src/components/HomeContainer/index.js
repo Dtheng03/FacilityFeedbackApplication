@@ -1,9 +1,9 @@
-import styles from './Container.module.scss'
+import styles from './HomeContainer.module.scss'
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function Container() {
+function HomeContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('button-group')}>
@@ -14,4 +14,4 @@ function Container() {
     );
 }
 
-export default Container;
+export default HomeContainer;
