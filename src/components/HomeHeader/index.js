@@ -13,7 +13,7 @@ function HomeHeader() {
                 <div className={cx('home')}>
                     <Link className={cx('link')} to='/'><FontAwesomeIcon className={cx('icon')} icon={faHome} />Home</Link>
                 </div>
-                <p className={cx('title')}>Facility Feedback Management</p>
+                <p className={cx('title')}>Facility Feedback Application</p>
                 <Link to='/login' className={cx('login')}>Login <FontAwesomeIcon icon={faSignIn}></FontAwesomeIcon> </Link>
             </header>
         </div>
