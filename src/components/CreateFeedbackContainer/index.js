@@ -203,7 +203,7 @@ function CreateFeedbackContainer() {
                 <textarea className={cx('description-text')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
             </div>
             <div>
-                <Link><button className={cx('btn')} type="submit">Send feedback</button> </Link>
+                <Link to={"success"}><button className={cx('btn')} type="submit">Send feedback</button> </Link>
             </div>
         </form>
     </div>;

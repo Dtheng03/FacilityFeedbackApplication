@@ -1,6 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
 :root {
-  --primary: rgba(240, 110, 40, 0.8);
-  --hover: rgba(80, 185, 70, 0.6);
+  // --primary: rgba(240, 110, 40, 0.8);
+  --primary: #F58540;
+  // --hover: rgba(80, 185, 70, 0.6);
+  --hover: #A84609;
+  --text-color: #fef5ef;
 }
 
 * {
@@ -11,4 +16,12 @@
 
 html {
   font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  color: var(--text-color);
 }
