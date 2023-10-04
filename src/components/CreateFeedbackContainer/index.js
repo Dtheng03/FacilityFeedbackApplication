@@ -2,6 +2,8 @@ import classNames from "classnames/bind";
 import styles from "./CreateFeedbackContainer.module.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -203,7 +205,12 @@ function CreateFeedbackContainer() {
                 <textarea className={cx('description-text')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
             </div>
             <div>
-                <Link to={"success"}><button className={cx('btn')} type="submit">Send feedback</button> </Link>
+                <Link to={"success"} className={cx('btn')}>
+                    <button className={cx('submit')} type="submit">
+                        Send feedback
+                        <FontAwesomeIcon className={cx('icon')} icon={faPaperPlane}></FontAwesomeIcon>
+                    </button>
+                </Link>
             </div>
         </form>
     </div>;

@@ -4,6 +4,7 @@ import HomePage from './Pages/HomePage'
 import LoginPage from "./Pages/LoginPage";
 import CreateFeedbackPage from "./Pages/CreateFeedbackPage";
 import CreateFeedbackSuccessPage from "./Pages/CreateFeedbackSuccessPage";
+import ViewFeedbackPage from "./Pages/ViewFeedbackPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-feedback" element={<CreateFeedbackPage />} />
           <Route path="/create-feedback/success" element={<CreateFeedbackSuccessPage />} />
+          <Route path="/view-feedback" element={<ViewFeedbackPage />} />
         </Routes>
       </div>
     </BrowserRouter>

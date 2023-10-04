@@ -5,17 +5,16 @@
 
 .form {
   position: absolute;
-  top: 30%;
+  top: 25%;
   left: 50%;
-  transform: translateY(-50%);
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
   background-color: var(--primary);
-  width: 500px;
-  height: 350px;
+  width: 450px;
+  height: 400px;
   border-radius: 24px;
   font-size: 2.4rem;
   font-weight: 900;
@@ -29,20 +28,18 @@
   align-items: center;
 }
 
-.loginname-label,
-.password-label {
-  display: inline-block;
-  min-width: 140px;
-  margin-right: 8px;
+.icon {
+  min-width: 30px;
+  margin: 0 12px;
 }
 
 .loginname-input,
 .password-input {
   display: inline-block;
-  width: 250px;
-  height: 40px;
+  width: 300px;
+  height: 50px;
   padding: 0 16px;
-  outline: none;
+  outline-color: var(--hover);
   border: none;
   border-radius: 20px;
   font-size: 1.6rem;
@@ -55,6 +52,7 @@
   height: 50px;
   border-radius: 20px;
   border-style: none;
+  outline-color: var(--hover);
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
     rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   color: var(--primary);

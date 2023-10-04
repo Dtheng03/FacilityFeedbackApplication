@@ -7,7 +7,6 @@
   position: absolute;
   top: 30%;
   left: 50%;
-  transform: translateY(-50%);
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -28,6 +27,7 @@
   transform: translateX(-50%);
   border-radius: 20px;
   border-style: none;
+  outline-color: var(--hover);
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
     rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   color: var(--primary);
@@ -43,4 +43,8 @@
     color: #fff;
     cursor: pointer;
   }
+}
+
+.icon {
+  margin-right: 16px;
 }
