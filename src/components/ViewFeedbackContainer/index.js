@@ -6,11 +6,17 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(style);
 
 function ViewFeedbackContainer() {
+
+
+    const handleSearch = () => {
+        // xu ly logic lay du lieu de render
+    }
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <p>View feedback</p>
-                <div className={cx('search')}>
+                <form className={cx('search')} onSubmit={handleSearch}>
                     <label className={cx('label')}>For campus:</label>
                     <select id="campus" className={cx('select')} >
                         <option value={'0'} >- Choose your campus -</option>
@@ -20,8 +26,8 @@ function ViewFeedbackContainer() {
                         <option value={'4'} >Quy Nhơn</option>
                         <option value={'5'} >Cần Thơ</option>
                     </select>
-                    <button className={cx('btn')}><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button>
-                </div>
+                    <button className={cx('btn')} type='Submit'><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button>
+                </form>
             </div>
         </div>
     );

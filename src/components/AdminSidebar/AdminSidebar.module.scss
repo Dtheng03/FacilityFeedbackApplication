@@ -1,0 +1,44 @@
+.wrapper {
+  min-height: 500px;
+  position: relative;
+  margin-top: 1%;
+  margin-left: 2%;
+  width: 15%;
+}
+
+.sidebar {
+  min-height: 80vh;
+  background-color: var(--primary);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.category {
+  min-height: 100px;
+  margin: 4px 10px;
+  padding: 4px 16px;
+  border-bottom: solid 1px var(--hover);
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.title {
+  margin-top: 4px;
+}
+
+.function {
+  margin-top: 16px;
+  margin-left: 20px;
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: var(--hover);
+    transform: translateX(+2%);
+  }
+}

@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./CreateFeedbackContainer.module.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -132,6 +132,8 @@ function CreateFeedbackContainer() {
         { id: '76', floorId: '14', roomName: 'room 605' },
     ];
 
+    const navigate = useNavigate();
+
     const [floors, setFloor] = useState([]);
     const [rooms, setRoom] = useState([]);
 
@@ -150,8 +152,12 @@ function CreateFeedbackContainer() {
 
     }
 
+    const handleSubmit = () => {
+        navigate('success')
+    }
+
     return <div className={cx('wrapper')}>
-        <form className={cx('form')}>
+        <form className={cx('form')} onSubmit={handleSubmit}>
             <h3 className={cx('title')}>Feedback</h3>
             <div className={cx('campus')}>
                 <label className={cx('campus-label')}>Campus *</label>
@@ -205,12 +211,10 @@ function CreateFeedbackContainer() {
                 <textarea className={cx('description-text')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
             </div>
             <div>
-                <Link to={"success"} className={cx('btn')}>
-                    <button className={cx('submit')} type="submit">
-                        Send feedback
-                        <FontAwesomeIcon className={cx('icon')} icon={faPaperPlane}></FontAwesomeIcon>
-                    </button>
-                </Link>
+                <button className={cx('submit')} type="submit">
+                    Send feedback
+                    <FontAwesomeIcon className={cx('icon')} icon={faPaperPlane}></FontAwesomeIcon>
+                </button>
             </div>
         </form>
     </div>;

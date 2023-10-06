@@ -3,11 +3,13 @@ import styles from './LoginContainer.module.scss'
 import classNames from 'classnames/bind';
 import { faEyeSlash, faLock, faLockOpen, faSignIn, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 
 function LoginContainer() {
 
+    const navigate = useNavigate();
     const [passwordShown, setPasswordShown] = useState(false);
     const [passwordIcon, setPasswordIcon] = useState(true)
 
@@ -16,8 +18,12 @@ function LoginContainer() {
         setPasswordShown(!passwordShown)
     };
 
+    const handleSubmit = () => {
+        navigate('admin');
+    };
+
     return <div className={cx('wrapper')}>
-        <div className={cx('form')}>
+        <form className={cx('form')} onSubmit={handleSubmit}>
             <div>
                 <p>Login for staff</p>
             </div>
@@ -35,7 +41,7 @@ function LoginContainer() {
                     <FontAwesomeIcon className={cx('icon')} icon={faSignIn}></FontAwesomeIcon>
                 </button>
             </div>
-        </div>
+        </form>
     </div>;
 }
 
