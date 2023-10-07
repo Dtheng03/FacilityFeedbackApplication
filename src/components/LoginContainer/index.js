@@ -19,7 +19,7 @@ function LoginContainer() {
     };
 
     const handleSubmit = () => {
-        navigate('admin');
+        navigate('/admin');
     };
 
     return <div className={cx('wrapper')}>
@@ -37,7 +37,7 @@ function LoginContainer() {
             </div>
             <div>
                 <button className={cx('button')} type='submit'>
-                    Login
+                    Log in
                     <FontAwesomeIcon className={cx('icon')} icon={faSignIn}></FontAwesomeIcon>
                 </button>
             </div>

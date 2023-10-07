@@ -1,24 +1,22 @@
 import StaffHeader from "../../components/StaffHeader";
 import AdminSidebar from "../../components/AdminSidebar";
-import StaffContainer from "../../components/StaffContainer";
-import AddStaffContainer from "../../components/AddStaffContainer";
-import { Route, Routes } from "react-router-dom";
+import ViewStaffContainer from "../../components/ViewStaffContainer";
 
 import classNames from "classnames/bind";
-import style from './AdminPage.module.scss';
+import style from './ViewStaffPage.module.scss';
 
 const cx = classNames.bind(style);
 
-function AdminPage() {
+function ViewStafPage() {
     return (
         <div>
             <StaffHeader />
             <div className={cx('container')}>
                 <AdminSidebar />
-                <StaffContainer />
+                <ViewStaffContainer />
             </div>
         </div>
     );
 }
 
-export default AdminPage;
+export default ViewStafPage;
