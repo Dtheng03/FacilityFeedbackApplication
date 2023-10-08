@@ -39,7 +39,7 @@ function AdminSidebar() {
                         <FontAwesomeIcon className={cx('icon')} icon={faScrewdriverWrench}></FontAwesomeIcon>
                         Repair
                     </h3>
-                    <Link className={cx('function')}>
+                    <Link to={'/admin/view-history'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
                         View History
                     </Link>
