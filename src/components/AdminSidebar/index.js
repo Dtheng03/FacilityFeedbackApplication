@@ -43,7 +43,7 @@ function AdminSidebar() {
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
                         View History
                     </Link>
-                    <Link className={cx('function')}>
+                    <Link to={'/admin/add-history'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
                         Add History
                     </Link>
