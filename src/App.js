@@ -5,6 +5,7 @@ import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
 import AddStaffPage from "./Pages/AddStaffPage";
 import ViewStafPage from "./Pages/ViewStaffPage";
+import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
 import CreateFeedbackPage from "./Pages/CreateFeedbackPage";
 import CreateFeedbackSuccessPage from "./Pages/CreateFeedbackSuccessPage";
 import ViewFeedbackPage from "./Pages/ViewFeedbackPage";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/add-staff" element={<AddStaffPage />} />
           <Route path="/admin/view-staff" element={<ViewStafPage />} />
+          <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
           <Route path="/create-feedback" element={<CreateFeedbackPage />} />
           <Route path="/create-feedback/success" element={<CreateFeedbackSuccessPage />} />
           <Route path="/view-feedback" element={<ViewFeedbackPage />} />

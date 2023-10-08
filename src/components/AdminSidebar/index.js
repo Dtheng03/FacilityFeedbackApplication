@@ -29,7 +29,7 @@ function AdminSidebar() {
                         <FontAwesomeIcon className={cx('icon')} icon={faMessage}></FontAwesomeIcon>
                         Feedback
                     </h3>
-                    <Link className={cx('function')}>
+                    <Link to={'/admin/view-feedback'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
                         View Feedback
                     </Link>
