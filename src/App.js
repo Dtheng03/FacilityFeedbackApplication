@@ -9,6 +9,7 @@ import ViewStafPage from "./Pages/ViewStaffPage";
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
 import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
 import AdminAddHistoryPage from "./Pages/AdminAddHistoryPage";
+import AdminViewReportPage from './Pages/AdminViewReportPage';
 
 import CreateFeedbackPage from "./Pages/CreateFeedbackPage";
 import CreateFeedbackSuccessPage from "./Pages/CreateFeedbackSuccessPage";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />
           <Route path="/admin/add-history" element={<AdminAddHistoryPage />} />
+          <Route path="/admin/view-report" element={<AdminViewReportPage />} />
           <Route path="/create-feedback" element={<CreateFeedbackPage />} />
           <Route path="/create-feedback/success" element={<CreateFeedbackSuccessPage />} />
           <Route path="/view-feedback" element={<ViewFeedbackPage />} />

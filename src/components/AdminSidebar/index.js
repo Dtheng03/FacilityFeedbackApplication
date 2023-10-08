@@ -53,7 +53,7 @@ function AdminSidebar() {
                         <FontAwesomeIcon className={cx('icon')} icon={faChartColumn}></FontAwesomeIcon>
                         Report
                     </h3>
-                    <Link className={cx('function')}>
+                    <Link to={'/admin/view-report'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
                         View Report
                     </Link>
