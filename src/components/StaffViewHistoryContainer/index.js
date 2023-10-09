@@ -57,7 +57,7 @@ function StaffViewHistoryContainer() {
                         <tr className={cx('tr')}>
                             <th className={cx('th')}>ID</th>
                             <th className={cx('th')}>FeedbackId</th>
-                            <th className={cx('th')}>Times</th>
+                            <th className={cx('th')}>RepairDate</th>
                             <th className={cx('th')}>StaffId</th>
                             <th className={cx('th')}>Status</th>
                         </tr>

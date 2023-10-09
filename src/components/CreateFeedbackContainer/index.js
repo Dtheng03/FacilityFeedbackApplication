@@ -137,6 +137,8 @@ function CreateFeedbackContainer() {
     const [floors, setFloor] = useState([]);
     const [rooms, setRoom] = useState([]);
 
+    const [submitDateTime, setSubmitDateTime] = useState('');
+
     const handleSetCampus = (id) => {
         const fl = listFloors.filter(x => x.campusId === id);
         setFloor(fl);
@@ -153,6 +155,9 @@ function CreateFeedbackContainer() {
     }
 
     const handleSubmit = () => {
+        const currentDateTime = new Date().toLocaleString();
+        setSubmitDateTime(currentDateTime);
+        // Perform additional form submission logic here
         navigate('success')
     }
 

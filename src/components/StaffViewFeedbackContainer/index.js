@@ -56,10 +56,11 @@ function StaffViewFeedbackContainer() {
                     <thead>
                         <tr className={cx('tr')}>
                             <th className={cx('th')}>ID</th>
-                            <th className={cx('th')}>RoomId</th>
+                            <th className={cx('th')}>Campus</th>
+                            <th className={cx('th')}>Room</th>
                             <th className={cx('th')}>Facility</th>
                             <th className={cx('th')}>Problem</th>
-                            <th className={cx('th')}>Description</th>
+                            <th className={cx('th')}>CreateDate</th>
                             <th className={cx('th')}>Detail</th>
                         </tr>
                     </thead>

@@ -43,23 +43,30 @@ function AddStaffContainer() {
                 <h2 className={cx('title')}>Add New Staff</h2>
                 <form className={cx('form')} onSubmit={handleSubmit}>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>FullName:</label>
+                        <label className={cx('field')}>1. FullName:</label>
                         <input className={cx('input')} type="text" name="fullName" value={formData.name} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>LoginName:</label>
+                        <label className={cx('field')}>2. LoginName:</label>
                         <input className={cx('input')} type="text" name="loginName" value={formData.email} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>Password:</label>
+                        <label className={cx('field')}>3. Password:</label>
                         <input className={cx('input')} type="text" name="passWord" value={formData.position} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>CampusId:</label>
-                        <input className={cx('input')} type="text" name="campusId" value={formData.position} onChange={handleInputChange} />
+                        <label className={cx('field')}>4. Campus:</label>
+                        <select className={cx('input')} type="text" name="campusId" value={formData.position} onChange={handleInputChange}>
+                            <option value={'0'} >- Choose your campus -</option>
+                            <option value={'1'} >Hà Nội</option>
+                            <option value={'2'} >Hồ Chí Minh</option>
+                            <option value={'3'} >Đà Nẵng</option>
+                            <option value={'4'} >Quy Nhơn</option>
+                            <option value={'5'} >Cần Thơ</option>
+                        </select>
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>Manager:</label>
+                        <label className={cx('field')}>5. Manager:</label>
                         <input className={cx('checkbox')} type="checkbox" name="isManager" value={formData.position} onChange={handleInputChange} />
                     </div>
                     <button className={cx('btn')} type="submit">

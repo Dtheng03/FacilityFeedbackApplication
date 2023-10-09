@@ -42,20 +42,24 @@ function StaffAddHistoryContainer() {
                 <h2 className={cx('title')}>Add Repair History</h2>
                 <form className={cx('form')} onSubmit={handleSubmit}>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>FeedbackId</label>
+                        <label className={cx('field')}>1. FeedbackId:</label>
                         <input className={cx('input')} type="text" name="facilityFeedbackId" value={formData.name} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>Time</label>
-                        <input className={cx('input')} type="text" name="time" value={formData.email} onChange={handleInputChange} />
+                        <label className={cx('field')}>2. RepairDate:</label>
+                        <input className={cx('input')} type="date" name="time" value={formData.email} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>StaffId</label>
+                        <label className={cx('field')}>3. StaffId:</label>
                         <input className={cx('input')} type="text" name="staffId" value={formData.position} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>Status</label>
-                        <input className={cx('input')} type="text" name="status" value={formData.position} onChange={handleInputChange} />
+                        <label className={cx('field')}>4. Status:</label>
+                        <select className={cx('input')} type="text" name="status" value={formData.position} onChange={handleInputChange}>
+                            <option value={''}>- Choose status -</option>
+                            <option value={'0'}>Not Finished</option>
+                            <option value={'1'}>Finished</option>
+                        </select>
                     </div>
                     <button className={cx('btn')} type="submit">
                         Add

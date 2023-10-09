@@ -58,7 +58,7 @@ function ViewStaffContainer() {
                             <th className={cx('th')}>LoginName</th>
                             <th className={cx('th')}>Password</th>
                             <th className={cx('th')}>IsManager</th>
-                            <th className={cx('th')}>CampusId</th>
+                            <th className={cx('th')}>Campus</th>
                             <th className={cx('th')}>Update</th>
                             <th className={cx('th')}>Delete</th>
 
