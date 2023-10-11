@@ -1,0 +1,37 @@
+.wrapper {
+  min-height: 500px;
+  position: relative;
+  margin-top: 1%;
+  margin-right: 2%;
+  margin-left: 1%;
+  width: 80%;
+
+  color: black;
+}
+
+.container {
+  margin-top: 4px;
+  min-height: 80vh;
+  background-color: var(--hover);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sub-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icon {
+  margin-left: 10px;
+}

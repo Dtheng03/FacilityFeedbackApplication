@@ -28,9 +28,15 @@
   align-items: center;
 }
 
+.user,
+.pass,
 .icon {
   min-width: 30px;
   margin: 0 12px;
+}
+
+.pass {
+  cursor: pointer;
 }
 
 .loginname-input,
@@ -50,6 +56,101 @@
 .button {
   width: 200px;
   height: 50px;
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--primary);
+  background-color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  &:hover {
+    background-color: var(--hover);
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  display: block;
+  min-width: 300px;
+  min-height: 250px;
+  position: relative;
+  background-color: var(--primary);
+  padding: 20px;
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--text-color);
+}
+
+.modal-close {
+  display: block;
+  width: 80px;
+  height: 40px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--primary);
+  background-color: #fff;
+  font-size: 1.6rem;
+
+  &:hover {
+    background-color: var(--hover);
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.modal-img {
+  display: block;
+  width: 800px;
+  height: 600px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-info {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.close {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin-top: 40px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 20px;
   border-style: none;
   outline-color: var(--hover);

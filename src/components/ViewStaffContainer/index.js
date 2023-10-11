@@ -45,7 +45,7 @@ function ViewStaffContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search Staff By Name"
+                    placeholder="Search Staff By Full Name"
                     value={searchQuery}
                     onChange={handleSearch}
                 />

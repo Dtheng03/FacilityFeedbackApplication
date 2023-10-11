@@ -1,4 +1,4 @@
-import StaffHeader from "../../components/StaffHeader";
+import AdminHeader from "../../components/AdminHeader";
 import AdminSidebar from "../../components/AdminSidebar";
 import AddStaffContainer from "../../components/AddStaffContainer";
 
@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 function AddStaffPage() {
     return (
         <div>
-            <StaffHeader />
+            <AdminHeader />
             <div className={cx('container')}>
                 <AdminSidebar />
                 <AddStaffContainer />

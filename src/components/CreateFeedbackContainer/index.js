@@ -154,11 +154,52 @@ function CreateFeedbackContainer() {
 
     }
 
-    const handleSubmit = () => {
-        const currentDateTime = new Date().toLocaleString();
-        setSubmitDateTime(currentDateTime);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [showImg, setShowImg] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            selectedImage && URL.revokeObjectURL(selectedImage)
+        }
+    }, [selectedImage])
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setSelectedImage(null);
+    };
+
+    const handleModalOpen = () => {
+        setShowImg(true);
+    };
+
+    const handleModalClose = () => {
+        setShowImg(false);
+    };
+
+    const [feedbackFail, setFeedbackFail] = useState(false);
+
+    const handleFeedbackFail = () => {
+        setFeedbackFail(false);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
         // Perform additional form submission logic here
+        // const currentDateTime = new Date().toLocaleString();
+        // setSubmitDateTime(currentDateTime);
+
+        // if success
         navigate('success')
+
+        // if fail
+        // setFeedbackFail(true)
     }
 
     return <div className={cx('wrapper')}>
@@ -166,8 +207,8 @@ function CreateFeedbackContainer() {
             <h3 className={cx('title')}>Feedback</h3>
             <div className={cx('campus')}>
                 <label className={cx('campus-label')}>Campus *</label>
-                <select id="campus" className={cx('campus-select')} onChange={(e) => handleSetCampus(e.target.value)} required>
-                    <option value={'0'} >- Choose your campus -</option>
+                <select id="campus" required className={cx('campus-select')} onChange={(e) => handleSetCampus(e.target.value)}>
+                    <option value={''}>- Choose your campus -</option>
                     <option value={'1'} >Hà Nội</option>
                     <option value={'2'} >Hồ Chí Minh</option>
                     <option value={'3'} >Đà Nẵng</option>
@@ -177,8 +218,8 @@ function CreateFeedbackContainer() {
             </div>
             <div className={cx('floor')}>
                 <label className={cx('floor-label')}>Floor *</label>
-                <select id="floor" className={cx('floor-select')} onChange={(e) => handleSetFloor(e.target.value)}>
-                    <option value={'0'}>- Choose your floor -</option>
+                <select id="floor" required className={cx('floor-select')} onChange={(e) => handleSetFloor(e.target.value)}>
+                    <option value={''}>- Choose your floor -</option>
                     {floors.map((floor, index) => (
                         <option key={index} value={floor.id}>{floor.floorName}</option>
                     ))}
@@ -186,8 +227,8 @@ function CreateFeedbackContainer() {
             </div>
             <div className={cx('room')}>
                 <label className={cx('room-label')}>Room *</label>
-                <select id="room" className={cx('room-select')} onChange={(e) => handleSetRoom(e.target.value)}>
-                    <option value={'0'}>- Choose your room -</option>
+                <select id="room" required className={cx('room-select')} onChange={(e) => handleSetRoom(e.target.value)}>
+                    <option value={''}>- Choose your room -</option>
                     {rooms.map((room, index) => (
                         <option key={index} value={room.id}>{room.roomName}</option>
                     ))}
@@ -195,8 +236,8 @@ function CreateFeedbackContainer() {
             </div>
             <div className={cx('facility')}>
                 <label className={cx('facility-label')}>Facility *</label>
-                <select id="facility" className={cx('facility-select')} >
-                    <option value={'0'}>- Choose your facility -</option>
+                <select id="facility" required className={cx('facility-select')} >
+                    <option value={''}>- Choose your facility -</option>
                     {rooms.map((room, index) => (
                         <option key={index} value={room.id}>{room.roomName}</option>
                     ))}
@@ -204,13 +245,23 @@ function CreateFeedbackContainer() {
             </div>
             <div className={cx('problem')}>
                 <label className={cx('problem-label')}>Problem *</label>
-                <select id="problem" className={cx('problem-select')}>
-                    <option value={'0'}>- Choose your problem -</option>
+                <select id="problem" required className={cx('problem-select')}>
+                    <option value={''}>- Choose your problem -</option>
                     {rooms.map((room, index) => (
                         <option key={index} value={room.id}>{room.roomName}</option>
                     ))}
                 </select>
             </div>
+            <div className={cx('img')}>
+                <label className={cx('img-label')}>Image</label>
+                <input className={cx('img-input')} type="file" accept="image/*" onChange={handleImageChange} />
+            </div>
+            {selectedImage && (
+                <div className={cx('img-hold')}>
+                    <img className={cx('image')} src={selectedImage} onClick={handleModalOpen} alt="Selected" />
+                    <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
+                </div>
+            )}
             <div className={cx('description')}>
                 <label className={cx('description-label')}>Description</label>
                 <textarea className={cx('description-text')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
@@ -222,11 +273,34 @@ function CreateFeedbackContainer() {
                 </button>
             </div>
         </form>
+
+        {/* Show full image */}
+        <div>
+            {showImg && (
+                <div className={cx('modal')}>
+                    <div className={cx('modal-content')}>
+                        <img className={cx('modal-img')} src={selectedImage} alt="Selected" />
+                        <button className={cx('modal-close')} onClick={handleModalClose}>
+                            &times;
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+
+        {/* Submit feedback fail */}
+        <div>
+            {feedbackFail && (
+                <div className={cx('modal')}>
+                    <div className={cx('modal-content')}>
+                        <h2 className={cx('modal-title')}>Send Feedback Failed</h2>
+                        <p className={cx('modal-info')}>Please check all information again!</p>
+                        <button className={cx('modal-close')} onClick={handleFeedbackFail}>Ok</button>
+                    </div>
+                </div>
+            )}
+        </div>
     </div>;
-
-    const c = document.getElementById("campus");
-    console.log(c);
-
 }
 
 export default CreateFeedbackContainer;

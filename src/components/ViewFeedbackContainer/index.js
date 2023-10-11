@@ -19,7 +19,7 @@ function ViewFeedbackContainer() {
                 <form className={cx('search')} onSubmit={handleSearch}>
                     <label className={cx('label')}>For campus:</label>
                     <select id="campus" className={cx('select')} >
-                        <option value={'0'} >- Choose your campus -</option>
+                        <option>- Choose your campus -</option>
                         <option value={'1'} >Hà Nội</option>
                         <option value={'2'} >Hồ Chí Minh</option>
                         <option value={'3'} >Đà Nẵng</option>

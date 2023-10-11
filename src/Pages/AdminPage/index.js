@@ -1,8 +1,6 @@
-import StaffHeader from "../../components/StaffHeader";
+import AdminHeader from "../../components/AdminHeader";
 import AdminSidebar from "../../components/AdminSidebar";
-import StaffContainer from "../../components/StaffContainer";
-import AddStaffContainer from "../../components/AddStaffContainer";
-import { Route, Routes } from "react-router-dom";
+import AdminContainer from "../../components/AdminContainer";
 
 import classNames from "classnames/bind";
 import style from './AdminPage.module.scss';
@@ -12,10 +10,10 @@ const cx = classNames.bind(style);
 function AdminPage() {
     return (
         <div>
-            <StaffHeader />
+            <AdminHeader />
             <div className={cx('container')}>
                 <AdminSidebar />
-                <StaffContainer />
+                <AdminContainer />
             </div>
         </div>
     );

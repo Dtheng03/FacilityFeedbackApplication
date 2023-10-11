@@ -28,12 +28,13 @@ function StaffViewFeedbackContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { id, roomId, facilityId, facilityProblemId, description } = item;
+            const { id, campusId, roomId, facilityId, facilityProblemId, createDate } = item;
             return id.toLowerCase().includes(query.toLowerCase())
+                || campusId.toLowerCase().includes(query.toLowerCase())
                 || roomId.toLowerCase().includes(query.toLowerCase())
                 || facilityId.toLowerCase().includes(query.toLowerCase())
                 || facilityProblemId.toLowerCase().includes(query.toLowerCase())
-                || description.toLowerCase().includes(query.toLowerCase())
+                || createDate.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -47,7 +48,7 @@ function StaffViewFeedbackContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search Feedback By Id, RoomId, Facility, Problem, Description"
+                    placeholder="Search Feedback By Id, CampusId, RoomId, Facility, Problem, CreateDate"
                     value={searchQuery}
                     onChange={handleSearch}
                 />

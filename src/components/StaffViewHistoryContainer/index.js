@@ -47,7 +47,7 @@ function StaffViewHistoryContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search Repair History By Id, FeedbackId, Times, StaffId, Status"
+                    placeholder="Search Repair History By Id, FeedbackId, RepairDate, StaffId, Status"
                     value={searchQuery}
                     onChange={handleSearch}
                 />
@@ -60,6 +60,7 @@ function StaffViewHistoryContainer() {
                             <th className={cx('th')}>RepairDate</th>
                             <th className={cx('th')}>StaffId</th>
                             <th className={cx('th')}>Status</th>
+                            <th className={cx('th')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>

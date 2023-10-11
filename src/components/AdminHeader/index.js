@@ -1,4 +1,4 @@
-import style from './StaffHeader.module.scss';
+import style from './AdminHeader.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOut, faUserGear, faWrench } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const cx = classNames.bind(style);
 
-function StaffHeader() {
+function AdminHeader() {
 
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,8 @@ function StaffHeader() {
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <div className={cx('home')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faUserGear} />Staff Page
+                    <FontAwesomeIcon className={cx('icon')} icon={faUserGear} />
+                    Admin Page
                 </div>
                 <p className={cx('title')}><FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>Facility Feedback Application</p>
                 <button className={cx('logout')} onClick={openModel}>Log out <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon></button>
@@ -49,4 +50,4 @@ function StaffHeader() {
     );
 }
 
-export default StaffHeader;
+export default AdminHeader;
