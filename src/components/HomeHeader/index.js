@@ -11,10 +11,19 @@ function HomeHeader() {
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <div className={cx('home')}>
-                    <Link className={cx('link')} to='/'><FontAwesomeIcon className={cx('icon')} icon={faHome} />Home</Link>
+                    <Link className={cx('link')} to='/'>
+                        <FontAwesomeIcon className={cx('icon')} icon={faHome} />
+                        <span className={cx('span')}>Home</span>
+                    </Link>
                 </div>
-                <p className={cx('title')}><FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>Facility Feedback Application</p>
-                <Link to='/login' className={cx('login')}>Log in <FontAwesomeIcon icon={faSignIn}></FontAwesomeIcon> </Link>
+                <p className={cx('title')}>
+                    <FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>
+                    Facility Feedback <span className={cx('span')}>Application</span>
+                </p>
+                <Link to='/login' className={cx('login')}>
+                    <span className={cx('span')}>Log in</span>
+                    <FontAwesomeIcon className={cx('icon')} icon={faSignIn}></FontAwesomeIcon>
+                </Link>
             </header>
         </div>
     );

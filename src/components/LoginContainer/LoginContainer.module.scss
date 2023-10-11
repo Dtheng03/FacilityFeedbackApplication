@@ -100,38 +100,6 @@
   color: var(--text-color);
 }
 
-.modal-close {
-  display: block;
-  width: 80px;
-  height: 40px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  border-radius: 20px;
-  border-style: none;
-  outline-color: var(--hover);
-  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
-    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
-  color: var(--primary);
-  background-color: #fff;
-  font-size: 1.6rem;
-
-  &:hover {
-    background-color: var(--hover);
-    color: #fff;
-    cursor: pointer;
-  }
-}
-
-.modal-img {
-  display: block;
-  width: 800px;
-  height: 600px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
-    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
-}
-
 .modal-title {
   text-align: center;
   margin-bottom: 20px;
@@ -165,5 +133,29 @@
     background-color: var(--hover);
     color: #fff;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+  /* Styles for screens up to 1025px wide */
+}
+
+@media (max-width: 391px) {
+  /* Styles for screens up to 391px wide */
+  .form {
+    width: 90%;
+  }
+
+  .loginname-input,
+  .password-input {
+    width: auto;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .close {
+    margin-top: 12px;
   }
 }

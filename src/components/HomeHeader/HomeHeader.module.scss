@@ -1,6 +1,7 @@
 .wrapper {
   --header-height: 60px;
 
+  width: 100%;
   height: var(--header-height);
   background-color: var(--primary);
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
@@ -53,5 +54,29 @@
     background-color: var(--hover);
     color: #fff;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+  /* Styles for screens up to 1025px wide */
+  .title {
+    margin-left: -75px;
+  }
+}
+
+@media (max-width: 391px) {
+  /* Styles for screens up to 391px wide */
+  .title {
+    margin-left: -40px;
+    font-size: medium;
+  }
+
+  .span {
+    display: none;
+  }
+
+  .login {
+    width: 50px;
+    height: 50px;
   }
 }

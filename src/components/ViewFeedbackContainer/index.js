@@ -15,7 +15,7 @@ function ViewFeedbackContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <p>View feedback</p>
+                <p className={cx('title')}>View feedback</p>
                 <form className={cx('search')} onSubmit={handleSearch}>
                     <label className={cx('label')}>For campus:</label>
                     <select id="campus" className={cx('select')} >
