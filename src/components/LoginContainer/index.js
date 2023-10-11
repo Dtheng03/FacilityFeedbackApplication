@@ -26,7 +26,11 @@ function LoginContainer() {
         // perform logic
 
         // if success
+        // if admin
         navigate('/admin');
+
+        // if staff
+        // navigate('/staff');
 
         // if fail
         // setIsFail(true);

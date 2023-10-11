@@ -1,13 +1,10 @@
 import classNames from "classnames/bind";
-import style from './ViewStaffContainer.module.scss';
+import style from './StaffViewStaffContainer.module.scss';
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
-function ViewStaffContainer() {
-
+function StaffViewStaffContainer() {
     const [data, setData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
@@ -55,13 +52,8 @@ function ViewStaffContainer() {
                         <tr className={cx('tr')}>
                             <th className={cx('th')}>ID</th>
                             <th className={cx('th')}>FullName</th>
-                            <th className={cx('th')}>LoginName</th>
-                            <th className={cx('th')}>Password</th>
                             <th className={cx('th')}>IsManager</th>
                             <th className={cx('th')}>Campus</th>
-                            <th className={cx('th')}>Update</th>
-                            <th className={cx('th')}>Delete</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -69,12 +61,8 @@ function ViewStaffContainer() {
                             <tr key={staff.id} className={cx('tr')}>
                                 <td className={cx('td')}>{staff.id}</td>
                                 <td className={cx('td')}>{staff.fullName}</td>
-                                <td className={cx('td')}>{staff.loginName}</td>
-                                <td className={cx('td')}>{staff.password}</td>
                                 <td className={cx('td')}>{staff.isManager}</td>
                                 <td className={cx('td')}>{staff.campusId}</td>
-                                <td className={cx('td')}></td>
-                                <td className={cx('td')}></td>
                             </tr>
                         ))}
                     </tbody>
@@ -84,4 +72,4 @@ function ViewStaffContainer() {
     );
 }
 
-export default ViewStaffContainer;
+export default StaffViewStaffContainer;
