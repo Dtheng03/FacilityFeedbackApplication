@@ -13,49 +13,49 @@ function AdminSidebar() {
                 <div className={cx('category')}>
                     <h3 className={cx('title')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faClipboardUser}></FontAwesomeIcon>
-                        Staff
+                        <span className={cx('span')}>Staff</span>
                     </h3>
                     <Link to={'/admin/add-staff'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        Add Staff
+                        Add <span className={cx('span')}>Staff</span>
                     </Link>
                     <Link to={'/admin/view-staff'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        View Staff
+                        View <span className={cx('span')}>Staff</span>
                     </Link>
                 </div>
                 <div className={cx('category')}>
                     <h3 className={cx('title')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faMessage}></FontAwesomeIcon>
-                        Feedback
+                        <span className={cx('span')}>Feedback</span>
                     </h3>
                     <Link to={'/admin/view-feedback'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        View Feedback
+                        View <span className={cx('span')}>Feedback</span>
                     </Link>
                 </div>
                 <div className={cx('category')}>
                     <h3 className={cx('title')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faScrewdriverWrench}></FontAwesomeIcon>
-                        Repair
+                        <span className={cx('span')}> Repair</span>
                     </h3>
                     <Link to={'/admin/add-history'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        Add History
+                        Add <span className={cx('span')}>History</span>
                     </Link>
                     <Link to={'/admin/view-history'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        View History
+                        View <span className={cx('span')}>History</span>
                     </Link>
                 </div>
                 <div className={cx('category')}>
                     <h3 className={cx('title')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faChartColumn}></FontAwesomeIcon>
-                        Report
+                        <span className={cx('span')}>Report</span>
                     </h3>
                     <Link to={'/admin/view-report'} className={cx('function')}>
                         <FontAwesomeIcon className={cx('icon')} icon={faCaretRight}></FontAwesomeIcon>
-                        View Report
+                        View <span className={cx('span')}>Report</span>
                     </Link>
                 </div>
             </div>
