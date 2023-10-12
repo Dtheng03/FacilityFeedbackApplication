@@ -16,7 +16,7 @@
   width: 700px;
   min-height: 700px;
   padding: 16px;
-  border-radius: 24px;
+  border-radius: 10px;
   font-size: 1.8rem;
   font-weight: 600;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
@@ -236,8 +236,8 @@
   /* Styles for screens up to 1025px wide */
 }
 
-@media (max-width: 391px) {
-  /* Styles for screens up to 391px wide */
+@media (max-width: 641px) {
+  /* Styles for screens up to 641px wide */
   .form {
     width: 100%;
     top: 5%;
