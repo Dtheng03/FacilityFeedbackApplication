@@ -55,22 +55,23 @@ function StaffViewHistoryContainer() {
                 <table className={cx('table')}>
                     <thead>
                         <tr className={cx('tr')}>
-                            <th className={cx('th')}>ID</th>
-                            <th className={cx('th')}>FeedbackId</th>
-                            <th className={cx('th')}>RepairDate</th>
-                            <th className={cx('th')}>StaffId</th>
-                            <th className={cx('th')}>Status</th>
-                            <th className={cx('th')}>Detail</th>
+                            <th className={cx('th1')}>ID</th>
+                            <th className={cx('th2')}>FeedbackId</th>
+                            <th className={cx('th3')}>RepairDate</th>
+                            <th className={cx('th4')}>StaffId</th>
+                            <th className={cx('th5')}>Status</th>
+                            <th className={cx('th6')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredData.map(history => (
                             <tr key={history.id} className={cx('tr')}>
-                                <td className={cx('td')}>{history.id}</td>
-                                <td className={cx('td')}>{history.facilityFeedbackId}</td>
-                                <td className={cx('td')}>{history.time}</td>
-                                <td className={cx('td')}>{history.staffId}</td>
-                                <td className={cx('td')}>{history.status}</td>
+                                <td className={cx('td1')}>{history.id}</td>
+                                <td className={cx('td2')}>{history.facilityFeedbackId}</td>
+                                <td className={cx('td3')}>{history.time}</td>
+                                <td className={cx('td4')}>{history.staffId}</td>
+                                <td className={cx('td5')}>{history.status}</td>
+                                <td className={cx('td6')}></td>
                             </tr>
                         ))}
                     </tbody>

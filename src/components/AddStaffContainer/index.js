@@ -67,7 +67,7 @@ function AddStaffContainer() {
                     <div className={cx('label')} >
                         <label className={cx('field')}>4. Campus *</label>
                         <select className={cx('input')} type="text" required name="campusId" value={formData.campusId} onChange={handleInputChange}>
-                            <option value={''}>- Choose your campus -</option>
+                            <option value={''}>Choose Campus</option>
                             <option value={'1'} >Hà Nội</option>
                             <option value={'2'} >Hồ Chí Minh</option>
                             <option value={'3'} >Đà Nẵng</option>

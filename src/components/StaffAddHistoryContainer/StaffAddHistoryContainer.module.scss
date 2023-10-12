@@ -2,7 +2,6 @@
   min-height: 500px;
   position: relative;
   margin-top: 1%;
-  margin-right: 2%;
   margin-left: 1%;
   width: 80%;
 
@@ -49,7 +48,7 @@
 .description {
   flex: 0.5;
   display: inline-block;
-  min-width: 200px;
+  min-width: 180px;
   height: 40px;
   padding: 0 16px;
   border-radius: 10px;
@@ -73,10 +72,9 @@
 
 .img-hold {
   position: absolute;
-  top: 65%;
-  left: 60%;
-  margin-bottom: 20px;
+  left: 50%;
   display: flex;
+  margin-top: 75px;
 }
 
 .remove {
@@ -117,7 +115,7 @@
 .btn {
   display: block;
   position: absolute;
-  top: 80%;
+  top: 90%;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -195,8 +193,8 @@
 
 .modal-img {
   display: block;
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   margin-bottom: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
@@ -220,7 +218,7 @@
   height: 40px;
   margin-top: 40px;
   position: absolute;
-  top: 90%;
+  top: 60%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 20px;
@@ -237,5 +235,36 @@
     background-color: var(--hover);
     color: #fff;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+  .img-hold {
+    left: 60%;
+  }
+}
+
+@media (max-width: 821px) {
+  .wrapper {
+    width: 84%;
+  }
+
+  .field,
+  .img-label {
+    font-size: small;
+    min-width: 110px;
+  }
+
+  .img-hold {
+    margin-top: 120px;
+  }
+
+  .image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .modal-content {
+    width: 90%;
   }
 }

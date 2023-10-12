@@ -2,7 +2,6 @@
   min-height: 500px;
   position: relative;
   margin-top: 1%;
-  margin-right: 2%;
   margin-left: 1%;
   width: 80%;
 
@@ -163,5 +162,40 @@
     background-color: var(--hover);
     color: #fff;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 821px) {
+  .wrapper {
+    width: 84%;
+  }
+
+  .container {
+    min-height: 90vh;
+  }
+
+  .label {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+  }
+
+  .field {
+    margin-left: 0;
+    min-width: 110px;
+    font-size: small;
+  }
+
+  .input {
+    margin-right: 0;
+    padding: 0 8px;
+    width: 135px;
+  }
+
+  .modal-content {
+    width: 90%;
   }
 }

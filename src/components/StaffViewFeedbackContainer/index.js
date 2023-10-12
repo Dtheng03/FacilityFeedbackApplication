@@ -56,24 +56,25 @@ function StaffViewFeedbackContainer() {
                 <table className={cx('table')}>
                     <thead>
                         <tr className={cx('tr')}>
-                            <th className={cx('th')}>ID</th>
-                            <th className={cx('th')}>Campus</th>
-                            <th className={cx('th')}>Room</th>
-                            <th className={cx('th')}>Facility</th>
-                            <th className={cx('th')}>Problem</th>
-                            <th className={cx('th')}>CreateDate</th>
-                            <th className={cx('th')}>Detail</th>
+                            <th className={cx('th1')}>ID</th>
+                            <th className={cx('th2')}>Campus</th>
+                            <th className={cx('th3')}>Room</th>
+                            <th className={cx('th4')}>Facility</th>
+                            <th className={cx('th5')}>Problem</th>
+                            <th className={cx('th6')}>CreateDate</th>
+                            <th className={cx('th7')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredData.map(feedback => (
                             <tr key={feedback.id} className={cx('tr')}>
-                                <td className={cx('td')}>{feedback.id}</td>
-                                <td className={cx('td')}>{feedback.roomId}</td>
-                                <td className={cx('td')}>{feedback.facilityId}</td>
-                                <td className={cx('td')}>{feedback.facilityProblemId}</td>
-                                <td className={cx('td')}>{feedback.description}</td>
-                                <td className={cx('td')}></td>
+                                <td className={cx('td1')}>{feedback.id}</td>
+                                <td className={cx('td2')}>{feedback.campusId}</td>
+                                <td className={cx('td3')}>{feedback.roomId}</td>
+                                <td className={cx('td4')}>{feedback.facilityId}</td>
+                                <td className={cx('td5')}>{feedback.facilityProblemId}</td>
+                                <td className={cx('td6')}>{feedback.createDate}</td>
+                                <td className={cx('td7')}></td>
                             </tr>
                         ))}
                     </tbody>

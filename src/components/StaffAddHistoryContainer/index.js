@@ -105,13 +105,13 @@ function StaffAddHistoryContainer() {
                     <div className={cx('img')}>
                         <label className={cx('img-label')}>5. Image</label>
                         <input className={cx('img-input')} type="file" accept="image/*" onChange={handleImageChange} />
+                        {selectedImage && (
+                            <div className={cx('img-hold')}>
+                                <img className={cx('image')} src={selectedImage} onClick={handleModalOpen} alt="Selected" />
+                                <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
+                            </div>
+                        )}
                     </div>
-                    {selectedImage && (
-                        <div className={cx('img-hold')}>
-                            <img className={cx('image')} src={selectedImage} onClick={handleModalOpen} alt="Selected" />
-                            <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
-                        </div>
-                    )}
                     <button className={cx('btn')} type="submit">
                         Add
                         <FontAwesomeIcon className={cx('icon')} icon={faSquarePlus}></FontAwesomeIcon>
