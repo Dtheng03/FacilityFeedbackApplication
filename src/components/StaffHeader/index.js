@@ -29,16 +29,23 @@ function StaffHeader() {
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <div className={cx('home')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faUserGear} />Staff Page
+                    <FontAwesomeIcon className={cx('icon')} icon={faUserGear} />
+                    <span className={cx('span')}>Staff Page</span>
                 </div>
-                <p className={cx('title')}><FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>Facility Feedback Application</p>
-                <button className={cx('logout')} onClick={openModel}>Log out <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon></button>
+                <p className={cx('title')}>
+                    <FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>
+                    Facility Feedback <span className={cx('span')}>Application</span>
+                </p>
+                <button className={cx('logout')} onClick={openModel}>
+                    <span className={cx('span')}>Log out</span>
+                    <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
+                </button>
             </header>
             <div>
                 {isOpen && (
                     <div className={cx('modal')}>
                         <div className={cx('modal-content')}>
-                            <h2>Do you really want to log out?</h2>
+                            <h2 className={cx('modal-title')}>Do you really want to log out?</h2>
                             <button className={cx('yes')} onClick={handleLogout}>Yes</button>
                             <button className={cx('no')} onClick={closeModal}>No</button>
                         </div>

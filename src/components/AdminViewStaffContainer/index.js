@@ -43,7 +43,7 @@ function AdminViewStaffContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search Staff By Full Name"
+                    placeholder="Search by full name"
                     value={searchQuery}
                     onChange={handleSearch}
                 />

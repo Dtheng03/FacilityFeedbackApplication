@@ -100,7 +100,7 @@ function StaffAddHistoryContainer() {
                     </div>
                     <div className={cx('label')}>
                         <label className={cx('field')}>6. Description</label>
-                        <textarea className={cx('description')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
+                        <textarea className={cx('description')} rows="3" placeholder="Please describe the condition (optional)."></textarea>
                     </div>
                     <div className={cx('img')}>
                         <label className={cx('img-label')}>5. Image</label>

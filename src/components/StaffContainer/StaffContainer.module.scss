@@ -2,7 +2,6 @@
   min-height: 500px;
   position: relative;
   margin-top: 1%;
-  margin-right: 2%;
   margin-left: 1%;
   width: 80%;
 
@@ -20,18 +19,36 @@
 
 .title {
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 10%;
+  width: 100%;
+  text-align: center;
 }
 
 .sub-title {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
 }
 
 .icon {
   margin-left: 10px;
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 821px) {
+  .wrapper {
+    width: 84%;
+  }
+
+  .title {
+    font-size: large;
+  }
+
+  .sub-title {
+    font-size: medium;
+  }
 }

@@ -31,9 +31,6 @@ function StaffViewHistoryContainer() {
             const { id, facilityFeedbackId, time, staffId, status } = item;
             return id.toLowerCase().includes(query.toLowerCase())
                 || facilityFeedbackId.toLowerCase().includes(query.toLowerCase())
-                || time.toLowerCase().includes(query.toLowerCase())
-                || staffId.toLowerCase().includes(query.toLowerCase())
-                || status.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -47,7 +44,7 @@ function StaffViewHistoryContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search Repair History By Id, FeedbackId, RepairDate, StaffId, Status"
+                    placeholder="Search by feedback Id"
                     value={searchQuery}
                     onChange={handleSearch}
                 />

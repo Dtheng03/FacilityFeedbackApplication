@@ -264,7 +264,7 @@ function CreateFeedbackContainer() {
             )}
             <div className={cx('description')}>
                 <label className={cx('description-label')}>Description</label>
-                <textarea className={cx('description-text')} rows="3" placeholder="Brief description of the current situation (optional)"></textarea>
+                <textarea className={cx('description-text')} rows="3" placeholder="Please describe the condition (optional)."></textarea>
             </div>
             <div>
                 <button className={cx('submit')} type="submit">

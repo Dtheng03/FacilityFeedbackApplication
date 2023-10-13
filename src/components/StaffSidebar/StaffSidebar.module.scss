@@ -42,3 +42,61 @@
     transform: translateX(+2%);
   }
 }
+
+@media (max-width: 1025px) {
+  /* Styles for screens up to 1025px wide */
+  .title {
+    font-size: small;
+    text-align: center;
+
+    .icon {
+      margin-right: 4px;
+    }
+  }
+
+  .function {
+    font-size: small;
+    margin-left: 0;
+    text-align: center;
+
+    .icon {
+      margin-right: 4px;
+    }
+
+    .span {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 821px) {
+  /* Styles for screens up to 821px wide */
+  .wrapper {
+    margin-left: 0;
+  }
+
+  .category {
+    margin: 4px 0;
+    padding: 4px;
+    min-height: auto;
+  }
+
+  .title {
+    font-size: medium;
+    text-align: center;
+    margin-left: 4px;
+  }
+  .span {
+    display: none;
+  }
+
+  .function {
+    font-size: small;
+    margin-left: 0;
+    text-align: center;
+
+    .icon {
+      display: none;
+    }
+  }
+}
