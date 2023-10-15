@@ -38,7 +38,7 @@ function StaffHeader() {
                 </p>
                 <button className={cx('logout')} onClick={openModel}>
                     <span className={cx('span')}>Log out</span>
-                    <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
+                    <FontAwesomeIcon className={cx('icon')} icon={faSignOut}></FontAwesomeIcon>
                 </button>
             </header>
             <div>

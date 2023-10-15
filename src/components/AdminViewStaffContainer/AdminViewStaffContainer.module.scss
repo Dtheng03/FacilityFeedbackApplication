@@ -65,7 +65,7 @@
 .td9 {
   padding: 4px 16px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--primary);
 }
 
 .th1,
@@ -77,7 +77,16 @@
 .th7,
 .th8,
 .th9 {
-  background-color: #f2f2f2;
+  background-color: var(--primary);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.td5,
+.td7,
+.td8,
+.td9 {
+  text-align: center;
 }
 
 .th9,
@@ -85,8 +94,15 @@
   display: none;
 }
 
+.tr {
+  background-color: var(--hover);
+  font-weight: 500;
+  height: 50px;
+}
+
 .tr:hover {
-  background-color: #f5f5f5;
+  background-color: var(--text-color);
+  color: black;
 }
 
 @media (max-width: 1025px) {
@@ -120,6 +136,6 @@
 
   .th9,
   .td9 {
-    display: block;
+    display: table-cell;
   }
 }

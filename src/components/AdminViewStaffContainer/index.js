@@ -2,6 +2,9 @@ import classNames from "classnames/bind";
 import style from './AdminViewStaffContainer.module.scss';
 import React, { useEffect, useState } from 'react';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 const cx = classNames.bind(style);
 
 function AdminViewStaffContainer() {
@@ -12,17 +15,19 @@ function AdminViewStaffContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch('https://api.example.com/data')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+        fetch('http://localhost:8080/api/staff/getAll')
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
     }, []);
 
+    // xu ly search
     const handleSearch = (event) => {
         const query = event.target.value;
         setSearchQuery(query);
@@ -55,12 +60,11 @@ function AdminViewStaffContainer() {
                             <th className={cx('th2')}>FullName</th>
                             <th className={cx('th3')}>LoginName</th>
                             <th className={cx('th4')}>Password</th>
-                            <th className={cx('th5')}>IsManager</th>
+                            <th className={cx('th5')}>Manager</th>
                             <th className={cx('th6')}>Campus</th>
                             <th className={cx('th7')}>Update</th>
                             <th className={cx('th8')}>Delete</th>
                             <th className={cx('th9')}>Detail</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -70,11 +74,11 @@ function AdminViewStaffContainer() {
                                 <td className={cx('td2')}>{staff.fullName}</td>
                                 <td className={cx('td3')}>{staff.loginName}</td>
                                 <td className={cx('td4')}>{staff.password}</td>
-                                <td className={cx('td5')}>{staff.isManager}</td>
+                                <td className={cx('td5')}>{staff.manager ? <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon> : ''}</td>
                                 <td className={cx('td6')}>{staff.campusId}</td>
-                                <td className={cx('td7')}></td>
-                                <td className={cx('td8')}></td>
-                                <td className={cx('td9')}></td>
+                                <td className={cx('td7')}><FontAwesomeIcon icon={faPenToSquare} /></td>
+                                <td className={cx('td8')}><FontAwesomeIcon icon={faTrashCan} /></td>
+                                <td className={cx('td9')}><FontAwesomeIcon icon={faEye} /></td>
                             </tr>
                         ))}
                     </tbody>

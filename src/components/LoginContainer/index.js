@@ -1,39 +1,70 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './LoginContainer.module.scss'
 import classNames from 'classnames/bind';
-import { faLock, faLockOpen, faSignIn, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faLockOpen, faSignIn, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles)
 
 function LoginContainer() {
 
     const navigate = useNavigate();
+    const [loginname, setLoginname] = useState('');
+    const [password, setPassword] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
     const [passwordIcon, setPasswordIcon] = useState(true);
 
     const [isFail, setIsFail] = useState(false);
-
 
     const togglePassword = () => {
         setPasswordIcon(!passwordIcon)
         setPasswordShown(!passwordShown)
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // perform logic
 
-        // if success
-        // if admin
-        navigate('/admin');
+        // call api
+        try {
+            const reponse = await fetch('http://localhost:8080/api/staff/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "loginName": loginname,
+                    "password": password
+                })
+            })
 
-        // if staff
-        // navigate('/staff');
+            // lay ra response body va set vao sessionToken
+            const sessionToken = await reponse.json();
 
-        // if fail
-        // setIsFail(true);
+            // perform logic
+            if (reponse.ok) {
+                if (sessionToken.manager) {
+                    // luu sessionToken vao localStorage
+                    localStorage.setItem('sessionToken', sessionToken);
+
+                    // if success and role is admin
+                    navigate('/admin');
+                } else {
+                    // luu sessionToken vao localStorage
+                    localStorage.setItem('sessionToken', sessionToken);
+
+                    //if success and role is staff
+                    navigate('/staff');
+                }
+            } else {
+                // if fail
+                setIsFail(true);
+            }
+        } catch (error) {
+            // console.log(error);
+            setIsFail(true);
+        }
     };
 
     const closeFailModal = () => {
@@ -47,11 +78,27 @@ function LoginContainer() {
             </div>
             <div className={cx('loginname')}>
                 <FontAwesomeIcon className={cx('user')} icon={faUser}></FontAwesomeIcon>
-                <input className={cx('loginname-input')} required type='text' placeholder='LoginName'></input>
+                <input
+                    className={cx('loginname-input')}
+                    required
+                    type='text'
+                    placeholder='LoginName'
+                    value={loginname}
+                    onChange={(e) => setLoginname(e.target.value)}
+                >
+                </input>
             </div>
             <div className={cx('password')}>
                 <FontAwesomeIcon className={cx('pass')} icon={passwordIcon ? faLock : faLockOpen} onClick={togglePassword}></FontAwesomeIcon>
-                <input className={cx('password-input')} required type={passwordShown ? "text" : "password"} placeholder='Password'></input>
+                <input
+                    className={cx('password-input')}
+                    required
+                    type={passwordShown ? "text" : "password"}
+                    placeholder='Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                >
+                </input>
             </div>
             <div>
                 <button className={cx('button')} type='submit'>
@@ -60,6 +107,8 @@ function LoginContainer() {
                 </button>
             </div>
         </form>
+
+        {/* Show message when login failed */}
         <div>
             {isFail && (
                 <div className={cx('modal')}>
