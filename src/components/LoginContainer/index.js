@@ -28,7 +28,7 @@ function LoginContainer() {
 
         // call api
         try {
-            const reponse = await fetch('http://localhost:8080/api/staff/login', {
+            const response = await fetch('http://localhost:8080/api/staff/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,10 +40,10 @@ function LoginContainer() {
             })
 
             // lay ra response body va set vao sessionToken
-            const sessionToken = await reponse.json();
+            const sessionToken = await response.json();
 
             // perform logic
-            if (reponse.ok) {
+            if (response.ok) {
                 if (sessionToken.manager) {
                     // luu sessionToken vao localStorage
                     localStorage.setItem('sessionToken', sessionToken);

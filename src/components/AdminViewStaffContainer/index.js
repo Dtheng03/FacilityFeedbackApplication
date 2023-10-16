@@ -4,11 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
 function AdminViewStaffContainer() {
 
+    // goi api lay ra toan bo du lieu can
     const [data, setData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
@@ -48,7 +50,7 @@ function AdminViewStaffContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search by full name"
+                    placeholder="Search by fullname"
                     value={searchQuery}
                     onChange={handleSearch}
                 />
@@ -75,10 +77,14 @@ function AdminViewStaffContainer() {
                                 <td className={cx('td3')}>{staff.loginName}</td>
                                 <td className={cx('td4')}>{staff.password}</td>
                                 <td className={cx('td5')}>{staff.manager ? <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon> : ''}</td>
-                                <td className={cx('td6')}>{staff.campusId}</td>
-                                <td className={cx('td7')}><FontAwesomeIcon icon={faPenToSquare} /></td>
-                                <td className={cx('td8')}><FontAwesomeIcon icon={faTrashCan} /></td>
-                                <td className={cx('td9')}><FontAwesomeIcon icon={faEye} /></td>
+                                <td className={cx('td6')}>{staff.campusName}</td>
+                                <td className={cx('td7')}><FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} /></td>
+                                <td className={cx('td8')}>
+                                    <Link to={`/admin/delete-staff/${staff.id}`}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
+                                    </Link>
+                                </td>
+                                <td className={cx('td9')}><FontAwesomeIcon className={cx('icon')} icon={faEye} /></td>
                             </tr>
                         ))}
                     </tbody>
