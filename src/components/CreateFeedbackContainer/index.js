@@ -1,14 +1,27 @@
 import classNames from "classnames/bind";
 import styles from "./CreateFeedbackContainer.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function CreateFeedbackContainer() {
+    // tao state luu thong tin feedback
+    const [feedback, setFeedback] = useState({
+        campusId: 0,
+        floorId: 0,
+        roomId: 0,
+        facilityId: 0,
+        facilityProblemId: 0,
+        image: "",
+        description: "",
+    });
 
+    // tao bien de dieu huong
     const navigate = useNavigate();
 
     // List chứa toàn bộ dữ liệu
@@ -24,36 +37,10 @@ function CreateFeedbackContainer() {
     const [facilitys, setFacility] = useState([]);
     const [facilityProblems, setFacilityProblem] = useState([]);
 
-    // Lưu thời gian tạo feedback
-    const [submitDateTime, setSubmitDateTime] = useState('');
-
     // Hiển thị phần thêm hình ảnh
-    const [selectedImage, setSelectedImage] = useState(null);
     const [showImg, setShowImg] = useState(false);
+    const [uploadedImage, setUploadedImage] = useState(null);
 
-    // Xử lý phần chọn campus
-    const handleSetCampus = (id) => {
-        const fl = listFloors.filter(x => x.campusId === Number(id));
-        setFloor(fl);
-    }
-
-    // Xử lý phần chọn floor
-    const handleSetFloor = (id) => {
-        const rm = listRooms.filter(x => x.floorId === Number(id));
-        setRoom(rm);
-    }
-
-    // Xử lý phần chọn room
-    const handleSetRoom = (id) => {
-        const fc = listFacilitys.filter(x => x.roomTypeId === Number(id));
-        setFacility(fc);
-    }
-
-    // Xử lý phần chọn facility
-    const handleSetFacility = (id) => {
-        const fp = listFacilityProblems.filter(x => x.facilityTypeId === Number(id));
-        setFacilityProblem(fp);
-    }
 
     // Call api để lấy toàn bộ dữ liệu
     useEffect(() => {
@@ -86,24 +73,82 @@ function CreateFeedbackContainer() {
         fetchData();
     }, [])
 
-    // Xử lý khi xóa hình ảnh, tránh rò ri bộ nhớ
-    useEffect(() => {
-        return () => {
-            selectedImage && URL.revokeObjectURL(selectedImage)
-        }
-    }, [selectedImage])
+    // Xử lý phần chọn campus
+    const handleSetCampus = (e) => {
+        const fl = listFloors.filter(x => x.campusId === Number(e.target.value));
+        setFloor(fl);
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // Xử lý phần chọn floor
+    const handleSetFloor = (e) => {
+        const rm = listRooms.filter(x => x.floorId === Number(e.target.value));
+        setRoom(rm);
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // Xử lý phần chọn room
+    const handleSetRoom = (e) => {
+        const rt = listRooms.find(x => x.id === Number(e.target.value));
+        const fc = listFacilitys.filter(x => x.roomTypeId === Number(rt.roomTypeId));
+        setFacility(fc);
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // Xử lý phần chọn facility
+    const handleSetFacility = (e) => {
+        const ft = listFacilitys.find(x => x.id === Number(e.target.value));
+        const fp = listFacilityProblems.filter(x => x.facilityTypeId === Number(ft.facilityTypeId));
+        setFacilityProblem(fp);
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // xu ly phan chon facilityProblem
+    const handleSetProblem = (e) => {
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        })
+    }
 
     // Xử lý phần thêm hình ảnh
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedImage(URL.createObjectURL(file));
-        }
-    };
+    const onDrop = useCallback(acceptedFiles => {
+        const file = acceptedFiles[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            const imageUrl = reader.result;
+            setUploadedImage(imageUrl);
+            setFeedback({
+                ...feedback,
+                image: uploadedImage
+            })
+        };
+
+        reader.readAsDataURL(file);
+    }, []);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     // Xử lý khi ấn xóa ảnh
     const handleRemoveImage = () => {
-        setSelectedImage(null);
+        setUploadedImage(null);
+        setFeedback({
+            ...feedback,
+            image: ""
+        });
     };
 
     // Xử lý khi ấn vào ảnh
@@ -116,6 +161,14 @@ function CreateFeedbackContainer() {
         setShowImg(false);
     };
 
+    // xu ly set description
+    const handleSetDescription = (e) => {
+        setFeedback({
+            ...feedback,
+            [e.target.name]: e.target.value
+        });
+    }
+
     // Xử lý khi gửi feedback thất bại
     const [feedbackFail, setFeedbackFail] = useState(false);
 
@@ -124,18 +177,38 @@ function CreateFeedbackContainer() {
     }
 
     // Xử lý logic khi gửi feedback
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Perform additional form submission logic here
-        // const currentDateTime = new Date().toLocaleString();
-        // setSubmitDateTime(currentDateTime);
+        // call api
+        try {
+            const formData = new FormData();
+            formData.append("campusId", Number(feedback.campusId));
+            formData.append("floorId", Number(feedback.floorId));
+            formData.append("roomId", Number(feedback.roomId));
+            formData.append("facilityId", Number(feedback.facilityId));
+            formData.append("facilityProblemId", Number(feedback.facilityProblemId));
+            formData.append("description", feedback.description);
+            formData.append("image", feedback.image);
 
-        // if success
-        navigate('success')
+            const response = await axios.post('http://localhost:8080/api/feedback/create', formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        // 'Content-Type': 'application/json',
+                    },
+                })
 
-        // if fail
-        // setFeedbackFail(true)
+            if (response.ok) {
+                // if success
+                navigate('success')
+            } else {
+                // if fail
+                setFeedbackFail(true)
+            }
+        } catch (error) {
+            setFeedbackFail(true)
+        }
     }
 
     return <div className={cx('wrapper')}>
@@ -147,8 +220,8 @@ function CreateFeedbackContainer() {
             {/* Chọn campus */}
             <div className={cx('campus')}>
                 <label className={cx('campus-label')}>Campus *</label>
-                <select id="campus" required className={cx('campus-select')} onChange={(e) => handleSetCampus(e.target.value)}>
-                    <option value={''}>- Choose your campus -</option>
+                <select name="campusId" required className={cx('campus-select')} onChange={(e) => handleSetCampus(e)}>
+                    <option value={0}>- Choose your campus -</option>
                     {listCampuss.map((campus, index) => (
                         <option key={index} value={campus.id}>{campus.name}</option>
                     ))}
@@ -158,8 +231,8 @@ function CreateFeedbackContainer() {
             {/* Chọn floor */}
             <div className={cx('floor')}>
                 <label className={cx('floor-label')}>Floor *</label>
-                <select id="floor" required className={cx('floor-select')} onChange={(e) => handleSetFloor(e.target.value)}>
-                    <option value={''}>- Choose your floor -</option>
+                <select name="floorId" required className={cx('floor-select')} onChange={(e) => handleSetFloor(e)}>
+                    <option value={0}>- Choose your floor -</option>
                     {floors.map((floor, index) => (
                         <option key={index} value={floor.id}>{floor.name}</option>
                     ))}
@@ -169,10 +242,10 @@ function CreateFeedbackContainer() {
             {/* Chọn room */}
             <div className={cx('room')}>
                 <label className={cx('room-label')}>Room *</label>
-                <select id="room" required className={cx('room-select')} onChange={(e) => handleSetRoom(e.target.value)}>
-                    <option value={''}>- Choose your room -</option>
+                <select name="roomId" required className={cx('room-select')} onChange={(e) => handleSetRoom(e)}>
+                    <option value={0}>- Choose your room -</option>
                     {rooms.map((room, index) => (
-                        <option key={index} value={room.roomTypeId}>{room.name}</option>
+                        <option key={index} value={room.id}>{room.name}</option>
                     ))}
                 </select>
             </div>
@@ -180,10 +253,10 @@ function CreateFeedbackContainer() {
             {/* Chọn facility */}
             <div className={cx('facility')}>
                 <label className={cx('facility-label')}>Facility *</label>
-                <select id="facility" required className={cx('facility-select')} onChange={(e) => { handleSetFacility(e.target.value) }} >
-                    <option value={''}>- Choose your facility -</option>
+                <select name="facilityId" required className={cx('facility-select')} onChange={(e) => { handleSetFacility(e) }} >
+                    <option value={0}>- Choose your facility -</option>
                     {facilitys.map((facility, index) => (
-                        <option key={index} value={facility.facilityTypeId}>{facility.name}</option>
+                        <option key={index} value={facility.id}>{facility.name}</option>
                     ))}
                 </select>
             </div>
@@ -191,8 +264,8 @@ function CreateFeedbackContainer() {
             {/* Chọn problem */}
             <div className={cx('problem')}>
                 <label className={cx('problem-label')}>Problem *</label>
-                <select id="problem" required className={cx('problem-select')}>
-                    <option value={''}>- Choose your problem -</option>
+                <select name="facilityProblemId" required className={cx('problem-select')} onChange={(e) => { handleSetProblem(e) }}>
+                    <option value={0}>- Choose your problem -</option>
                     {facilityProblems.map((problem, index) => (
                         <option key={index} value={problem.id}>{problem.problemName}</option>
                     ))}
@@ -202,12 +275,18 @@ function CreateFeedbackContainer() {
             {/* Thêm ảnh */}
             <div className={cx('img')}>
                 <label className={cx('img-label')}>Image</label>
-                <input className={cx('img-input')} type="file" accept="image/*" onChange={handleImageChange} />
+                <div {...getRootProps()} className={cx('img-input')}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                        <p>Drag and drop images here...</p>
+                    ) : (
+                        <p>Drag and drop the image here, or click to select the image</p>
+                    )}
+                </div>
             </div>
-            {/* Hiện ảnh khi có ảnh dc chọn */}
-            {selectedImage && (
+            {uploadedImage && (
                 <div className={cx('img-hold')}>
-                    <img className={cx('image')} src={selectedImage} onClick={handleModalOpen} alt="Selected" />
+                    <img className={cx('image')} src={uploadedImage} onClick={handleModalOpen} alt="Uploaded" />
                     <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
                 </div>
             )}
@@ -215,7 +294,7 @@ function CreateFeedbackContainer() {
             {/* Thêm mô tả */}
             <div className={cx('description')}>
                 <label className={cx('description-label')}>Description</label>
-                <textarea className={cx('description-text')} rows="3" placeholder="Please describe the condition (optional)."></textarea>
+                <textarea className={cx('description-text')} name="description" rows="3" placeholder="Please describe the condition (optional)." onChange={(e) => handleSetDescription(e)}></textarea>
             </div>
 
             {/* Nút gửi */}
@@ -232,7 +311,7 @@ function CreateFeedbackContainer() {
             {showImg && (
                 <div className={cx('modal')}>
                     <div className={cx('modal-content')}>
-                        <img className={cx('modal-img')} src={selectedImage} alt="Selected" />
+                        <img className={cx('modal-img')} src={uploadedImage} alt="Uploaded" />
                         <button className={cx('modal-close')} onClick={handleModalClose}>
                             &times;
                         </button>

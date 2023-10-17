@@ -84,6 +84,12 @@
 .img-input {
   display: block;
   width: 350px;
+  cursor: pointer;
+
+  p {
+    text-align: center;
+    font-size: medium;
+  }
 }
 
 .img-hold {
@@ -253,6 +259,12 @@
 
   .img-hold {
     margin-left: 30px;
+  }
+
+  .img-input {
+    p {
+      font-size: small;
+    }
   }
 
   .image {
