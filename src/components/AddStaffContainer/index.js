@@ -9,19 +9,27 @@ const cx = classNames.bind(style);
 
 function AddStaffContainer() {
 
+    // lay Token va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
+    // tao form chua info
     const [formData, setFormData] = useState({
         fullName: '',
         loginName: '',
         passWord: '',
         isManager: false,
-        campusId: 0
+        campusId: sessionData.campusId
     });
 
+    // state de check manager
     const [isChecked, setIsChecked] = useState(false);
 
+    // state de control success/fail
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFail, setIsFail] = useState(false);
 
+    // xu ly nhap info
     const handleInputChange = (event) => {
         setFormData({
             ...formData,
@@ -29,6 +37,7 @@ function AddStaffContainer() {
         });
     };
 
+    // xu ly check manager
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
         setFormData({
@@ -37,6 +46,7 @@ function AddStaffContainer() {
         });
     };
 
+    // xu ly add staff
     const handleSubmit = async (event) => {
         event.preventDefault();
         // Call API to create new staff member using formData
@@ -71,16 +81,28 @@ function AddStaffContainer() {
                 // if fail
                 setIsFail(true);
             }
+
+            // reset data
+            setFormData({
+                ...formData,
+                fullName: '',
+                loginName: '',
+                passWord: '',
+                isManager: false
+            });
+            setIsChecked(false);
         } catch (error) {
             // if fail
             setIsFail(true);
         }
     };
 
+    // xu ly dong modal success
     const closeSuccessModal = () => {
         setIsSuccess(false);
     };
 
+    // xu ly dong modal fail
     const closeFailModal = () => {
         setIsFail(false);
     };
@@ -104,7 +126,7 @@ function AddStaffContainer() {
                     </div>
                     <div className={cx('label')} >
                         <label className={cx('field')}>4. Campus *</label>
-                        <select className={cx('input')} type="text" required name="campusId" value={formData.campusId} onChange={handleInputChange}>
+                        <select className={cx('input')} type="text" required name="campusId" value={formData.campusId} disabled>
                             <option value={0}>Choose Campus</option>
                             <option value={1} >Hà Nội</option>
                             <option value={2} >Hồ Chí Minh</option>

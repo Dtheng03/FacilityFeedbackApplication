@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import style from './StaffViewFeedbackContainer.module.scss';
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -10,17 +12,21 @@ function StaffViewFeedbackContainer() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
+    // lay Token va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
     useEffect(() => {
         // Fetch data from API
-        // fetch('https://api.example.com/data')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+        fetch(`http://localhost:8080/api/feedback/getAll/${sessionData.campusId}`)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     const handleSearch = (event) => {
@@ -56,22 +62,20 @@ function StaffViewFeedbackContainer() {
                             <th className={cx('th1')}>ID</th>
                             <th className={cx('th2')}>Campus</th>
                             <th className={cx('th3')}>Room</th>
-                            <th className={cx('th4')}>Facility</th>
-                            <th className={cx('th5')}>Problem</th>
-                            <th className={cx('th6')}>CreateDate</th>
-                            <th className={cx('th7')}>Detail</th>
+                            <th className={cx('th4')}>Problem</th>
+                            <th className={cx('th5')}>CreateDate</th>
+                            <th className={cx('th6')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredData.map(feedback => (
                             <tr key={feedback.id} className={cx('tr')}>
                                 <td className={cx('td1')}>{feedback.id}</td>
-                                <td className={cx('td2')}>{feedback.campusId}</td>
-                                <td className={cx('td3')}>{feedback.roomId}</td>
-                                <td className={cx('td4')}>{feedback.facilityId}</td>
-                                <td className={cx('td5')}>{feedback.facilityProblemId}</td>
-                                <td className={cx('td6')}>{feedback.createDate}</td>
-                                <td className={cx('td7')}></td>
+                                <td className={cx('td2')}>{feedback.campusName}</td>
+                                <td className={cx('td3')}>{feedback.roomName}</td>
+                                <td className={cx('td4')}>{feedback.facilityProblemName}</td>
+                                <td className={cx('td5')}>{feedback.createDate}</td>
+                                <td className={cx('td6')}><FontAwesomeIcon className={cx('icon')} icon={faEye}></FontAwesomeIcon></td>
                             </tr>
                         ))}
                     </tbody>

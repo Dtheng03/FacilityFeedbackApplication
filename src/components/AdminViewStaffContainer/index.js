@@ -15,9 +15,13 @@ function AdminViewStaffContainer() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
+    // lay token ra va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
     useEffect(() => {
         // Fetch data from API
-        fetch('http://localhost:8080/api/staff/getAll')
+        fetch(`http://localhost:8080/api/staff/getAllByCampusId/${sessionData.campusId}`)
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -78,7 +82,11 @@ function AdminViewStaffContainer() {
                                 <td className={cx('td4')}>{staff.password}</td>
                                 <td className={cx('td5')}>{staff.manager ? <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon> : ''}</td>
                                 <td className={cx('td6')}>{staff.campusName}</td>
-                                <td className={cx('td7')}><FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} /></td>
+                                <td className={cx('td7')}>
+                                    <Link to={`/admin/update-staff/${staff.id}`}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} />
+                                    </Link>
+                                </td>
                                 <td className={cx('td8')}>
                                     <Link to={`/admin/delete-staff/${staff.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />

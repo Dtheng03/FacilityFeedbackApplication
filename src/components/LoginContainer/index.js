@@ -41,18 +41,19 @@ function LoginContainer() {
 
             // lay ra response body va set vao sessionToken
             const sessionToken = await response.json();
+            const sessionData = JSON.stringify(sessionToken);
 
             // perform logic
             if (response.ok) {
                 if (sessionToken.manager) {
                     // luu sessionToken vao localStorage
-                    localStorage.setItem('sessionToken', sessionToken);
+                    localStorage.setItem('sessionToken', sessionData);
 
                     // if success and role is admin
                     navigate('/admin');
                 } else {
                     // luu sessionToken vao localStorage
-                    localStorage.setItem('sessionToken', sessionToken);
+                    localStorage.setItem('sessionToken', sessionData);
 
                     //if success and role is staff
                     navigate('/staff');
