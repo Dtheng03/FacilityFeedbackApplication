@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
+import Dropzone from 'react-dropzone';
 import axios from 'axios';
 
 const cx = classNames.bind(styles);
@@ -17,7 +17,7 @@ function CreateFeedbackContainer() {
         roomId: 0,
         facilityId: 0,
         facilityProblemId: 0,
-        image: "",
+        image: null,
         description: "",
     });
 
@@ -124,30 +124,28 @@ function CreateFeedbackContainer() {
     }
 
     // Xử lý phần thêm hình ảnh
-    const onDrop = useCallback(acceptedFiles => {
+    const handleImageUpload = (acceptedFiles) => {
         const file = acceptedFiles[0];
         const reader = new FileReader();
-
         reader.onload = () => {
             const imageUrl = reader.result;
             setUploadedImage(imageUrl);
-            setFeedback({
-                ...feedback,
-                image: uploadedImage
-            })
+
         };
-
         reader.readAsDataURL(file);
-    }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+        setFeedback({
+            ...feedback,
+            image: file
+        })
+    }
 
     // Xử lý khi ấn xóa ảnh
     const handleRemoveImage = () => {
         setUploadedImage(null);
         setFeedback({
             ...feedback,
-            image: ""
+            image: null
         });
     };
 
@@ -195,17 +193,27 @@ function CreateFeedbackContainer() {
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        // 'Content-Type': 'application/json',
                     },
                 })
 
-            if (response.ok) {
+            if (response) {
                 // if success
                 navigate('success')
             } else {
                 // if fail
                 setFeedbackFail(true)
             }
+
+            // reset data
+            setFeedback({
+                campusId: 0,
+                floorId: 0,
+                roomId: 0,
+                facilityId: 0,
+                facilityProblemId: 0,
+                image: null,
+                description: "",
+            });
         } catch (error) {
             setFeedbackFail(true)
         }
@@ -274,16 +282,18 @@ function CreateFeedbackContainer() {
 
             {/* Thêm ảnh */}
             <div className={cx('img')}>
-                <label className={cx('img-label')}>Image</label>
-                <div {...getRootProps()} className={cx('img-input')}>
-                    <input {...getInputProps()} />
-                    {isDragActive ? (
-                        <p>Drag and drop images here...</p>
-                    ) : (
-                        <p>Drag and drop the image here, or click to select the image</p>
+                <label className={cx('img-label')}>Image *</label>
+                <Dropzone onDrop={handleImageUpload}>
+                    {({ getRootProps, getInputProps }) => (
+                        <div {...getRootProps()} className={cx('img-input')}>
+                            <input {...getInputProps()} />
+                            <p>Drag 'n' drop an image here, or click to select an image</p>
+                        </div>
                     )}
-                </div>
+                </Dropzone>
             </div>
+
+            {/* Hiện ảnh khi có ảnh tải lên */}
             {uploadedImage && (
                 <div className={cx('img-hold')}>
                     <img className={cx('image')} src={uploadedImage} onClick={handleModalOpen} alt="Uploaded" />
