@@ -1,0 +1,46 @@
+.wrapper {
+  --header-height: 60px;
+  position: relative;
+  height: var(--header-height);
+  background-color: var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 900;
+  font-size: 2.4rem;
+}
+
+.home {
+  line-height: var(--header-height);
+}
+
+.icon {
+  margin: 0 8px;
+}
+
+.title {
+  line-height: var(--header-height);
+}
+
+@media (max-width: 1025px) {
+  /* Styles for screens up to 1025px wide */
+  .title {
+    margin-left: -75px;
+  }
+}
+
+@media (max-width: 821px) {
+  /* Styles for screens up to 821px wide */
+  .title {
+    margin-left: -30px;
+    font-size: medium;
+  }
+
+  .span {
+    display: none;
+  }
+}

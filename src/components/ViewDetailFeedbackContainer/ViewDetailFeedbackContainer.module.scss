@@ -1,0 +1,15 @@
+.wrapper {
+  min-height: 500pxs;
+}
+
+.container {
+  margin-top: 2%;
+  margin-left: 10%;
+  width: 80%;
+  min-height: 500px;
+  background-color: var(--hover);
+  color: black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}

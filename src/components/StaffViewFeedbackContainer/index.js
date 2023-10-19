@@ -3,6 +3,7 @@ import style from './StaffViewFeedbackContainer.module.scss';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
@@ -16,6 +17,7 @@ function StaffViewFeedbackContainer() {
     const sessionToken = localStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
+    // call api lay data
     useEffect(() => {
         // Fetch data from API
         fetch(`http://localhost:8080/api/feedback/getAll/${sessionData.campusId}`)
@@ -29,19 +31,22 @@ function StaffViewFeedbackContainer() {
             });
     }, []);
 
+    // xu ly search theo problem
     const handleSearch = (event) => {
         const query = event.target.value;
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { id, campusId, roomId, facilityId, facilityProblemId, createDate } = item;
-            return id.toLowerCase().includes(query.toLowerCase())
-                || campusId.toLowerCase().includes(query.toLowerCase())
-                || createDate.toLowerCase().includes(query.toLowerCase())
+            const { facilityProblemName, createDate } = item;
+            return facilityProblemName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
     };
+
+    const handleShowDetail = () => {
+
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -51,7 +56,7 @@ function StaffViewFeedbackContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search by campusId, createDate"
+                    placeholder="Search by problem"
                     value={searchQuery}
                     onChange={handleSearch}
                 />
@@ -75,7 +80,11 @@ function StaffViewFeedbackContainer() {
                                 <td className={cx('td3')}>{feedback.roomName}</td>
                                 <td className={cx('td4')}>{feedback.facilityProblemName}</td>
                                 <td className={cx('td5')}>{feedback.createDate}</td>
-                                <td className={cx('td6')}><FontAwesomeIcon className={cx('icon')} icon={faEye}></FontAwesomeIcon></td>
+                                <td className={cx('td6')}>
+                                    <Link to={`/view-detail/feedback/${feedback.id}`}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faEye}></FontAwesomeIcon>
+                                    </Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
