@@ -9,18 +9,28 @@ function ViewDetailFeedbackContainer() {
 
     const param = useParams();
 
-    const [data, setData] = useState();
+    const [feedback, setFeedback] = useState([]);
 
     useEffect(() => {
-        // fetch(`http://localhost:8080/api/feedback/getAll/${param.id}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+        fetch(`http://localhost:8080/api/feedback/get-feedback/${param.id}`)
+            .then(response => response.json())
+            .then(data => {
+                setFeedback(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, [])
+
+    const [showImg, setShowImg] = useState(false);
+
+    const handleShowImg = () => {
+        setShowImg(true);
+    }
+
+    const handleModalClose = () => {
+        setShowImg(false);
+    }
 
     const handleBack = () => {
         window.history.back();
@@ -29,42 +39,69 @@ function ViewDetailFeedbackContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h3>View Detail Feedback</h3>
-                <div>
-                    <label>1.Id:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>2.Campus:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>3.Floor:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>4.Room:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>5.Facility:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>6.Problem:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>7.Description:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <label>8.Image:</label>
-                    <p></p>
-                </div>
-                <div>
-                    <button onClick={handleBack}>Back</button>
-                </div>
+                <h3 className={cx('title')}>View Detail Feedback</h3>
+                {feedback.map(fb => (
+                    <div key={fb.id} className={cx('info')}>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>1.Id:</label>
+                            <p className={cx('input')}>{fb.id}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>2.Campus:</label>
+                            <p className={cx('input')}>{fb.campusName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>3.Floor:</label>
+                            <p className={cx('input')}>{fb.floorName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>4.Room:</label>
+                            <p className={cx('input')}>{fb.roomName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>5.Facility:</label>
+                            <p className={cx('input')}>{fb.facilityName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>6.Problem:</label>
+                            <p className={cx('input')}>{fb.facilityProblemName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>7.Description:</label>
+                            <p className={cx('input')}>{fb.description}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>8.Image:</label>
+                            <img
+                                className={cx('input')}
+                                src={`data:image/jpeg;base64,${fb.image}`}
+                                alt='img'
+                                width="100"
+                                onClick={handleShowImg}
+                            />
+                        </div>
+                        <div className={cx('label')}>
+                            <button className={cx('btn')} onClick={handleBack}>Back</button>
+                        </div>
+
+                        {/* Show full image */}
+                        <div>
+                            {showImg && (
+                                <div className={cx('modal')}>
+                                    <div className={cx('modal-content')}>
+                                        <img
+                                            className={cx('modal-img')}
+                                            src={`data:image/jpeg;base64,${fb.image}`}
+                                            alt="Uploaded" />
+                                        <button className={cx('modal-close')} onClick={handleModalClose}>
+                                            &times;
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

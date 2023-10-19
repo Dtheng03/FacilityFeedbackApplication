@@ -83,15 +83,11 @@ function StaffAddHistoryContainer() {
                         <input className={cx('input')} type="text" required name="facilityFeedbackId" value={formData.name} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>2. RepairDate *</label>
-                        <input className={cx('input')} type="date" required name="time" value={formData.email} onChange={handleInputChange} />
-                    </div>
-                    <div className={cx('label')} >
-                        <label className={cx('field')}>3. StaffId *</label>
+                        <label className={cx('field')}>2. StaffId *</label>
                         <input className={cx('input')} type="text" required name="staffId" value={formData.position} onChange={handleInputChange} />
                     </div>
                     <div className={cx('label')} >
-                        <label className={cx('field')}>4. Status *</label>
+                        <label className={cx('field')}>3. Status *</label>
                         <select className={cx('input')} type="text" required name="status" value={formData.position} onChange={handleInputChange}>
                             <option value={''}>- Choose status -</option>
                             <option value={'0'}>Not Finished</option>
@@ -99,7 +95,7 @@ function StaffAddHistoryContainer() {
                         </select>
                     </div>
                     <div className={cx('label')}>
-                        <label className={cx('field')}>6. Description</label>
+                        <label className={cx('field')}>4. Description</label>
                         <textarea className={cx('description')} rows="3" placeholder="Please describe the condition (optional)."></textarea>
                     </div>
                     <div className={cx('img')}>
