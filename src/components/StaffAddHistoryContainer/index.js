@@ -3,72 +3,126 @@ import style from './StaffAddHistoryContainer.module.scss';
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import Dropzone from 'react-dropzone';
+import axios from 'axios';
 
 const cx = classNames.bind(style);
 
 function StaffAddHistoryContainer() {
 
-    const [formData, setFormData] = useState({
-        fullName: '',
-        loginName: '',
-        passWord: '',
-        isManager: false,
-        campusId: ''
-    });
+    // lay token va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
+    // tao state upload & hien thi anh
+    const [showImg, setShowImg] = useState(false);
+    const [uploadedImage, setUploadedImage] = useState(null);
+
+    // tao state hien thi thanh cong || that bai
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFail, setIsFail] = useState(false);
 
+    // tao state chua du lieu
+    const [history, setHistory] = useState({
+        feedbackId: 0,
+        staffId: sessionData.id,
+        status: false,
+        description: '',
+        image: null
+    });
+
+    // xu ly nhap du lieu
     const handleInputChange = (event) => {
-        setFormData({
-            ...formData,
+        setHistory({
+            ...history,
             [event.target.name]: event.target.value
         });
     };
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [showImg, setShowImg] = useState(false);
+    // Xử lý phần thêm hình ảnh
+    const handleImageUpload = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imageUrl = reader.result;
+            setUploadedImage(imageUrl);
 
-    useEffect(() => {
-        return () => {
-            selectedImage && URL.revokeObjectURL(selectedImage)
-        }
-    }, [selectedImage])
+        };
+        reader.readAsDataURL(file);
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedImage(URL.createObjectURL(file));
-        }
-    };
+        setHistory({
+            ...history,
+            image: file
+        })
+    }
 
+    // Xử lý khi ấn xóa ảnh
     const handleRemoveImage = () => {
-        setSelectedImage(null);
+        setUploadedImage(null);
+        setHistory({
+            ...history,
+            image: null
+        });
     };
 
+    // xu ly show hinh anh
     const handleModalOpen = () => {
         setShowImg(true);
     };
 
+    // xu ly dong hinh anh
     const handleModalClose = () => {
         setShowImg(false);
     };
 
-    const handleSubmit = (event) => {
+    // xu ly tao repair history
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Call API to create new staff member using formData
-        // ...
 
-        // If success
-        setIsSuccess(true);
+        // call api
+        try {
+            const formData = new FormData();
+            formData.append("facilityFeedbackId", Number(history.feedbackId));
+            formData.append("staffId", Number(history.staffId));
+            formData.append("image", history.image,);
+            formData.append("description", history.description,);
+            formData.append("status", history.status,);
 
-        // If fail
-        // setIsFail(true);
+            const response = await axios.post('http://localhost:8080/api/repair/create', formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+            if (response) {
+                // if success
+                setIsSuccess(true);
+            } else {
+                // if fail
+                setIsFail(true);
+            }
+
+            // reset data
+            setHistory({
+                ...history,
+                feedbackId: 0,
+                image: null,
+                description: '',
+                status: false
+            });
+
+        } catch (error) {
+            setIsFail(true);
+        }
     };
 
+    // xu ly dong modal success
     const closeSuccessModal = () => {
         setIsSuccess(false);
     };
 
+    // xu ly dong modal fail
     const closeFailModal = () => {
         setIsFail(false);
     };
@@ -78,36 +132,56 @@ function StaffAddHistoryContainer() {
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Add Repair History</h2>
                 <form className={cx('form')} onSubmit={handleSubmit}>
+
+                    {/* nhap feedbackId */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>1. FeedbackId *</label>
-                        <input className={cx('input')} type="text" required name="facilityFeedbackId" value={formData.name} onChange={handleInputChange} />
+                        <input className={cx('input')} type="text" required name="feedbackId" value={history.feedbackId} onChange={handleInputChange} />
                     </div>
+
+                    {/* hien thi staff id */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. StaffId *</label>
-                        <input className={cx('input')} type="text" required name="staffId" value={formData.position} onChange={handleInputChange} />
+                        <input className={cx('input')} type="text" required name="staffId" value={history.staffId} onChange={handleInputChange} disabled />
                     </div>
+
+                    {/* chon status */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>3. Status *</label>
-                        <select className={cx('input')} type="text" required name="status" value={formData.position} onChange={handleInputChange}>
-                            <option value={''}>- Choose status -</option>
-                            <option value={'0'}>Not Finished</option>
-                            <option value={'1'}>Finished</option>
+                        <select className={cx('input')} required type="text" name="status" value={history.status} onChange={handleInputChange}>
+                            <option value={false}>Not Finished</option>
+                            <option value={true}>Finished</option>
                         </select>
                     </div>
+
+                    {/* them mo ta */}
                     <div className={cx('label')}>
                         <label className={cx('field')}>4. Description</label>
-                        <textarea className={cx('description')} rows="3" placeholder="Please describe the condition (optional)."></textarea>
+                        <textarea name='description' className={cx('description')} rows="3" placeholder="Please describe the condition (optional)." value={history.description} onChange={handleInputChange}></textarea>
                     </div>
+
+                    {/* Thêm ảnh */}
                     <div className={cx('img')}>
-                        <label className={cx('img-label')}>5. Image</label>
-                        <input className={cx('img-input')} type="file" accept="image/*" onChange={handleImageChange} />
-                        {selectedImage && (
-                            <div className={cx('img-hold')}>
-                                <img className={cx('image')} src={selectedImage} onClick={handleModalOpen} alt="Selected" />
-                                <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
-                            </div>
-                        )}
+                        <label className={cx('img-label')}>5. Image *</label>
+                        <Dropzone onDrop={handleImageUpload}>
+                            {({ getRootProps, getInputProps }) => (
+                                <div {...getRootProps()} className={cx('img-input')}>
+                                    <input {...getInputProps()} />
+                                    <p>Click here to select an image</p>
+                                </div>
+                            )}
+                        </Dropzone>
                     </div>
+
+                    {/* Hiện ảnh khi có ảnh tải lên */}
+                    {uploadedImage && (
+                        <div className={cx('img-hold')}>
+                            <img className={cx('image')} src={uploadedImage} onClick={handleModalOpen} alt="Uploaded" />
+                            <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
+                        </div>
+                    )}
+
+                    {/* nut submit */}
                     <button className={cx('btn')} type="submit">
                         Add
                         <FontAwesomeIcon className={cx('icon')} icon={faSquarePlus}></FontAwesomeIcon>
@@ -119,7 +193,7 @@ function StaffAddHistoryContainer() {
                     {showImg && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <img className={cx('modal-img')} src={selectedImage} alt="Selected" />
+                                <img className={cx('modal-img')} src={uploadedImage} alt="Selected" />
                                 <button className={cx('modal-close')} onClick={handleModalClose}>
                                     &times;
                                 </button>

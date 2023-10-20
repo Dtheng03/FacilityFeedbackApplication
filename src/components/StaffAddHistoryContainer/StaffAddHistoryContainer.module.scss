@@ -68,13 +68,19 @@
   line-height: 40px;
   background: none;
   box-shadow: none;
+  text-align: center;
+
+  &:hover {
+    color: var(--primary);
+    cursor: pointer;
+  }
 }
 
 .img-hold {
   position: absolute;
   left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  margin-top: 75px;
 }
 
 .remove {
@@ -116,7 +122,7 @@
 .btn {
   display: block;
   position: absolute;
-  top: 90%;
+  top: 85%;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -240,10 +246,6 @@
 }
 
 @media (max-width: 1025px) {
-  .img-hold {
-    left: 60%;
-  }
-
   .modal-content {
     width: 90%;
   }
@@ -263,10 +265,6 @@
   .img-label {
     font-size: small;
     min-width: 110px;
-  }
-
-  .img-hold {
-    margin-top: 120px;
   }
 
   .image {
