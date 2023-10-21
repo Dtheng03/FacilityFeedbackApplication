@@ -1,12 +1,13 @@
 .wrapper {
-  min-height: 500px;
+  min-height: 95vh;
+  position: relative;
 }
 
 .header {
+  margin-top: 2.5%;
+  margin-left: 10%;
   width: 80%;
   height: 70px;
-  margin-left: 10%;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

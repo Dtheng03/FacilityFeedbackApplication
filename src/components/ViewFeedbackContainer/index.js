@@ -87,7 +87,7 @@ function ViewFeedbackContainer() {
                     </table>
                 </div>
             ) : (
-                <p className={cx('text')}>Please choose a campus to see feedback</p>
+                <p className={cx('text')}>No feedback found.</p>
             )}
         </div>
     );
