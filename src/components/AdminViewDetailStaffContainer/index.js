@@ -9,7 +9,7 @@ const cx = classNames.bind(style);
 function AdminViewDetailStaffContainer() {
 
     const param = useParams();
-    const [staff, setStaff] = useState({});
+    const [staff, setStaff] = useState([]);
 
     useEffect((() => {
         fetch(`http://localhost:8080/api/staff/find/${param.id}`)
@@ -22,45 +22,49 @@ function AdminViewDetailStaffContainer() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <h2 className={cx('title')}>View Detail Staff</h2>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>1. Id:</label>
-                    <p className={cx('input')}>{staff.id}</p>
-                </div>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>2. FullName:</label>
-                    <p className={cx('input')}>{staff.fullName}</p>
-                </div>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>3. LoginName:</label>
-                    <p className={cx('input')}>{staff.loginName}</p>
-                </div>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>4. Password:</label>
-                    <p className={cx('input')}>{staff.password}</p>
-                </div>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>5. Manager:</label>
-                    <p className={cx('input')}>{staff.manager ? "True" : "False"}</p>
-                </div>
-                <div className={cx('label')}>
-                    <label className={cx('field')}>6. Campus:</label>
-                    <p className={cx('input')}>{staff.campusName}</p>
-                </div>
-                <div className={cx('label')}>
-                    <button className={cx('btn')}>
-                        <Link className={cx('link')} to={`/admin/update-staff/${staff.id}`}>
-                            Update
-                        </Link>
-                    </button>
-                    <button className={cx('btn')}>
-                        <Link className={cx('link')} to={`/admin/delete-staff/${staff.id}`}>
-                            Delete
-                        </Link>
-                    </button>
-                    <button className={cx('btn')} onClick={() => { window.history.back(); }}>
-                        Back
-                    </button>
-                </div>
+                {staff.map(st => (
+                    <div key={st.id}>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>1. Id:</label>
+                            <p className={cx('input')}>{st.id}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>2. FullName:</label>
+                            <p className={cx('input')}>{st.fullName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>3. LoginName:</label>
+                            <p className={cx('input')}>{st.loginName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>4. Password:</label>
+                            <p className={cx('input')}>{st.password}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>5. Manager:</label>
+                            <p className={cx('input')}>{st.manager ? "True" : "False"}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>6. Campus:</label>
+                            <p className={cx('input')}>{st.campusName}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <button className={cx('btn')}>
+                                <Link className={cx('link')} to={`/admin/update-staff/${st.id}`}>
+                                    Update
+                                </Link>
+                            </button>
+                            <button className={cx('btn')}>
+                                <Link className={cx('link')} to={`/admin/delete-staff/${st.id}`}>
+                                    Delete
+                                </Link>
+                            </button>
+                            <button className={cx('btn')} onClick={() => { window.history.back(); }}>
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
