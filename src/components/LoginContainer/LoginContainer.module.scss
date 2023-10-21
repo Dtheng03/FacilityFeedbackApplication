@@ -1,11 +1,15 @@
 .wrapper {
-  min-height: 500px;
+  min-height: 95vh;
   position: relative;
+  background-image: url("../../../public/image1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form {
   position: absolute;
-  top: 25%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
