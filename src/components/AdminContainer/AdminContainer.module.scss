@@ -23,13 +23,17 @@
   width: 100%;
   text-align: center;
 }
-
-.sub-title {
+.sub-title-1,
+.sub-title-2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
   text-align: center;
+}
+
+.sub-title-1{
+  top: 30%;
 }
 
 .icon {
