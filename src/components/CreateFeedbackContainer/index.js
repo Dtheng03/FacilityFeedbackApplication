@@ -10,6 +10,7 @@ import axios from 'axios';
 const cx = classNames.bind(styles);
 
 function CreateFeedbackContainer() {
+
     // tao state luu thong tin feedback
     const [feedback, setFeedback] = useState({
         campusId: 0,
@@ -25,11 +26,11 @@ function CreateFeedbackContainer() {
     const navigate = useNavigate();
 
     // List chứa toàn bộ dữ liệu
-    let [listCampuss, setListCampus] = useState([]);
-    let [listFloors, setListFloor] = useState([]);
-    let [listRooms, setListRoom] = useState([]);
-    let [listFacilitys, setListFacility] = useState([]);
-    let [listFacilityProblems, setListFacilityProblem] = useState([]);
+    const [listCampuss, setListCampus] = useState([]);
+    const [listFloors, setListFloor] = useState([]);
+    const [listRooms, setListRoom] = useState([]);
+    const [listFacilitys, setListFacility] = useState([]);
+    const [listFacilityProblems, setListFacilityProblem] = useState([]);
 
     // List chứa dữ liệu để hiện thị lên form
     const [floors, setFloor] = useState([]);
@@ -41,6 +42,8 @@ function CreateFeedbackContainer() {
     const [showImg, setShowImg] = useState(false);
     const [uploadedImage, setUploadedImage] = useState(null);
 
+    // tao state xu ly gui feedback
+    const [feedbackFail, setFeedbackFail] = useState(false);
 
     // Call api để lấy toàn bộ dữ liệu
     useEffect(() => {
@@ -168,8 +171,6 @@ function CreateFeedbackContainer() {
     }
 
     // Xử lý khi gửi feedback thất bại
-    const [feedbackFail, setFeedbackFail] = useState(false);
-
     const handleFeedbackFail = () => {
         setFeedbackFail(false);
     }

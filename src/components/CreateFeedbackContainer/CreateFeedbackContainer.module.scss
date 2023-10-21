@@ -1,11 +1,15 @@
 .wrapper {
-  min-height: 500px;
+  min-height: 110vh;
   position: relative;
+  background-image: url("../../../public/image1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form {
   position: absolute;
-  top: 10%;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -254,7 +258,6 @@
   /* Styles for screens up to 821px wide */
   .form {
     width: 100%;
-    top: 5%;
   }
 
   .img-hold {
