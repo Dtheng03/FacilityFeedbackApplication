@@ -19,7 +19,7 @@
 }
 
 .icon {
-  margin: 0 8px;
+  margin: 0 4px;
 }
 
 .link {
@@ -114,16 +114,10 @@
 }
 
 @media (max-width: 1025px) {
-  /* Styles for screens up to 1025px wide */
-  .title {
-    margin-left: -75px;
-  }
 }
 
 @media (max-width: 821px) {
-  /* Styles for screens up to 821px wide */
   .title {
-    margin-left: -30px;
     font-size: medium;
   }
 

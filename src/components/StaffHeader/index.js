@@ -22,6 +22,8 @@ function StaffHeader() {
 
     const handleLogout = () => {
         // xu ly logic log out
+        localStorage.removeItem('sessionToken');
+        window.history.replaceState(null, '', '/login');
         navigate('/')
     }
 
