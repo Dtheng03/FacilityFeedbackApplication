@@ -6,11 +6,17 @@ import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(style);
 
 function StaffContainer() {
+
+    // lay Token va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Welcome To Staff Page</h2>
-                <h3 className={cx('sub-title')}>
+                <h3 className={cx('sub-title-1')}>{sessionData.fullName}</h3>
+                <h3 className={cx('sub-title-2')}>
                     Please choose any action
                     <FontAwesomeIcon className={cx('icon')} icon={faClipboardCheck}></FontAwesomeIcon>
                 </h3>
