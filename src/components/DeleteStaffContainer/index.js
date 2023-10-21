@@ -63,7 +63,9 @@ function DeleteStaffContainer() {
                 <p className={cx('note')}>Note that this action will directly affect the data.</p>
                 <div className={cx('button-group')}>
                     <button className={cx('btn')} onClick={handleDelete}>Yes</button>
-                    <button className={cx('btn')} onClick={() => { navigate('/admin/view-staff') }}>No</button>
+                    <button className={cx('btn')} onClick={() => { window.history.back(); }}>
+                        No
+                    </button>
                 </div>
             </div>
 

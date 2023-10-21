@@ -63,7 +63,7 @@ function UpdateStaffContainer() {
 
     // xu ly huy 
     const handleCancle = () => {
-        navigate('/admin/view-staff')
+        window.history.back();
     }
 
     // state thanh cong

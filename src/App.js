@@ -6,6 +6,7 @@ import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
 import AddStaffPage from "./Pages/AddStaffPage";
 import AdminViewStaffPage from "./Pages/AdminViewStaffPage";
+import AdminViewDetailStaffPage from "./Pages/AdminViewDetailStaffPage";
 import AdminDeleteStaffPage from "./Pages/AdminDeleteStaffPage";
 import AdminUpdateStaffPage from "./Pages/AdminUpdateStaffPage";
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/add-staff" element={<AddStaffPage />} />
           <Route path="/admin/view-staff" element={<AdminViewStaffPage />} />
+          <Route path="/admin/view-detail/staff/:id" element={<AdminViewDetailStaffPage />} />
           <Route path="/admin/delete-staff/:id" element={<AdminDeleteStaffPage />} />
           <Route path="/admin/update-staff/:id" element={<AdminUpdateStaffPage />} />
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />

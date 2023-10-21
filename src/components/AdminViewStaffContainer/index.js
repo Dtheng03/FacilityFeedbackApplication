@@ -92,7 +92,11 @@ function AdminViewStaffContainer() {
                                         <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
                                     </Link>
                                 </td>
-                                <td className={cx('td9')}><FontAwesomeIcon className={cx('icon')} icon={faEye} /></td>
+                                <td className={cx('td9')}>
+                                    <Link to={`/admin/view-detail/staff/${staff.id}`}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faEye} />
+                                    </Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
