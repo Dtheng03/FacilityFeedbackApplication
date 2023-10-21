@@ -57,8 +57,8 @@
 .td4,
 .td5,
 .td6 {
-  padding: 4px;
-  text-align: left;
+  padding: 4px 16px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -68,7 +68,22 @@
 .th4,
 .th5,
 .th6 {
-  background-color: #f2f2f2;
+  background-color: var(--primary);
+  color: var(--text-color);
+}
+
+.icon {
+  color: black;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.tr {
+  background-color: var(--hover);
+  font-weight: 500;
+  height: 60px;
 }
 
 .tr:hover {
@@ -87,10 +102,10 @@
     font-size: small;
   }
 
+  .th3,
   .th4,
-  .th5,
-  .td4,
-  .td5 {
+  .td3,
+  .td4 {
     display: none;
   }
 }

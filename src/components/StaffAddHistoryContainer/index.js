@@ -136,13 +136,13 @@ function StaffAddHistoryContainer() {
                     {/* nhap feedbackId */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>1. FeedbackId *</label>
-                        <input className={cx('input')} type="text" required name="feedbackId" value={history.feedbackId} onChange={handleInputChange} />
+                        <input className={cx('input')} type="number" required name="feedbackId" value={history.feedbackId} onChange={handleInputChange} />
                     </div>
 
                     {/* hien thi staff id */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. StaffId *</label>
-                        <input className={cx('input')} type="text" required name="staffId" value={history.staffId} onChange={handleInputChange} disabled />
+                        <input className={cx('input')} type="number" required name="staffId" value={history.staffId} onChange={handleInputChange} disabled />
                     </div>
 
                     {/* chon status */}
@@ -174,7 +174,7 @@ function StaffAddHistoryContainer() {
                     </div>
 
                     {/* Hiện ảnh khi có ảnh tải lên */}
-                    {uploadedImage && (
+                    {history.image && (
                         <div className={cx('img-hold')}>
                             <img className={cx('image')} src={uploadedImage} onClick={handleModalOpen} alt="Uploaded" />
                             <button className={cx('remove')} onClick={handleRemoveImage}>&times;</button>
