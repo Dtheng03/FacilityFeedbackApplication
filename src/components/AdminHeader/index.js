@@ -22,7 +22,9 @@ function AdminHeader() {
 
     const handleLogout = () => {
         // xu ly logic log out
-        navigate('/')
+        localStorage.removeItem('sessionToken');
+        window.history.replaceState(null, '', '/login');
+        navigate('/');
     }
 
     return (
