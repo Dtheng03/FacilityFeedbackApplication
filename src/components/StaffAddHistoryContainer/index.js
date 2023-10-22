@@ -14,6 +14,9 @@ function StaffAddHistoryContainer() {
     const sessionToken = localStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
+    // lay feedbackId dc luu trong local neu co
+    const feedbackId = localStorage.getItem('feedbackId');
+
     // tao state upload & hien thi anh
     const [showImg, setShowImg] = useState(false);
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -24,7 +27,7 @@ function StaffAddHistoryContainer() {
 
     // tao state chua du lieu
     const [history, setHistory] = useState({
-        feedbackId: 0,
+        feedbackId: feedbackId ? feedbackId : 0,
         staffId: sessionData.id,
         status: false,
         description: '',
@@ -111,6 +114,9 @@ function StaffAddHistoryContainer() {
                 description: '',
                 status: false
             });
+
+            // xoa local storage de tranh bi thua du lieu
+            localStorage.removeItem('feedbackId')
 
         } catch (error) {
             setIsFail(true);

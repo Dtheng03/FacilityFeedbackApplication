@@ -7,10 +7,32 @@ const cx = classNames.bind(style);
 
 function ViewDetailFeedbackContainer() {
 
+    // lay param
     const param = useParams();
 
+    // tao state chua data
     const [feedback, setFeedback] = useState([]);
 
+    // tao state hien thi het anh
+    const [showImg, setShowImg] = useState(false);
+
+    // huy feedbackId trong local va tao moi
+    localStorage.removeItem('feedbackId');
+    localStorage.setItem('feedbackId', param.id);
+
+    // lay Token va chuyen thanh data
+    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
+
+    // tra ve role de dieu huong
+    let role = "";
+    if (sessionData.manager) {
+        role = "admin";
+    } else {
+        role = "staff";
+    }
+
+    // call api
     useEffect(() => {
         fetch(`http://localhost:8080/api/feedback/get-feedback/${param.id}`)
             .then(response => response.json())
@@ -22,17 +44,19 @@ function ViewDetailFeedbackContainer() {
             });
     }, [])
 
-    const [showImg, setShowImg] = useState(false);
-
+    // show anh
     const handleShowImg = () => {
         setShowImg(true);
     }
 
+    // dong modal
     const handleModalClose = () => {
         setShowImg(false);
     }
 
+    // xu ly tro ve
     const handleBack = () => {
+        localStorage.removeItem('feedbackId')
         window.history.back();
     }
 
@@ -81,7 +105,12 @@ function ViewDetailFeedbackContainer() {
                             />
                         </div>
                         <div className={cx('label')}>
-                            <button className={cx('btn')} onClick={handleBack}>Back</button>
+                            <Link to={`/${role}/add-history`} className={cx('link')}>
+                                <button className={cx('btn')}>
+                                    ADD REPAIR HISTORY
+                                </button>
+                            </Link>
+                            <button className={cx('btn')} onClick={handleBack}>BACK</button>
                         </div>
 
                         {/* Show full image */}
