@@ -1,15 +1,18 @@
 import classNames from "classnames/bind";
 import style from "./DeleteStaffContainer.module.scss";
-
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteStaffById } from "../../api/api";
 
 const cx = classNames.bind(style);
 
 function DeleteStaffContainer() {
     // lay param 
     const { id } = useParams();
+
+    // tao navigate de dieu huong
+    const navigate = useNavigate();
 
     // tao state de hien modal
     const [successDelete, setSuccessDelete] = useState(false);
@@ -20,7 +23,7 @@ function DeleteStaffContainer() {
         const ID = id;
         //  goi api xu ly delete
         try {
-            const response = await fetch(`http://localhost:8080/api/staff/delete${ID}`, {
+            const response = await fetch(deleteStaffById(ID), {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,9 +43,6 @@ function DeleteStaffContainer() {
             setFailDelete(true);
         }
     }
-
-    // tao navigate de dieu huong
-    const navigate = useNavigate();
 
     // xu ly modal success
     const handleSuccesDelete = () => {

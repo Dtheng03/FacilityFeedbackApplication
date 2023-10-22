@@ -3,6 +3,7 @@ import style from "./AdminViewDetailStaffContainer.module.scss";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import { getStaffByStaffId } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -12,7 +13,7 @@ function AdminViewDetailStaffContainer() {
     const [staff, setStaff] = useState([]);
 
     useEffect((() => {
-        fetch(`http://localhost:8080/api/staff/find/${param.id}`)
+        fetch(getStaffByStaffId(param.id))
             .then(response => response.json())
             .then(data => setStaff(data))
             .catch(error => { console.log(error); })

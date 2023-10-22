@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+import { getFeedbackByCampusId } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,7 +21,7 @@ function StaffViewFeedbackContainer() {
     // call api lay data
     useEffect(() => {
         // Fetch data from API
-        fetch(`http://localhost:8080/api/feedback/getAll/${sessionData.campusId}`)
+        fetch(getFeedbackByCampusId(sessionData.campusId))
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -37,16 +38,12 @@ function StaffViewFeedbackContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { facilityProblemName, createDate } = item;
+            const { facilityProblemName } = item;
             return facilityProblemName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
     };
-
-    const handleShowDetail = () => {
-
-    }
 
     return (
         <div className={cx('wrapper')}>

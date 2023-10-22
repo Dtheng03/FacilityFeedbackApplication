@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import style from "./UpdateStaffContainer.module.scss";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getStaffById, updateStaffById } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,8 +21,14 @@ function UpdateStaffContainer() {
         campusId: 0
     })
 
+    // state thanh cong
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    // state that bai
+    const [isFail, setIsFail] = useState(false);
+
     useEffect(() => {
-        fetch(`http://localhost:8080/api/staff/findStaff/${param.id}`)
+        fetch(getStaffById(param.id))
             .then(response => response.json())
             .then(data => {
                 setStaff(data)
@@ -42,7 +49,7 @@ function UpdateStaffContainer() {
     // xu ly update
     const handleUpdate = async (event) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/staff/update/${staff.id}`, {
+            const response = await fetch(updateStaffById(staff.id), {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -66,17 +73,11 @@ function UpdateStaffContainer() {
         window.history.back();
     }
 
-    // state thanh cong
-    const [isSuccess, setIsSuccess] = useState(false);
-
     // dong modal thanh cong
     const closeSuccesModal = () => {
         setIsSuccess(false);
         navigate('/admin/view-staff')
     }
-
-    // state that bai
-    const [isFail, setIsFail] = useState(false);
 
     // dong modal that bai
     const closeFailModal = () => {

@@ -3,6 +3,7 @@ import style from './ViewFeedbackContainer.module.scss'
 import classNames from 'classnames/bind';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { getFeedbackByCampusId } from '../../api/api';
 
 const cx = classNames.bind(style);
 
@@ -19,7 +20,7 @@ function ViewFeedbackContainer() {
         event.preventDefault();
         // xu ly logic lay du lieu de render
         try {
-            const response = await fetch(`http://localhost:8080/api/feedback/getAll/${campus}`, {
+            const response = await fetch(getFeedbackByCampusId(campus), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

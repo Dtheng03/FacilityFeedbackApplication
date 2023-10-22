@@ -6,6 +6,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { createFeedback, getAllCampus, getAllFacility, getAllFacilityProblem, getAllFloor, getAllRoom } from "../../api/api";
 
 const cx = classNames.bind(styles);
 
@@ -50,11 +51,11 @@ function CreateFeedbackContainer() {
         const fetchData = async () => {
             try {
                 const [response1, response2, response3, response4, response5] = await Promise.all([
-                    fetch('http://localhost:8080/api/campus'),
-                    fetch('http://localhost:8080/api/floor'),
-                    fetch('http://localhost:8080/api/room'),
-                    fetch('http://localhost:8080/api/facility'),
-                    fetch('http://localhost:8080/api/facilityProblem')
+                    fetch(getAllCampus),
+                    fetch(getAllFloor),
+                    fetch(getAllRoom),
+                    fetch(getAllFacility),
+                    fetch(getAllFacilityProblem)
                 ]);
 
                 const jsonData1 = await response1.json();;
@@ -190,7 +191,7 @@ function CreateFeedbackContainer() {
             formData.append("description", feedback.description);
             formData.append("image", feedback.image);
 
-            const response = await axios.post('http://localhost:8080/api/feedback/create', formData,
+            const response = await axios.post(createFeedback, formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',

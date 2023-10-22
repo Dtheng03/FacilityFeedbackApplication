@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import style from './AddStaffContainer.module.scss';
-
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { addStaff } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -51,7 +51,7 @@ function AddStaffContainer() {
         event.preventDefault();
         // Call API to create new staff member using formData
         try {
-            const response = await fetch('http://localhost:8080/api/staff/add', {
+            const response = await fetch(addStaff, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

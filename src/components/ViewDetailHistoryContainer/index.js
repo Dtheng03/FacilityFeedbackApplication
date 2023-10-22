@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import style from "./ViewDetailHistoryContainer.module.scss";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getRepairHistoryById } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -12,7 +13,7 @@ function ViewDetailHistoryContainer() {
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/repair/find/id?id=${param.id}`)
+        fetch(getRepairHistoryById(param.id))
             .then(response => response.json())
             .then(data => {
                 setHistory(data);

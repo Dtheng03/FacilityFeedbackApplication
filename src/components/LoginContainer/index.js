@@ -2,9 +2,9 @@ import styles from './LoginContainer.module.scss'
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faLockOpen, faSignIn, faUser } from '@fortawesome/free-solid-svg-icons';
+import { login } from '../../api/api';
 
 const cx = classNames.bind(styles)
 
@@ -28,7 +28,7 @@ function LoginContainer() {
 
         // call api
         try {
-            const response = await fetch('http://localhost:8080/api/staff/login', {
+            const response = await fetch(login, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

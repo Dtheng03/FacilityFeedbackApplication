@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
 import style from './AdminViewStaffContainer.module.scss';
 import React, { useEffect, useState } from 'react';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { getStaffByCampusId } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -21,7 +21,7 @@ function AdminViewStaffContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        fetch(`http://localhost:8080/api/staff/getAllByCampusId/${sessionData.campusId}`)
+        fetch(getStaffByCampusId(sessionData.campusId))
             .then(response => response.json())
             .then(data => {
                 setData(data);

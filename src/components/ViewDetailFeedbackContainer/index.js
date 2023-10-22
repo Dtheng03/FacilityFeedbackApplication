@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import style from "./ViewDetailFeedbackContainer.module.scss";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getFeedbackById } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -34,7 +35,7 @@ function ViewDetailFeedbackContainer() {
 
     // call api
     useEffect(() => {
-        fetch(`http://localhost:8080/api/feedback/get-feedback/${param.id}`)
+        fetch(getFeedbackById(param.id))
             .then(response => response.json())
             .then(data => {
                 setFeedback(data);

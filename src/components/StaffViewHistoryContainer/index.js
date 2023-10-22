@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+import { getAllRepairHistory } from "../../api/api"
 
 const cx = classNames.bind(style);
 
@@ -15,7 +16,7 @@ function StaffViewHistoryContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        fetch('http://localhost:8080/api/repair/viewAll')
+        fetch(getAllRepairHistory)
             .then(response => response.json())
             .then(data => {
                 setData(data);

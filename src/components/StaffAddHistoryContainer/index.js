@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { addRepairHistory } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -91,7 +92,7 @@ function StaffAddHistoryContainer() {
             formData.append("description", history.description,);
             formData.append("status", history.status,);
 
-            const response = await axios.post('http://localhost:8080/api/repair/create', formData,
+            const response = await axios.post(addRepairHistory, formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
