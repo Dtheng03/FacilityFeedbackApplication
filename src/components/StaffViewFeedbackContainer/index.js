@@ -66,7 +66,8 @@ function StaffViewFeedbackContainer() {
                             <th className={cx('th3')}>Room</th>
                             <th className={cx('th4')}>Problem</th>
                             <th className={cx('th5')}>CreateDate</th>
-                            <th className={cx('th6')}>Detail</th>
+                            <th className={cx('th6')}>Status</th>
+                            <th className={cx('th7')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +78,8 @@ function StaffViewFeedbackContainer() {
                                 <td className={cx('td3')}>{feedback.roomName}</td>
                                 <td className={cx('td4')}>{feedback.facilityProblemName}</td>
                                 <td className={cx('td5')}>{feedback.createDate}</td>
-                                <td className={cx('td6')}>
+                                <td className={cx('td6')}>{feedback.status ? "Processed" : "Processing"}</td>
+                                <td className={cx('td7')}>
                                     <Link to={`/view-detail/feedback/${feedback.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faEye}></FontAwesomeIcon>
                                     </Link>

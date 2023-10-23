@@ -63,7 +63,7 @@ function ViewFeedbackContainer() {
                                 <th className={cx('th2')}>Room</th>
                                 <th className={cx('th3')}>Facility</th>
                                 <th className={cx('th4')}>Problem</th>
-                                <th className={cx('th5')}>Image</th>
+                                <th className={cx('th5')}>Status</th>
                                 <th className={cx('th6')}>CreateDate</th>
                             </tr>
                         </thead>
@@ -74,13 +74,7 @@ function ViewFeedbackContainer() {
                                     <td className={cx('td2')}>{feedback.roomName}</td>
                                     <td className={cx('td3')}>{feedback.facilityName}</td>
                                     <td className={cx('td4')}>{feedback.facilityProblemName}</td>
-                                    <td className={cx('td5')}>
-                                        <img
-                                            src={`data:image/jpeg;base64,${feedback.image}`}
-                                            alt='img'
-                                            width="100"
-                                        />
-                                    </td>
+                                    <td className={cx('td5')}>{feedback.status ? "Processed" : "Processing"} </td>
                                     <td className={cx('td6')}>{feedback.createDate}</td>
                                 </tr>
                             ))}

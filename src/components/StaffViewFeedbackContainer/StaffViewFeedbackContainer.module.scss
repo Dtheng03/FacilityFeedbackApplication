@@ -51,6 +51,7 @@
 .th4,
 .th5,
 .th6,
+.th7,
 .td1,
 .td2,
 .td3,
@@ -59,7 +60,7 @@
 .td6,
 .td7 {
   padding: 4px 16px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid var(--primary);
 }
 
@@ -68,14 +69,15 @@
 .th3,
 .th4,
 .th5,
-.th6 {
+.th6,
+.th7 {
   background-color: var(--primary);
   color: var(--text-color);
   text-align: center;
 }
 
-.td6 {
-  text-align: center;
+.td4 {
+  text-align: left;
 }
 
 .tr {
@@ -112,7 +114,9 @@
   .th2,
   .th4,
   .td2,
-  .td4 {
+  .td4,
+  .th5,
+  .td5 {
     display: none;
   }
 }

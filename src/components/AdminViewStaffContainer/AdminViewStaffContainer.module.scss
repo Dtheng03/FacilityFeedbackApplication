@@ -64,7 +64,7 @@
 .td8,
 .td9 {
   padding: 4px 16px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid var(--primary);
 }
 
@@ -79,14 +79,12 @@
 .th9 {
   background-color: var(--primary);
   color: var(--text-color);
-  text-align: center;
 }
 
-.td5,
-.td7,
-.td8,
-.td9 {
-  text-align: center;
+.td2,
+.td3,
+.td4 {
+  text-align: left;
 }
 
 .th9,

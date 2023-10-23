@@ -96,7 +96,11 @@ function ViewDetailFeedbackContainer() {
                             <p className={cx('input')}>{fb.description}</p>
                         </div>
                         <div className={cx('label')}>
-                            <label className={cx('field')}>8.Image:</label>
+                            <label className={cx('field')}>8.Status:</label>
+                            <p className={cx('input')}>{fb.status ? "Processed" : "Processing"}</p>
+                        </div>
+                        <div className={cx('label')}>
+                            <label className={cx('field')}>9.Image:</label>
                             <img
                                 className={cx('input')}
                                 src={`data:image/jpeg;base64,${fb.image}`}
