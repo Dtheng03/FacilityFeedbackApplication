@@ -38,6 +38,9 @@ export const deleteStaffById = (id) => {
 // api repair history
 export const addRepairHistory = "http://localhost:8080/api/repair/create";
 export const getAllRepairHistory = "http://localhost:8080/api/repair/viewAll";
+export const getAllRepairHistoryByCampusId = (id) => {
+    return `http://localhost:8080/api/repair/viewAll/${id}`;
+}
 export const getRepairHistoryById = (id) => {
     return `http://localhost:8080/api/repair/find/id?id=${id}`;
 };

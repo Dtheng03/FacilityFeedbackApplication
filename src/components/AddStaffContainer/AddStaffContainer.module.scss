@@ -59,6 +59,16 @@
   }
 }
 
+.error {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: red;
+}
+
 .checkbox {
   width: 30px;
   height: 30px;
@@ -193,6 +203,12 @@
     margin-right: 0;
     padding: 0 8px;
     width: 135px;
+  }
+
+  .error {
+    width: 90%;
+    margin-left: 10%;
+    font-size: small;
   }
 
   .modal-content {

@@ -148,8 +148,8 @@ function StaffAddHistoryContainer() {
 
                     {/* hien thi staff id */}
                     <div className={cx('label')} >
-                        <label className={cx('field')}>2. StaffId *</label>
-                        <input className={cx('input')} type="number" required name="staffId" value={history.staffId} onChange={handleInputChange} disabled />
+                        <label className={cx('field')}>2. Staff *</label>
+                        <input className={cx('input')} type="text" required value={sessionData.fullName} disabled />
                     </div>
 
                     {/* chon status */}
