@@ -18,11 +18,11 @@ function ViewDetailFeedbackContainer() {
     const [showImg, setShowImg] = useState(false);
 
     // huy feedbackId trong local va tao moi
-    localStorage.removeItem('feedbackId');
-    localStorage.setItem('feedbackId', param.id);
+    sessionStorage.removeItem('feedbackId');
+    sessionStorage.setItem('feedbackId', param.id);
 
     // lay Token va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     // tra ve role de dieu huong
@@ -57,7 +57,7 @@ function ViewDetailFeedbackContainer() {
 
     // xu ly tro ve
     const handleBack = () => {
-        localStorage.removeItem('feedbackId')
+        sessionStorage.removeItem('feedbackId')
         window.history.back();
     }
 

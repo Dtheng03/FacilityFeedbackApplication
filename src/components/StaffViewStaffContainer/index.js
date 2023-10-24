@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 function StaffViewStaffContainer() {
 
     // lay token va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     // tao state de luu data

@@ -15,7 +15,7 @@ function StaffViewFeedbackContainer() {
     const [filteredData, setFilteredData] = useState([]);
 
     // lay Token va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     // call api lay data

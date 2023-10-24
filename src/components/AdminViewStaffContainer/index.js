@@ -16,7 +16,7 @@ function AdminViewStaffContainer() {
     const [filteredData, setFilteredData] = useState([]);
 
     // lay token ra va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     useEffect(() => {

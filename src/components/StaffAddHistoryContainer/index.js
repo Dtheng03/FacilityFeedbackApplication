@@ -12,11 +12,11 @@ const cx = classNames.bind(style);
 function StaffAddHistoryContainer() {
 
     // lay token va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     // lay feedbackId dc luu trong local neu co
-    const feedbackId = localStorage.getItem('feedbackId');
+    const feedbackId = sessionStorage.getItem('feedbackId');
 
     // tao state upload & hien thi anh
     const [showImg, setShowImg] = useState(false);

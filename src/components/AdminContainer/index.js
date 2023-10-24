@@ -6,9 +6,9 @@ import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(style);
 
 function AdminContainer() {
-    
+
     // lay Token va chuyen thanh data
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
     return (

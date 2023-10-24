@@ -47,13 +47,13 @@ function LoginContainer() {
             if (response.ok) {
                 if (sessionToken.manager) {
                     // luu sessionToken vao localStorage
-                    localStorage.setItem('sessionToken', sessionData);
+                    sessionStorage.setItem('sessionToken', sessionData);
 
                     // if success and role is admin
                     navigate('/admin');
                 } else {
                     // luu sessionToken vao localStorage
-                    localStorage.setItem('sessionToken', sessionData);
+                    sessionStorage.setItem('sessionToken', sessionData);
 
                     //if success and role is staff
                     navigate('/staff');
