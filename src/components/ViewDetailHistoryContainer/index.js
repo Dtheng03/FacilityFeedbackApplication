@@ -88,7 +88,7 @@ function ViewDetailHistoryContainer() {
                                     <div className={cx('modal-content')}>
                                         <img
                                             className={cx('modal-img')}
-                                            src={`data:image/jpeg;base64,${history.image}`}
+                                            src={`data:image/jpeg;base64,${his.image}`}
                                             alt="Uploaded" />
                                         <button className={cx('modal-close')} onClick={handleModalClose}>
                                             &times;
