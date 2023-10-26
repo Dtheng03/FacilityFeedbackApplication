@@ -3,6 +3,8 @@ import style from "./UpdateStaffContainer.module.scss";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getStaffById, updateStaffById } from "../../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faFilePen } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -120,8 +122,12 @@ function UpdateStaffContainer() {
                     </select>
                 </div>
                 <div className={cx('label')}>
-                    <button className={cx('btn')} onClick={handleUpdate}>Update</button>
-                    <button className={cx('btn')} onClick={handleCancle}>Cancel</button>
+                    <button className={cx('btn')} onClick={handleCancle}>
+                        <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+                    </button>
+                    <button className={cx('btn')} onClick={handleUpdate}>
+                        <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>
+                    </button>
                 </div>
             </div>
 

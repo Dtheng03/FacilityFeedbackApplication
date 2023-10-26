@@ -59,6 +59,8 @@ function StaffViewHistoryContainer() {
                     onChange={handleSearch}
                 />
 
+                <Link to={'/admin/add-history'}>Add History</Link>
+
                 <table className={cx('table')}>
                     <thead>
                         <tr className={cx('tr')}>

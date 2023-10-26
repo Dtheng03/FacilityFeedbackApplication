@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from './AddStaffContainer.module.scss';
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { addStaff } from "../../api/api";
 
 const cx = classNames.bind(style);
@@ -161,10 +161,14 @@ function AddStaffContainer() {
                             checked={isChecked}
                             onChange={handleCheckboxChange} />
                     </div>
-                    <button className={cx('btn')} type="submit">
-                        Add
-                        <FontAwesomeIcon className={cx('icon')} icon={faUserPlus}></FontAwesomeIcon>
-                    </button>
+                    <div className={cx('btn-group')}>
+                        <button className={cx('btn')} onClick={() => { window.history.back() }}>
+                            <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+                        </button>
+                        <button className={cx('btn')} type="submit">
+                            <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon>
+                        </button>
+                    </div>
                 </form>
 
                 {/* Add success */}

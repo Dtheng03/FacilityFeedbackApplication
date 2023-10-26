@@ -9,7 +9,6 @@
 }
 
 .container {
-  margin-top: 4px;
   min-height: 80vh;
   background-color: var(--hover);
   border-radius: 10px;
@@ -57,9 +56,9 @@
 
 .btn {
   display: block;
-  width: 100px;
-  height: 50px;
-  margin: 8px 16px;
+  width: 80px;
+  height: 40px;
+  margin: 5%;
   border-radius: 20px;
   border-style: none;
   outline-color: var(--hover);
@@ -158,7 +157,7 @@
     margin-right: 10px;
   }
 
-  .input{
+  .input {
     padding: 0;
     min-width: 165px;
   }

@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from './AdminViewStaffContainer.module.scss';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faEye, faPenToSquare, faTrashCan, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { getStaffByCampusId } from "../../api/api";
 
@@ -49,7 +49,12 @@ function AdminViewStaffContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>View Staff</h2>
+                <div className={cx('header')}>
+                    <h2 className={cx('title')}>View Staff</h2>
+                    <Link to={'/admin/add-staff'} className={cx('add')}>
+                        <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon>
+                    </Link>
+                </div>
 
                 <input
                     className={cx('search')}
