@@ -60,3 +60,11 @@ export const addRoom = "http://localhost:8080/api/room/create";
 export const deleteRoom = (id) => {
     return `http://localhost:8080/api/room/delete/${id}`;
 }
+
+export const findRoomById = (id) => {
+    return `http://localhost:8080/api/room/find/${id}`;
+}
+
+export const updateRoom = (id) => {
+    return `http://localhost:8080/api/room/update/${id}`
+}
