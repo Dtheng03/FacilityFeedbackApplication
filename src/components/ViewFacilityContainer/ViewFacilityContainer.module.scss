@@ -1,0 +1,171 @@
+.wrapper {
+  min-height: 500px;
+  position: relative;
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 80%;
+
+  color: black;
+}
+
+.container {
+  min-height: 80vh;
+  background-color: var(--hover);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.add {
+  text-decoration: none;
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 1%;
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--primary);
+  background-color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+
+  &:hover {
+    background-color: var(--primary);
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.search {
+  padding: 16px;
+  width: 80%;
+  height: 50px;
+  margin-left: 10%;
+  margin-bottom: 20px;
+  outline-color: var(--hover);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.th1,
+.th2,
+.th3,
+.th4,
+.th5,
+.th6,
+.th7,
+.th8,
+.th9,
+.td1,
+.td2,
+.td3,
+.td4,
+.td5,
+.td6,
+.td7,
+.td8,
+.td9 {
+  padding: 4px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--primary);
+}
+
+.th1,
+.th2,
+.th3,
+.th4,
+.th5,
+.th6,
+.th7,
+.th8,
+.th9 {
+  background-color: var(--primary);
+  color: var(--text-color);
+}
+
+.td2,
+.td3,
+.td4 {
+  text-align: left;
+}
+
+.th9,
+.td9 {
+  display: none;
+}
+
+.tr {
+  background-color: var(--hover);
+  font-weight: 500;
+  height: 60px;
+}
+
+.tr:hover {
+  background-color: var(--text-color);
+  color: black;
+}
+
+.icon {
+  color: black;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 821px) {
+  .wrapper {
+    width: 84%;
+  }
+
+  .table {
+    font-size: small;
+  }
+
+  .th3,
+  .th4,
+  .th6,
+  .th7,
+  .th8,
+  .td3,
+  .td4,
+  .td6,
+  .td7,
+  .td8 {
+    display: none;
+  }
+
+  .th9,
+  .td9 {
+    display: table-cell;
+  }
+}
