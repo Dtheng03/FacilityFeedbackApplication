@@ -1,21 +1,21 @@
 import classNames from "classnames/bind";
-import style from "./AddFacilityPage.module.scss";
+import style from "./AddFacilityTypePage.module.scss";
 import AdminHeader from "../../components/AdminHeader";
 import AdminSidebar from "../../components/AdminSidebar";
-import AddFacilityContainer from "../../components/AddFacilityContainer";
+import AddFacilityTypeContainer from "../../components/AddFacilityTypeContainer";
 
 const cx = classNames.bind(style);
 
-function AddFacilityPage() {
+function AddFacilityTypePage() {
     return (
         <>
             <AdminHeader />
             <div className={cx('container')}>
                 <AdminSidebar />
-                <AddFacilityContainer />
+                <AddFacilityTypeContainer />
             </div>
         </>
     );
 }
 
-export default AddFacilityPage;
+export default AddFacilityTypePage;
