@@ -44,3 +44,15 @@ export const getAllRepairHistoryByCampusId = (id) => {
 export const getRepairHistoryById = (id) => {
     return `http://localhost:8080/api/repair/find/id?id=${id}`;
 };
+
+export const getRoomByCampusId = (id) => {
+    return `http://localhost:8080/api/room/get-all/${id}`;
+}
+
+export const getFloorByCampusId = (id) => {
+    return `http://localhost:8080/api/find/${id}`;
+}
+
+export const getRoomType = "http://localhost:8080/api/roomType";
+
+export const addRoom = "http://localhost:8080/api/room/create";

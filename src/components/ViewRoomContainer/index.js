@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { getRoomByCampusId } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,16 +21,15 @@ function ViewRoomContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch(getStaffByCampusId(sessionData.campusId))
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
+        fetch(getRoomByCampusId(sessionData.campusId))
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     // xu ly search
@@ -38,8 +38,8 @@ function ViewRoomContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
+            const { roomName } = item;
+            return roomName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -70,32 +70,32 @@ function ViewRoomContainer() {
                             <th className={cx('th2')}>Room</th>
                             <th className={cx('th3')}>Room Type</th>
                             <th className={cx('th4')}>Floor</th>
-                            <th className={cx('th6')}>Campus</th>
-                            <th className={cx('th7')}>Update</th>
-                            <th className={cx('th8')}>Delete</th>
-                            <th className={cx('th9')}>Detail</th>
+                            <th className={cx('th5')}>Campus</th>
+                            <th className={cx('th6')}>Update</th>
+                            <th className={cx('th7')}>Delete</th>
+                            <th className={cx('th8')}>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(staff => (
-                            <tr key={staff.id} className={cx('tr')}>
-                                <td className={cx('td1')}>{staff.id}</td>
-                                <td className={cx('td2')}>{staff.fullName}</td>
-                                <td className={cx('td3')}>{staff.loginName}</td>
-                                <td className={cx('td4')}>{staff.password}</td>
-                                <td className={cx('td6')}>{staff.campusName}</td>
-                                <td className={cx('td7')}>
-                                    <Link to={`/admin/update-staff/${staff.id}`}>
+                        {filteredData.map(room => (
+                            <tr key={room.id} className={cx('tr')}>
+                                <td className={cx('td1')}>{room.id}</td>
+                                <td className={cx('td2')}>{room.roomName}</td>
+                                <td className={cx('td3')}>{room.roomTypeName}</td>
+                                <td className={cx('td4')}>{room.floorName}</td>
+                                <td className={cx('td5')}>{room.campusName}</td>
+                                <td className={cx('td6')}>
+                                    <Link to={`/admin/update-room/${room.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} />
                                     </Link>
                                 </td>
-                                <td className={cx('td8')}>
-                                    <Link to={`/admin/delete-staff/${staff.id}`}>
+                                <td className={cx('td7')}>
+                                    <Link to={`/admin/delete-staff/${room.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
                                     </Link>
                                 </td>
-                                <td className={cx('td9')}>
-                                    <Link to={`/admin/view-detail/staff/${staff.id}`}>
+                                <td className={cx('td8')}>
+                                    <Link to={`/admin/view-detail/staff/${room.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faEye} />
                                     </Link>
                                 </td>

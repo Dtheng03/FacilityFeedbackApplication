@@ -82,7 +82,6 @@
 .th6,
 .th7,
 .th8,
-.th9,
 .td1,
 .td2,
 .td3,
@@ -90,8 +89,7 @@
 .td5,
 .td6,
 .td7,
-.td8,
-.td9 {
+.td8 {
   padding: 4px 16px;
   text-align: center;
   border-bottom: 1px solid var(--primary);
@@ -104,8 +102,7 @@
 .th5,
 .th6,
 .th7,
-.th8,
-.th9 {
+.th8 {
   background-color: var(--primary);
   color: var(--text-color);
 }
@@ -116,8 +113,8 @@
   text-align: left;
 }
 
-.th9,
-.td9 {
+.th8,
+.td8 {
   display: none;
 }
 
@@ -153,19 +150,19 @@
 
   .th3,
   .th4,
+  .th5,
   .th6,
   .th7,
-  .th8,
   .td3,
   .td4,
+  .td5,
   .td6,
-  .td7,
-  .td8 {
+  .td7 {
     display: none;
   }
 
-  .th9,
-  .td9 {
+  .th8,
+  .td8 {
     display: table-cell;
   }
 }
