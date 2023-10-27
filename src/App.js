@@ -18,6 +18,7 @@ import AddRoomTypePage from "./Pages/AddRoomTypePage";
 
 import FacilityManagementPage from "./Pages/FacilityManagementPage";
 import ViewFacilityPage from "./Pages/ViewFacilityPage";
+import AddFacilityPage from "./Pages/AddFacilityPage";
 
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
 import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
@@ -61,6 +62,7 @@ function App() {
 
           <Route path="/admin/facility-management" element={<FacilityManagementPage />} />
           <Route path="/admin/view-facility" element={<ViewFacilityPage />} />
+          <Route path="/admin/add-facility" element={<AddFacilityPage />} />
 
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />
