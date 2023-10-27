@@ -90,7 +90,7 @@ function ViewRoomContainer() {
                                     </Link>
                                 </td>
                                 <td className={cx('td7')}>
-                                    <Link to={`/admin/delete-staff/${room.id}`}>
+                                    <Link to={`/admin/delete-room/${room.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
                                     </Link>
                                 </td>

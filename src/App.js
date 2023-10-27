@@ -15,6 +15,7 @@ import ViewRoomPage from "./Pages/ViewRoomPage";
 import AddRoomPage from "./Pages/AddRoomPage";
 import ViewRoomTypePage from "./Pages/ViewRoomTypePage";
 import AddRoomTypePage from "./Pages/AddRoomTypePage";
+import DeleteRoomPage from "./Pages/DeleteRoomPage";
 
 import FacilityManagementPage from "./Pages/FacilityManagementPage";
 import ViewFacilityPage from "./Pages/ViewFacilityPage";
@@ -61,6 +62,7 @@ function App() {
           <Route path="/admin/add-room" element={<AddRoomPage />} />
           <Route path="/admin/view-room-type" element={<ViewRoomTypePage />} />
           <Route path="/admin/add-room-type" element={<AddRoomTypePage />} />
+          <Route path="/admin/delete-room/:id" element={<DeleteRoomPage />} />
 
           <Route path="/admin/facility-management" element={<FacilityManagementPage />} />
           <Route path="/admin/view-facility" element={<ViewFacilityPage />} />

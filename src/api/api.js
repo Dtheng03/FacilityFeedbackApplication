@@ -56,3 +56,7 @@ export const getFloorByCampusId = (id) => {
 export const getRoomType = "http://localhost:8080/api/roomType";
 
 export const addRoom = "http://localhost:8080/api/room/create";
+
+export const deleteRoom = (id) => {
+    return `http://localhost:8080/api/room/delete/${id}`;
+}
