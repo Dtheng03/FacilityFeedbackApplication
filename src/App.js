@@ -7,8 +7,15 @@ import AdminPage from "./Pages/AdminPage";
 import AddStaffPage from "./Pages/AddStaffPage";
 import AdminViewStaffPage from "./Pages/AdminViewStaffPage";
 import AdminViewDetailStaffPage from "./Pages/AdminViewDetailStaffPage";
-import AdminDeleteStaffPage from "./Pages/AdminDeleteStaffPage";
 import AdminUpdateStaffPage from "./Pages/AdminUpdateStaffPage";
+import AdminDeleteStaffPage from "./Pages/AdminDeleteStaffPage";
+
+import RoomManagementPage from "./Pages/RoomManagementPage";
+import ViewRoomPage from "./Pages/ViewRoomPage";
+import AddRoomPage from "./Pages/AddRoomPage";
+import ViewRoomTypePage from "./Pages/ViewRoomTypePage";
+import AddRoomTypePage from "./Pages/AddRoomTypePage";
+
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
 import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
 import AdminAddHistoryPage from "./Pages/AdminAddHistoryPage";
@@ -42,6 +49,13 @@ function App() {
           <Route path="/admin/view-detail/staff/:id" element={<AdminViewDetailStaffPage />} />
           <Route path="/admin/delete-staff/:id" element={<AdminDeleteStaffPage />} />
           <Route path="/admin/update-staff/:id" element={<AdminUpdateStaffPage />} />
+
+          <Route path="/admin/room-management" element={<RoomManagementPage />} />
+          <Route path="/admin/view-room" element={<ViewRoomPage />} />
+          <Route path="/admin/add-room" element={<AddRoomPage />} />
+          <Route path="/admin/view-room-type" element={<ViewRoomTypePage />} />
+          <Route path="/admin/add-room-type" element={<AddRoomTypePage />} />
+
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />
           <Route path="/admin/add-history" element={<AdminAddHistoryPage />} />

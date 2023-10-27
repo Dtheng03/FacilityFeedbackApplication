@@ -19,7 +19,7 @@ function AdminSidebar() {
                     </Link>
                 </div>
                 <div className={cx('category')}>
-                    <Link to={'/admin/view-staff'} className={cx('function')}>
+                    <Link to={'/admin/room-management'} className={cx('function')}>
                         <p className={cx('title')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faHouse}></FontAwesomeIcon>
                             <span className={cx('span')}>Room</span>
@@ -46,7 +46,7 @@ function AdminSidebar() {
                     <Link to={'/admin/view-history'} className={cx('function')}>
                         <p className={cx('title')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faScrewdriverWrench}></FontAwesomeIcon>
-                            <span className={cx('span')}> Repair</span>
+                            <span className={cx('span')}>Repair</span>
                         </p>
                     </Link>
                 </div>

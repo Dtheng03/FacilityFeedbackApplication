@@ -121,7 +121,7 @@ function AddStaffContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>Add New Staff</h2>
+                <h2 className={cx('title')}>New Staff</h2>
 
                 <form className={cx('form')} onSubmit={handleSubmit}>
                     <div className={cx('label')} >
