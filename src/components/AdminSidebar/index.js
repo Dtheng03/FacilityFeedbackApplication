@@ -27,7 +27,7 @@ function AdminSidebar() {
                     </Link>
                 </div>
                 <div className={cx('category')}>
-                    <Link to={'/admin/view-staff'} className={cx('function')}>
+                    <Link to={'/admin/facility-management'} className={cx('function')}>
                         <p className={cx('title')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faLightbulb}></FontAwesomeIcon>
                             <span className={cx('span')}>Facility</span>
