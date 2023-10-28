@@ -48,7 +48,7 @@ function StaffViewFeedbackContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>View Feedback</h2>
+                <h2 className={cx('title')}>Feedback</h2>
 
                 <input
                     className={cx('search')}

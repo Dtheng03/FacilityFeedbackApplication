@@ -49,7 +49,7 @@ function StaffViewHistoryContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>View Repair History</h2>
+                <h2 className={cx('title')}>Repair History</h2>
 
                 <input
                     className={cx('search')}
@@ -58,8 +58,6 @@ function StaffViewHistoryContainer() {
                     value={searchQuery}
                     onChange={handleSearch}
                 />
-
-                <Link to={'/admin/add-history'}>Add History</Link>
 
                 <table className={cx('table')}>
                     <thead>
