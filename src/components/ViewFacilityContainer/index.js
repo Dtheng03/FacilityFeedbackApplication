@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { viewFacility } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,16 +21,15 @@ function ViewFacilityContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch(getStaffByCampusId(sessionData.campusId))
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
+        fetch(viewFacility)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     // xu ly search
@@ -38,8 +38,8 @@ function ViewFacilityContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
+            const { facilityName } = item;
+            return facilityName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -71,25 +71,19 @@ function ViewFacilityContainer() {
                             <th className={cx('th4')}>Facility Type</th>
                             <th className={cx('th6')}>Room Type</th>
                             <th className={cx('th7')}>Update</th>
-                            <th className={cx('th8')}>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(staff => (
-                            <tr key={staff.id} className={cx('tr')}>
-                                <td className={cx('td1')}>{staff.id}</td>
-                                <td className={cx('td2')}>{staff.fullName}</td>
-                                <td className={cx('td3')}>{staff.loginName}</td>
-                                <td className={cx('td4')}>{staff.password}</td>
-                                <td className={cx('td6')}>{staff.campusName}</td>
+                        {filteredData.map(fac => (
+                            <tr key={fac.id} className={cx('tr')}>
+                                <td className={cx('td1')}>{fac.id}</td>
+                                <td className={cx('td2')}>{fac.facilityName}</td>
+                                <td className={cx('td3')}>{fac.quantity}</td>
+                                <td className={cx('td4')}>{fac.facilityTypeName}</td>
+                                <td className={cx('td6')}>{fac.roomTypeName}</td>
                                 <td className={cx('td7')}>
-                                    <Link to={`/admin/update-staff/${staff.id}`}>
+                                    <Link to={`/admin/update-facility/${fac.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} />
-                                    </Link>
-                                </td>
-                                <td className={cx('td8')}>
-                                    <Link to={`/admin/delete-staff/${staff.id}`}>
-                                        <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
                                     </Link>
                                 </td>
                             </tr>
