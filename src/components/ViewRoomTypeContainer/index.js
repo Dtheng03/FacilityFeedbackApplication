@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { getRoomType } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,16 +21,15 @@ function ViewRoomTypeContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch(getStaffByCampusId(sessionData.campusId))
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
+        fetch(getRoomType)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     // xu ly search
@@ -38,8 +38,8 @@ function ViewRoomTypeContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
+            const { name } = item;
+            return name.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -67,17 +67,17 @@ function ViewRoomTypeContainer() {
                     <thead>
                         <tr className={cx('tr')}>
                             <th className={cx('th1')}>ID</th>
-                            <th className={cx('th3')}>Room Type</th>
-                            <th className={cx('th8')}>Delete</th>
+                            <th className={cx('th2')}>Room Type</th>
+                            <th className={cx('th3')}>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(staff => (
-                            <tr key={staff.id} className={cx('tr')}>
-                                <td className={cx('td1')}>{staff.id}</td>
-                                <td className={cx('td3')}>{staff.loginName}</td>
-                                <td className={cx('td8')}>
-                                    <Link to={`/admin/delete-staff/${staff.id}`}>
+                        {filteredData.map(rt => (
+                            <tr key={rt.id} className={cx('tr')}>
+                                <td className={cx('td1')}>{rt.id}</td>
+                                <td className={cx('td2')}>{rt.name}</td>
+                                <td className={cx('td3')}>
+                                    <Link to={`/admin/delete-room-type/${rt.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
                                     </Link>
                                 </td>

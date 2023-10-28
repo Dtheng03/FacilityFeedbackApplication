@@ -1,0 +1,132 @@
+.wrapper {
+  min-height: 500px;
+  position: relative;
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 80%;
+
+  color: black;
+}
+
+.container {
+  min-height: 80vh;
+  background-color: var(--hover);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+}
+
+.title,
+.sub-title,
+.note {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.sub-title,
+.note {
+  margin: 0 4px;
+}
+
+.id {
+  font-size: 2.5rem;
+}
+
+.btn {
+  display: block;
+  width: 100px;
+  height: 50px;
+  margin-top: 16px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--primary);
+  background-color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 50px;
+
+  &:hover {
+    background-color: var(--primary);
+    color: var(--text-color);
+    cursor: pointer;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  display: block;
+  min-width: 300px;
+  min-height: 200px;
+  position: relative;
+  background-color: var(--primary);
+  padding: 20px;
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--text-color);
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.close {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin-top: 40px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border-style: none;
+  outline-color: var(--hover);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  color: var(--primary);
+  background-color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  &:hover {
+    background-color: var(--hover);
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1025px) {
+}
+
+@media (max-width: 821px) {
+  .wrapper {
+    width: 84%;
+  }
+
+  .sub-title {
+    font-size: large;
+  }
+
+  .note {
+    font-size: small;
+  }
+}
