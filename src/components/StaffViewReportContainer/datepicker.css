@@ -1,0 +1,82 @@
+/* CSS cho khung chọn ngày */
+.react-datepicker {
+    font-family: Arial, sans-serif;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    width: 200px;
+    font-size: 1.4rem;
+}
+
+.react-datepicker__header {
+    width: 200px;
+    background-color: #007bff;
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.react-datepicker__day-names {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.react-datepicker__day-name {
+    font-weight: bold;
+}
+
+.react-datepicker__month {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.react-datepicker__month .react-datepicker__week {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+.react-datepicker__day {
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.react-datepicker__day:hover {
+    background-color: #f0f0f0;
+}
+
+.react-datepicker__day--selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.react-datepicker__day--disabled {
+    color: #ccc;
+    cursor: default;
+}
+
+.react-datepicker__day--keyboard-selected {
+    background-color: #f0f0f0;
+}
+
+.react-datepicker__input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.react-datepicker__month-container {
+    max-height: 250px;
+    overflow-y: auto;
+}
