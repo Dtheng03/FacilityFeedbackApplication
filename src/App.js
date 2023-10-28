@@ -17,13 +17,15 @@ import ViewRoomTypePage from "./Pages/ViewRoomTypePage";
 import AddRoomTypePage from "./Pages/AddRoomTypePage";
 import DeleteRoomPage from "./Pages/DeleteRoomPage";
 import UpdateRoomPage from "./Pages/UpdateRoomPage";
-import DeleteRoomTypePage from "./Pages/DeleteRoomTypePage";
 
 import FacilityManagementPage from "./Pages/FacilityManagementPage";
 import ViewFacilityPage from "./Pages/ViewFacilityPage";
 import AddFacilityPage from "./Pages/AddFacilityPage";
+import UpdateFacilityPage from "./Pages/UpdateFacilityPage";
 import ViewFacilityTypePage from "./Pages/ViewFacilityTypePage";
 import AddFacilityTypePage from "./Pages/AddFacilityTypePage";
+import ViewFacilityProblemPage from "./Pages/ViewFacilityProblemPage";
+import AddFacilityProblemPage from "./Pages/AddFacilityProblemPage";
 
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
 import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
@@ -66,13 +68,15 @@ function App() {
           <Route path="/admin/add-room-type" element={<AddRoomTypePage />} />
           <Route path="/admin/delete-room/:id" element={<DeleteRoomPage />} />
           <Route path="/admin/update-room/:id" element={<UpdateRoomPage />} />
-          <Route path="/admin/delete-room-type/:id" element={<DeleteRoomTypePage />} />
 
           <Route path="/admin/facility-management" element={<FacilityManagementPage />} />
           <Route path="/admin/view-facility" element={<ViewFacilityPage />} />
           <Route path="/admin/add-facility" element={<AddFacilityPage />} />
+          <Route path="/admin/update-facility/:id" element={<UpdateFacilityPage />} />
           <Route path="/admin/view-facility-type" element={<ViewFacilityTypePage />} />
           <Route path="/admin/add-facility-type" element={<AddFacilityTypePage />} />
+          <Route path="/admin/view-facility-problem" element={<ViewFacilityProblemPage />} />
+          <Route path="/admin/add-facility-problem" element={<AddFacilityProblemPage />} />
 
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />

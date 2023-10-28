@@ -76,17 +76,25 @@
 
 .th1,
 .th2,
+.th3,
 .td1,
-.td2 {
+.td2,
+.td3 {
   padding: 4px 16px;
   text-align: center;
   border-bottom: 1px solid var(--primary);
 }
 
 .th1,
-.th2 {
+.th2,
+.th3 {
   background-color: var(--primary);
   color: var(--text-color);
+}
+
+.td2,
+.td3 {
+  text-align: left;
 }
 
 .tr {

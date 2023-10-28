@@ -70,3 +70,4 @@ export const updateRoom = (id) => {
 }
 
 export const viewFacility = "http://localhost:8080/api/facility/view";
+export const viewProblem = "http://localhost:8080/api/facilityProblem/view-all";

@@ -1,13 +1,14 @@
 import classNames from "classnames/bind";
-import style from "./ViewFacilityTypeContainer.module.scss";
+import style from "./ViewFacilityProblemContainer.module.scss";
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { viewProblem } from "../../api/api";
 
 const cx = classNames.bind(style);
 
-function ViewFacilityTypeContainer() {
+function ViewFacilityProblemContainer() {
 
     // goi api lay ra toan bo du lieu can
     const [data, setData] = useState([]);
@@ -20,16 +21,15 @@ function ViewFacilityTypeContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch(getStaffByCampusId(sessionData.campusId))
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
+        fetch(viewProblem)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     // xu ly search
@@ -38,8 +38,8 @@ function ViewFacilityTypeContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
+            const { facilityProblemName } = item;
+            return facilityProblemName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -48,8 +48,8 @@ function ViewFacilityTypeContainer() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('header')}>
-                    <h2 className={cx('title')}>Facility Type</h2>
-                    <Link to={'/admin/add-facility-type'} className={cx('add')}>
+                    <h2 className={cx('title')}>Facility Problem</h2>
+                    <Link to={'/admin/add-facility-problem'} className={cx('add')}>
                         <FontAwesomeIcon icon={faCirclePlus}></FontAwesomeIcon>
                     </Link>
                 </div>
@@ -57,7 +57,7 @@ function ViewFacilityTypeContainer() {
                 <input
                     className={cx('search')}
                     type="text"
-                    placeholder="Search by type name"
+                    placeholder="Search by problem"
                     value={searchQuery}
                     onChange={handleSearch}
                 />
@@ -66,16 +66,16 @@ function ViewFacilityTypeContainer() {
                     <thead>
                         <tr className={cx('tr')}>
                             <th className={cx('th1')}>ID</th>
-                            <th className={cx('th2')}>Type Name</th>
-                            <th className={cx('th3')}>Room Type</th>
+                            <th className={cx('th2')}>Problem Name</th>
+                            <th className={cx('th3')}>Type Name</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(staff => (
-                            <tr key={staff.id} className={cx('tr')}>
-                                <td className={cx('td1')}>{staff.id}</td>
-                                <td className={cx('td2')}>{staff.fullName}</td>
-                                <td className={cx('td3')}>{staff.loginName}</td>
+                        {filteredData.map(problem => (
+                            <tr key={problem.id} className={cx('tr')}>
+                                <td className={cx('td1')}>{problem.id}</td>
+                                <td className={cx('td2')}>{problem.facilityProblemName}</td>
+                                <td className={cx('td3')}>{problem.facilityTypeName}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -85,4 +85,4 @@ function ViewFacilityTypeContainer() {
     );
 }
 
-export default ViewFacilityTypeContainer;
+export default ViewFacilityProblemContainer;

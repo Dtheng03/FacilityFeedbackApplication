@@ -68,7 +68,6 @@ function ViewRoomTypeContainer() {
                         <tr className={cx('tr')}>
                             <th className={cx('th1')}>ID</th>
                             <th className={cx('th2')}>Room Type</th>
-                            <th className={cx('th3')}>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,11 +75,6 @@ function ViewRoomTypeContainer() {
                             <tr key={rt.id} className={cx('tr')}>
                                 <td className={cx('td1')}>{rt.id}</td>
                                 <td className={cx('td2')}>{rt.name}</td>
-                                <td className={cx('td3')}>
-                                    <Link to={`/admin/delete-room-type/${rt.id}`}>
-                                        <FontAwesomeIcon className={cx('icon')} icon={faTrashCan} />
-                                    </Link>
-                                </td>
                             </tr>
                         ))}
                     </tbody>

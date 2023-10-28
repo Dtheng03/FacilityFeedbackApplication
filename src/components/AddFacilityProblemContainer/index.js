@@ -1,21 +1,21 @@
 import classNames from "classnames/bind";
-import style from "./AddFacilityTypeContainer.module.scss";
+import style from "./AddFacilityProblemContainer.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
-function AddFacilityTypeContainer() {
+function AddFacilityProblemContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>New Facility Type</h2>
+                <h2 className={cx('title')}>New Facility Problem</h2>
                 <div className={cx('label')}>
                     <label className={cx('field')}>1.Name:</label>
                     <input className={cx('input')} type="text"></input>
                 </div>
                 <div className={cx('label')}>
-                    <label className={cx('field')}>2.Room Type:</label>
+                    <label className={cx('field')}>2.Facility Type:</label>
                     <select className={cx('input')} type="text"></select>
                 </div>
                 <div className={cx('label')}>
@@ -31,4 +31,4 @@ function AddFacilityTypeContainer() {
     );
 }
 
-export default AddFacilityTypeContainer;
+export default AddFacilityProblemContainer;
