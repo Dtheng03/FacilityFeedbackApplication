@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { getAllFacilityType } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -20,15 +21,15 @@ function ViewFacilityTypeContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        // fetch(getStaffByCampusId(sessionData.campusId))
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setData(data);
-        //         setFilteredData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+        fetch(getAllFacilityType)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setFilteredData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
     }, []);
 
@@ -38,8 +39,8 @@ function ViewFacilityTypeContainer() {
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
+            const { name } = item;
+            return name.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
@@ -71,11 +72,11 @@ function ViewFacilityTypeContainer() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(staff => (
-                            <tr key={staff.id} className={cx('tr')}>
-                                <td className={cx('td1')}>{staff.id}</td>
-                                <td className={cx('td2')}>{staff.fullName}</td>
-                                <td className={cx('td3')}>{staff.loginName}</td>
+                        {filteredData.map(type => (
+                            <tr key={type.id} className={cx('tr')}>
+                                <td className={cx('td1')}>{type.id}</td>
+                                <td className={cx('td2')}>{type.name}</td>
+                                <td className={cx('td3')}>{type.roomTypeId}</td>
                             </tr>
                         ))}
                     </tbody>

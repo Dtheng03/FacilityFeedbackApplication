@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./UpdateFacilityContainer.module.scss";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { findRoomById, getRoomType, updateRoom, updateStaffById } from "../../api/api";
+import { findFacilityById, findRoomById, getRoomType, updateFacility, updateRoom, updateStaffById } from "../../api/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFilePen } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,16 +14,7 @@ function UpdateFacilityContainer() {
     const navigate = useNavigate();
 
     // state chua info
-    const [info, setInfo] = useState([]);
-
-    // state roomtype
-    const [roomTypes, setRoomTypes] = useState([]);
-
-    // state update
-    const [updateData, setUpdateData] = useState({
-        roomName: "",
-        roomTypeId: 0
-    })
+    const [info, setInfo] = useState({});
 
     // state thanh cong
     const [isSuccess, setIsSuccess] = useState(false);
@@ -32,7 +23,7 @@ function UpdateFacilityContainer() {
     const [isFail, setIsFail] = useState(false);
 
     useEffect(() => {
-        fetch(findRoomById(param.id))
+        fetch(findFacilityById(param.id))
             .then(response => response.json())
             .then(data => {
                 setInfo(data)
@@ -40,35 +31,35 @@ function UpdateFacilityContainer() {
             .catch(error => {
                 console.error('Error:', error);
             });
-        fetch(getRoomType)
-            .then(response => response.json())
-            .then(data => {
-                setRoomTypes(data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
     }, [])
 
     // xu ly nhap lieu
-    const handleChange = (event) => {
-        setUpdateData({
-            ...updateData,
+    const handleChangeName = (event) => {
+        setInfo({
+            ...info,
             [event.target.name]: event.target.value
+        })
+    }
+
+    const handleChangeQuantity = (event) => {
+        setInfo({
+            ...info,
+            [event.target.name]: Number(event.target.value)
         })
     }
 
     // xu ly update
     const handleUpdate = async (event) => {
+        event.preventDefault();
         try {
-            const response = await fetch(updateRoom(param.id), {
+            const response = await fetch(updateFacility(param.id), {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    'roomName': updateData.roomName,
-                    'roomTypeId': updateData.roomTypeId
+                    'name': info.name,
+                    'quantity': info.quantity
                 })
             });
 
@@ -100,38 +91,36 @@ function UpdateFacilityContainer() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Update Facility</h2>
-                {info.map(room => (
-                    <div key={room.id}>
-                        <div className={cx('label')}>
-                            <label className={cx('field')}>1. Id:</label>
-                            <p className={cx('input')}>{room.id}</p>
-                        </div>
-                        <div className={cx('label')}>
-                            <label className={cx('field')}>2. Name:</label>
-                            <input className={cx('input')} name="roomName" defaultValue={room.roomName} onChange={handleChange}></input>
-                        </div>
-                        <div className={cx('label')}>
-                            <label className={cx('field')}>3. Quantity:</label>
-                            <input className={cx('input')}></input>
-                        </div>
-                        <div className={cx('label')}>
+                <form onSubmit={handleUpdate}>
+                    <div className={cx('label')}>
+                        <label className={cx('field')}>1. Id:</label>
+                        <p className={cx('input')}>{info.id}</p>
+                    </div>
+                    <div className={cx('label')}>
+                        <label className={cx('field')}>2. Name:</label>
+                        <input className={cx('input')} type="text" name="name" defaultValue={info.name} onChange={handleChangeName}></input>
+                    </div>
+                    <div className={cx('label')}>
+                        <label className={cx('field')}>3. Quantity:</label>
+                        <input className={cx('input')} type="number" name="quantity" defaultValue={info.quantity} onChange={handleChangeQuantity}></input>
+                    </div>
+                    {/* <div className={cx('label')}>
                             <label className={cx('field')}>4. Facility Type:</label>
-                            <p className={cx('input')}>{room.floorName}</p>
+                            <p className={cx('input')}>{info.facilityTypeId}</p>
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>5. Room Type:</label>
-                            <p className={cx('input')}>{room.campusName}</p>
-                        </div>
-                        <div className={cx('label')}>
-                            <button className={cx('btn')} onClick={handleCancle}>
-                                <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
-                            </button>
-                            <button className={cx('btn')} onClick={handleUpdate}>
-                                <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>
-                            </button>
-                        </div>
+                            <p className={cx('input')}>{info.roomTypeId}</p>
+                        </div> */}
+                    <div className={cx('label')}>
+                        <button className={cx('btn')} onClick={handleCancle}>
+                            <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+                        </button>
+                        <button className={cx('btn')} type="submit">
+                            <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>
+                        </button>
                     </div>
-                ))}
+                </form>
             </div>
 
             {/* Show message when update successed */}

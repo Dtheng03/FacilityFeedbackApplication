@@ -73,3 +73,19 @@ export const viewFacility = "http://localhost:8080/api/facility/view";
 export const viewProblem = "http://localhost:8080/api/facilityProblem/view-all";
 
 export const addRoomType = "http://localhost:8080/api/room-type/create";
+
+export const getAllFacilityType = "http://localhost:8080/api/facility-type/view";
+
+export const addFacility = "http://localhost:8080/api/facility/create";
+
+export const updateFacility = (id) => {
+    return `http://localhost:8080/api/facility/update/${id}`;
+}
+
+export const findFacilityById = (id) => {
+    return `http://localhost:8080/api/facility/find/{id}?id=${id}`;
+}
+
+export const addFacilityType = "http://localhost:8080/api/facility-type/create";
+
+export const addFacilityProblem = "http://localhost:8080/api/facilityProblem/create";

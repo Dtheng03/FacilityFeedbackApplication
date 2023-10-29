@@ -39,7 +39,8 @@ function ViewFacilityProblemContainer() {
 
         const filtered = data.filter(item => {
             const { facilityProblemName } = item;
-            return facilityProblemName.toLowerCase().includes(query.toLowerCase())
+            if (facilityProblemName)
+                return facilityProblemName.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);
