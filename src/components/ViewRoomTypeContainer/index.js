@@ -39,7 +39,8 @@ function ViewRoomTypeContainer() {
 
         const filtered = data.filter(item => {
             const { name } = item;
-            return name.toLowerCase().includes(query.toLowerCase())
+            if (name)
+                return name.toLowerCase().includes(query.toLowerCase())
         });
 
         setFilteredData(filtered);

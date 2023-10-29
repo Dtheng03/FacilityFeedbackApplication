@@ -16,13 +16,14 @@ function UpdateRoomContainer() {
     // state chua info
     const [info, setInfo] = useState([]);
 
+    const data1 = info[0];
+
     // state roomtype
     const [roomTypes, setRoomTypes] = useState([]);
 
     // state update
     const [updateData, setUpdateData] = useState({
-        roomName: "",
-        roomTypeId: 0
+        roomName: ""
     })
 
     // state thanh cong
@@ -67,13 +68,14 @@ function UpdateRoomContainer() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    'roomName': updateData.roomName,
-                    'roomTypeId': updateData.roomTypeId
+                    'name': String(updateData.roomName)
                 })
             });
 
             if (response.ok) {
                 setIsSuccess(true);
+            } else {
+                setIsFail(true)
             }
         } catch (error) {
             console.log(error);
@@ -112,12 +114,7 @@ function UpdateRoomContainer() {
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>3. Room Type:</label>
-                            <select className={cx('input')} name="roomTypeId" onChange={handleChange}>
-                                <option>{room.roomTypeName}</option>
-                                {roomTypes.map(roomType => (
-                                    <option key={roomType.id} value={roomType.id}>{roomType.name}</option>
-                                ))}
-                            </select>
+                            <p className={cx('input')}>{room.roomTypeName}</p>
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>4. Floor:</label>

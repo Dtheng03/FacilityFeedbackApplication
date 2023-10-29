@@ -1,6 +1,6 @@
 // api lay du lieu trong database
 export const getAllCampus = "http://localhost:8080/api/campus";
-export const getAllFloor = "http://localhost:8080/api/floor";
+export const getAllFloor = "http://localhost:8080/api/floor/view";
 export const getAllRoom = "http://localhost:8080/api/room/view";
 export const getAllFacility = "http://localhost:8080/api/facility/get-all";
 export const getAllFacilityProblem = "http://localhost:8080/api/facilityProblem/get-all";
@@ -50,10 +50,10 @@ export const getRoomByCampusId = (id) => {
 }
 
 export const getFloorByCampusId = (id) => {
-    return `http://localhost:8080/api/find/${id}`;
+    return `http://localhost:8080/api/floor/find/${id}`;
 }
 
-export const getRoomType = "http://localhost:8080/api/roomType";
+export const getRoomType = "http://localhost:8080/api/room-type/view";
 
 export const addRoom = "http://localhost:8080/api/room/create";
 
@@ -71,3 +71,5 @@ export const updateRoom = (id) => {
 
 export const viewFacility = "http://localhost:8080/api/facility/view";
 export const viewProblem = "http://localhost:8080/api/facilityProblem/view-all";
+
+export const addRoomType = "http://localhost:8080/api/room-type/create";

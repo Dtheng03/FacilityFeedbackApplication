@@ -21,8 +21,8 @@ function AddRoomContainer() {
     // state chua info
     const [info, setInfo] = useState({
         name: "",
-        roomTypeId: 0,
-        floorId: 0,
+        roomTypeId: 1,
+        floorId: 1,
         campusId: sessionData.campusId
     });
 
@@ -47,10 +47,10 @@ function AddRoomContainer() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "name": info.name,
-                    "roomTypeId": info.roomTypeId,
-                    "floorId": info.floorId,
-                    "campusId": info.campusId
+                    "name": String(info.name),
+                    "roomTypeId": Number(info.roomTypeId),
+                    "floorId": Number(info.floorId),
+                    "campusId": Number(info.campusId)
                 })
             })
 
@@ -62,29 +62,25 @@ function AddRoomContainer() {
                 if (responseBody) {
                     // if success
                     setIsSuccess(true);
-                    console.log("add tc");
                 } else {
                     // if fail
                     setIsFail(true);
-                    console.log("add ktc");
                 }
             } else {
                 // if fail
                 setIsFail(true);
-                console.log("loi");
             }
 
             // reset data
             setInfo({
                 name: "",
-                roomTypeId: 0,
-                floorId: 0,
+                roomTypeId: 1,
+                floorId: 1,
                 campusId: sessionData.campusId
             });
         } catch (error) {
             // if fail
             setIsFail(true);
-            console.log("loi try catch");
         }
     }
 
@@ -123,7 +119,6 @@ function AddRoomContainer() {
                     <div className={cx('label')}>
                         <label className={cx('field')}>2.Room Type:</label>
                         <select className={cx('input')} type="text" name="roomTypeId" value={info.roomTypeId} onChange={handleChange} required>
-                            <option value={0}>Choose room type</option>
                             {roomTypes.map(roomType => (
                                 <option key={roomType.id} value={roomType.id}>{roomType.name}</option>
                             ))}
@@ -132,7 +127,6 @@ function AddRoomContainer() {
                     <div className={cx('label')}>
                         <label className={cx('field')}>3.Floor:</label>
                         <select className={cx('input')} type="text" name="floorId" value={info.floorId} onChange={handleChange} required>
-                            <option value={0}>Choose floor</option>
                             {floors.map(floor => (
                                 <option key={floor.id} value={floor.id}>{floor.name}</option>
                             ))}
