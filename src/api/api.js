@@ -89,3 +89,15 @@ export const findFacilityById = (id) => {
 export const addFacilityType = "http://localhost:8080/api/facility-type/create";
 
 export const addFacilityProblem = "http://localhost:8080/api/facilityProblem/create";
+
+export const countFeedBack = (startDate, endDate) => {
+    return `http://localhost:8080/api/feedback/view-report?startDate=${startDate}&endDate=${endDate}`;
+}
+
+export const countFeedBackTrue = (startDate, endDate) => {
+    return `http://localhost:8080/api/feedback/view-report-true?startDate=${startDate}&endDate=${endDate}`
+}
+
+export const countFeedBackFalse = (startDate, endDate) => {
+    return `http://localhost:8080/api/feedback/view-report-false?startDate=${startDate}&endDate=${endDate}`
+}

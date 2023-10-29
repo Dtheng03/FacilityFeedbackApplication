@@ -22,6 +22,9 @@ function UpdateFacilityContainer() {
     // state that bai
     const [isFail, setIsFail] = useState(false);
 
+    const [errName, setErrName] = useState(false);
+    const [errQuantity, setErrQuantity] = useState(false);
+
     useEffect(() => {
         fetch(findFacilityById(param.id))
             .then(response => response.json())
@@ -35,17 +38,27 @@ function UpdateFacilityContainer() {
 
     // xu ly nhap lieu
     const handleChangeName = (event) => {
-        setInfo({
-            ...info,
-            [event.target.name]: event.target.value
-        })
+        if (event.target.value.length > 1) {
+            setInfo({
+                ...info,
+                [event.target.name]: event.target.value
+            })
+            setErrName(false)
+        } else {
+            setErrName(true)
+        }
     }
 
     const handleChangeQuantity = (event) => {
-        setInfo({
-            ...info,
-            [event.target.name]: Number(event.target.value)
-        })
+        if (event.target.value > 0) {
+            setInfo({
+                ...info,
+                [event.target.name]: Number(event.target.value)
+            })
+            setErrQuantity(false)
+        } else if (event.target.value <= 0) {
+            setErrQuantity(true)
+        }
     }
 
     // xu ly update
@@ -100,20 +113,16 @@ function UpdateFacilityContainer() {
                         <label className={cx('field')}>2. Name:</label>
                         <input className={cx('input')} type="text" name="name" defaultValue={info.name} onChange={handleChangeName}></input>
                     </div>
+                    {errName ? <p className={cx('error')}>Name must have at least 2 characters</p> : ""}
+
                     <div className={cx('label')}>
                         <label className={cx('field')}>3. Quantity:</label>
                         <input className={cx('input')} type="number" name="quantity" defaultValue={info.quantity} onChange={handleChangeQuantity}></input>
                     </div>
-                    {/* <div className={cx('label')}>
-                            <label className={cx('field')}>4. Facility Type:</label>
-                            <p className={cx('input')}>{info.facilityTypeId}</p>
-                        </div>
-                        <div className={cx('label')}>
-                            <label className={cx('field')}>5. Room Type:</label>
-                            <p className={cx('input')}>{info.roomTypeId}</p>
-                        </div> */}
+                    {errQuantity ? <p className={cx('error')}>Quantity must have at least 1</p> : ""}
+
                     <div className={cx('label')}>
-                        <button className={cx('btn')} onClick={handleCancle}>
+                        <button className={cx('btn')} onClick={handleCancle} type="reset">
                             <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
                         </button>
                         <button className={cx('btn')} type="submit">
@@ -129,7 +138,6 @@ function UpdateFacilityContainer() {
                     <div className={cx('modal')}>
                         <div className={cx('modal-content')}>
                             <h2 className={cx('modal-title')}>Update Successfully!</h2>
-                            <p className={cx('modal-info')}>Click the "OK" button to return to View-Staff.</p>
                             <button className={cx('close')} onClick={closeSuccesModal}>OK</button>
                         </div>
                     </div>
