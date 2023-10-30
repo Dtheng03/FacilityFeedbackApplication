@@ -82,10 +82,11 @@ function LoginContainer() {
                 <input
                     className={cx('loginname-input')}
                     required
+                    maxLength={25}
                     type='text'
                     placeholder='LoginName'
                     value={loginname}
-                    onChange={(e) => setLoginname(e.target.value)}
+                    onChange={(e) => setLoginname(e.target.value.trimStart())}
                 >
                 </input>
             </div>
@@ -94,10 +95,11 @@ function LoginContainer() {
                 <input
                     className={cx('password-input')}
                     required
+                    maxLength={25}
                     type={passwordShown ? "text" : "password"}
                     placeholder='Password'
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value.trimStart())}
                 >
                 </input>
             </div>
