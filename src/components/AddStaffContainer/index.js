@@ -25,7 +25,7 @@ function AddStaffContainer() {
     // tao state validate
     const error = {
         fullName: "FullName must have at least 6 characters",
-        loginName: "LoginName must have at least 6 characters",
+        loginName: "LoginName must have at least 5 characters",
         passWord: "Password must have at least 6 characters"
     };
 
@@ -58,7 +58,7 @@ function AddStaffContainer() {
         event.preventDefault();
         // Call API to create new staff member using formData
         if (formData.fullName.length >= 6
-            && formData.loginName.length >= 6
+            && formData.loginName.length >= 5
             && formData.passWord.length >= 6) {
             try {
                 const response = await fetch(addStaff, {
@@ -126,26 +126,49 @@ function AddStaffContainer() {
                 <form className={cx('form')} onSubmit={handleSubmit}>
                     <div className={cx('label')} >
                         <label className={cx('field')}>1. FullName *</label>
-                        <input className={cx('input')} type="text" required name="fullName" value={formData.fullName} onChange={handleInputChange} />
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            required
+                            maxLength={50}
+                            placeholder="Max 50 characters"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange} />
                     </div>
                     {(formData.fullName.length < 6 && formData.fullName != "") ? <p className={cx('error')}>{error.fullName}</p> : ""}
 
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. LoginName *</label>
-                        <input className={cx('input')} type="text" required name="loginName" value={formData.loginName} onChange={handleInputChange} />
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            required
+                            maxLength={25}
+                            placeholder="Max 25 characters"
+                            name="loginName"
+                            value={formData.loginName}
+                            onChange={handleInputChange} />
                     </div>
-                    {(formData.loginName.length < 6 && formData.loginName != "") ? <p className={cx('error')}>{error.loginName}</p> : ""}
+                    {(formData.loginName.length < 5 && formData.loginName != "") ? <p className={cx('error')}>{error.loginName}</p> : ""}
 
                     <div className={cx('label')} >
                         <label className={cx('field')}>3. Password *</label>
-                        <input className={cx('input')} type="text" required name="passWord" value={formData.passWord} onChange={handleInputChange} />
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            required
+                            maxLength={25}
+                            placeholder="Max 25 characters"
+                            name="passWord"
+                            value={formData.passWord}
+                            onChange={handleInputChange} />
                     </div>
                     {(formData.passWord.length < 6 && formData.passWord != "") ? <p className={cx('error')}>{error.passWord}</p> : ""}
 
                     <div className={cx('label')} >
                         <label className={cx('field')}>4. Campus *</label>
                         <select className={cx('input')} type="text" required name="campusId" value={formData.campusId} disabled>
-                            <option value={0}>Choose Campus</option>
                             <option value={1} >Hà Nội</option>
                             <option value={2} >Hồ Chí Minh</option>
                             <option value={3} >Đà Nẵng</option>
@@ -176,9 +199,9 @@ function AddStaffContainer() {
                     {isSuccess && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Staff Successfully!</h2>
-                                <p className={cx('modal-info')}>You can see the list of staff in the "View Staff" section.</p>
-                                <button className={cx('close')} onClick={closeSuccessModal}>Ok</button>
+                                <h2 className={cx('modal-title')}>Add Successfully!</h2>
+                                <p className={cx('modal-info')}>You can see all staff in the "Staff" section.</p>
+                                <button className={cx('close')} onClick={closeSuccessModal}>OK</button>
                             </div>
                         </div>
                     )}
@@ -189,10 +212,10 @@ function AddStaffContainer() {
                     {isFail && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Staff Failed!</h2>
-                                <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
-                                <p className={cx('modal-info')}>Please check all information again.</p>
-                                <button className={cx('close')} onClick={closeFailModal}>Ok</button>
+                                <h2 className={cx('modal-title')}>Add Failed!</h2>
+                                <p className={cx('modal-info')}>The LoginName may already exist.</p>
+                                <p className={cx('modal-info')}>Please try again.</p>
+                                <button className={cx('close')} onClick={closeFailModal}>OK</button>
                             </div>
                         </div>
                     )}
