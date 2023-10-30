@@ -346,7 +346,7 @@ function CreateFeedbackContainer() {
                     <div className={cx('modal-content')}>
                         <h2 className={cx('modal-title')}>Send Feedback Failed</h2>
                         <p className={cx('modal-info')}>Please check all information again!</p>
-                        <button className={cx('modal-close')} onClick={handleFeedbackFail}>Ok</button>
+                        <button className={cx('modal-close')} onClick={handleFeedbackFail}>OK</button>
                     </div>
                 </div>
             )}

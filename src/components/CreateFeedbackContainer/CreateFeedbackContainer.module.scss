@@ -260,6 +260,17 @@
     width: 100%;
   }
 
+  .campus-label,
+  .floor-label,
+  .room-label,
+  .facility-label,
+  .problem-label,
+  .img-label,
+  .description-label {
+    display: inline-block;
+    min-width: 100px;
+    font-size: medium;
+  }
   .img-hold {
     margin-left: 30px;
   }
