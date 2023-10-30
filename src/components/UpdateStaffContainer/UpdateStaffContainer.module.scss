@@ -54,6 +54,11 @@
   }
 }
 
+.error {
+  text-align: center;
+  color: red;
+}
+
 .btn {
   display: block;
   width: 80px;
@@ -160,6 +165,10 @@
   .input {
     padding: 0;
     min-width: 165px;
+  }
+
+  .error {
+    font-size: small;
   }
 
   .modal-content {

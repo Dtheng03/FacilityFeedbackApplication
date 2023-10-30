@@ -23,6 +23,9 @@ function UpdateStaffContainer() {
         campusId: 0
     })
 
+    // state error
+    const [error, setError] = useState(false);
+
     // state thanh cong
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -41,7 +44,19 @@ function UpdateStaffContainer() {
     }, [])
 
     // xu ly nhap lieu
-    const handleChange = (event) => {
+    const handlePassword = (event) => {
+        setStaff({
+            ...staff,
+            [event.target.name]: event.target.value
+        })
+        if (event.target.value.length < 6) {
+            setError(true);
+        } else if (event.target.value.length >= 6) {
+            setError(false);
+        }
+    }
+
+    const handleCampus = (event) => {
         setStaff({
             ...staff,
             [event.target.name]: event.target.value
@@ -50,24 +65,25 @@ function UpdateStaffContainer() {
 
     // xu ly update
     const handleUpdate = async (event) => {
-        try {
-            const response = await fetch(updateStaffById(staff.id), {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    password: staff.password,
-                    campusId: staff.campusId,
-                })
-            });
+        if (error === false)
+            try {
+                const response = await fetch(updateStaffById(staff.id), {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        password: staff.password,
+                        campusId: staff.campusId,
+                    })
+                });
 
-            if (response.ok) {
-                setIsSuccess(true);
+                if (response.ok) {
+                    setIsSuccess(true);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     // xu ly huy 
@@ -104,16 +120,23 @@ function UpdateStaffContainer() {
                 </div>
                 <div className={cx('label')}>
                     <label className={cx('field')}>4. Password:</label>
-                    <input className={cx('input')} name="password" type="text" value={staff.password} onChange={(e) => handleChange(e)}></input>
+                    <input
+                        className={cx('input')}
+                        name="password"
+                        type="text"
+                        required
+                        maxLength={25}
+                        value={staff.password}
+                        onChange={(e) => handlePassword(e)}></input>
                 </div>
+                {error ? <p className={cx('error')}>Password must have at least 6 characters</p> : ""}
                 <div className={cx('label')}>
                     <label className={cx('field')}>5. Manager:</label>
                     <input className={cx('input')} type="checkbox" checked={staff.manager} disabled></input>
                 </div>
                 <div className={cx('label')}>
                     <label className={cx('field')}>6. Campus:</label>
-                    <select className={cx('input')} type="text" name="campusId" value={staff.campusId} onChange={(e) => handleChange(e)} >
-                        <option value={0}>Choose Campus</option>
+                    <select className={cx('input')} type="text" name="campusId" value={staff.campusId} onChange={(e) => handleCampus(e)} >
                         <option value={1} >Hà Nội</option>
                         <option value={2} >Hồ Chí Minh</option>
                         <option value={3} >Đà Nẵng</option>
@@ -137,7 +160,7 @@ function UpdateStaffContainer() {
                     <div className={cx('modal')}>
                         <div className={cx('modal-content')}>
                             <h2 className={cx('modal-title')}>Update Successfully!</h2>
-                            <p className={cx('modal-info')}>Click the "OK" button to return to View-Staff.</p>
+                            <p className={cx('modal-info')}>Click the "OK" button to view staff.</p>
                             <button className={cx('close')} onClick={closeSuccesModal}>OK</button>
                         </div>
                     </div>
@@ -150,7 +173,6 @@ function UpdateStaffContainer() {
                     <div className={cx('modal')}>
                         <div className={cx('modal-content')}>
                             <h2 className={cx('modal-title')}>Update Failed!</h2>
-                            <p className={cx('modal-info')}>An error may occur during the update process.</p>
                             <p className={cx('modal-info')}>Please try again.</p>
                             <button className={cx('close')} onClick={closeFailModal}>OK</button>
                         </div>
