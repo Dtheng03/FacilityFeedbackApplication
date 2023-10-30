@@ -306,7 +306,14 @@ function CreateFeedbackContainer() {
             {/* Thêm mô tả */}
             <div className={cx('description')}>
                 <label className={cx('description-label')}>Description</label>
-                <textarea className={cx('description-text')} name="description" rows="3" placeholder="Please describe the condition (optional)." onChange={(e) => handleSetDescription(e)}></textarea>
+                <textarea
+                    className={cx('description-text')}
+                    name="description"
+                    rows="3"
+                    maxLength={50}
+                    placeholder="Please describe the condition 
+                (Maximum 50 characters)."
+                    onChange={(e) => handleSetDescription(e)}></textarea>
             </div>
 
             {/* Nút gửi */}
