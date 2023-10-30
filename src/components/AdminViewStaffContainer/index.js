@@ -19,6 +19,19 @@ function AdminViewStaffContainer() {
     const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
+    // xu ly search
+    const handleSearch = (event) => {
+        const query = event.target.value.trimStart();
+        setSearchQuery(query);
+
+        const filtered = data.filter(item => {
+            const { fullName } = item;
+            return fullName.toLowerCase().includes(query.toLowerCase())
+        });
+
+        setFilteredData(filtered);
+    };
+
     useEffect(() => {
         // Fetch data from API
         fetch(getStaffByCampusId(sessionData.campusId))
@@ -32,19 +45,6 @@ function AdminViewStaffContainer() {
             });
 
     }, []);
-
-    // xu ly search
-    const handleSearch = (event) => {
-        const query = event.target.value;
-        setSearchQuery(query);
-
-        const filtered = data.filter(item => {
-            const { fullName } = item;
-            return fullName.toLowerCase().includes(query.toLowerCase())
-        });
-
-        setFilteredData(filtered);
-    };
 
     return (
         <div className={cx('wrapper')}>

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { getStaffByStaffId } from "../../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faFilePen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -50,18 +52,18 @@ function AdminViewDetailStaffContainer() {
                             <p className={cx('input')}>{st.campusName}</p>
                         </div>
                         <div className={cx('label')}>
+                            <button className={cx('btn')} onClick={() => { window.history.back(); }}>
+                                <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+                            </button>
                             <button className={cx('btn')}>
                                 <Link className={cx('link')} to={`/admin/update-staff/${st.id}`}>
-                                    Update
+                                    <FontAwesomeIcon icon={faFilePen}></FontAwesomeIcon>
                                 </Link>
                             </button>
                             <button className={cx('btn')}>
                                 <Link className={cx('link')} to={`/admin/delete-staff/${st.id}`}>
-                                    Delete
+                                    <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
                                 </Link>
-                            </button>
-                            <button className={cx('btn')} onClick={() => { window.history.back(); }}>
-                                Back
                             </button>
                         </div>
                     </div>
