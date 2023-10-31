@@ -47,7 +47,7 @@ function UpdateStaffContainer() {
     const handlePassword = (event) => {
         setStaff({
             ...staff,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value.trim()
         })
         if (event.target.value.length < 6) {
             setError(true);
