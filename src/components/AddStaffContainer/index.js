@@ -44,6 +44,13 @@ function AddStaffContainer() {
         });
     };
 
+    const handleInputChangeLogin = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value.trim()
+        });
+    };
+
     // xu ly check manager
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
@@ -148,7 +155,7 @@ function AddStaffContainer() {
                             placeholder="Max 25 characters"
                             name="loginName"
                             value={formData.loginName}
-                            onChange={handleInputChange} />
+                            onChange={handleInputChangeLogin} />
                     </div>
                     {(formData.loginName.length < 5 && formData.loginName != "") ? <p className={cx('error')}>{error.loginName}</p> : ""}
 
@@ -162,7 +169,7 @@ function AddStaffContainer() {
                             placeholder="Max 25 characters"
                             name="passWord"
                             value={formData.passWord}
-                            onChange={handleInputChange} />
+                            onChange={handleInputChangeLogin} />
                     </div>
                     {(formData.passWord.length < 6 && formData.passWord != "") ? <p className={cx('error')}>{error.passWord}</p> : ""}
 
