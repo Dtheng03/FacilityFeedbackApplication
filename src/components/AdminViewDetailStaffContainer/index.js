@@ -24,7 +24,7 @@ function AdminViewDetailStaffContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>View Detail Staff</h2>
+                <h2 className={cx('title')}>Detail Staff</h2>
                 {staff.map(st => (
                     <div key={st.id}>
                         <div className={cx('label')}>
