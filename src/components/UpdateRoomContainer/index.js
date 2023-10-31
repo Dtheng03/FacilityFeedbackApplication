@@ -16,15 +16,13 @@ function UpdateRoomContainer() {
     // state chua info
     const [info, setInfo] = useState([]);
 
-    const data1 = info[0];
-
-    // state roomtype
-    const [roomTypes, setRoomTypes] = useState([]);
-
     // state update
     const [updateData, setUpdateData] = useState({
         roomName: ""
     })
+
+    // state error
+    const [error, setError] = useState(false);
 
     // state thanh cong
     const [isSuccess, setIsSuccess] = useState(false);
@@ -41,45 +39,43 @@ function UpdateRoomContainer() {
             .catch(error => {
                 console.error('Error:', error);
             });
-        fetch(getRoomType)
-            .then(response => response.json())
-            .then(data => {
-                setRoomTypes(data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
     }, [])
 
     // xu ly nhap lieu
     const handleChange = (event) => {
-        setUpdateData({
-            ...updateData,
-            [event.target.name]: event.target.value
-        })
+        if (event.target.value.length == 0 || event.target.value[0] == " ")
+            setError(true)
+        else if (event.target.value.length >= 1 && event.target.value[0] != " ") {
+            setUpdateData({
+                ...updateData,
+                [event.target.name]: event.target.value.trim()
+            })
+            setError(false)
+        }
     }
 
     // xu ly update
     const handleUpdate = async (event) => {
-        try {
-            const response = await fetch(updateRoom(param.id), {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'name': String(updateData.roomName)
-                })
-            });
+        if (updateData.roomName != "" && error == false)
+            try {
+                const response = await fetch(updateRoom(param.id), {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'name': String(updateData.roomName)
+                    })
+                });
 
-            if (response.ok) {
-                setIsSuccess(true);
-            } else {
-                setIsFail(true)
+                if (response.ok) {
+                    setIsSuccess(true);
+                } else {
+                    setIsFail(true)
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     // xu ly huy 
@@ -110,8 +106,17 @@ function UpdateRoomContainer() {
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>2. Room:</label>
-                            <input className={cx('input')} name="roomName" defaultValue={room.roomName} onChange={handleChange}></input>
+                            <input
+                                className={cx('input')}
+                                name="roomName"
+                                defaultValue={room.roomName}
+                                onChange={handleChange}
+                                autoFocus
+                                maxLength={10}
+                                placeholder="max 10 characters"
+                            />
                         </div>
+                        {error ? <p className={cx('error')}>Must at least 1 character and not begin with space</p> : ""}
                         <div className={cx('label')}>
                             <label className={cx('field')}>3. Room Type:</label>
                             <p className={cx('input')}>{room.roomTypeName}</p>

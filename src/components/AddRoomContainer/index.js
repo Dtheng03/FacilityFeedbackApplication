@@ -114,7 +114,17 @@ function AddRoomContainer() {
                 <form onSubmit={handleAdd}>
                     <div className={cx('label')}>
                         <label className={cx('field')}>1.Room:</label>
-                        <input className={cx('input')} type="text" name='name' value={info.name} onChange={handleChange} required></input>
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            name='name'
+                            value={info.name}
+                            onChange={handleChange}
+                            required
+                            autoFocus
+                            maxLength={10}
+                            placeholder="max 10 characters"
+                        />
                     </div>
                     <div className={cx('label')}>
                         <label className={cx('field')}>2.Room Type:</label>
@@ -147,8 +157,8 @@ function AddRoomContainer() {
                     {isSuccess && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Room Successfully!</h2>
-                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>Ok</button>
+                                <h2 className={cx('modal-title')}>Add Successfully!</h2>
+                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>OK</button>
                             </div>
                         </div>
                     )}
@@ -159,10 +169,10 @@ function AddRoomContainer() {
                     {isFail && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Room Failed!</h2>
+                                <h2 className={cx('modal-title')}>Add Failed!</h2>
                                 <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
                                 <p className={cx('modal-info')}>Please check all information again.</p>
-                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>Ok</button>
+                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>OK</button>
                             </div>
                         </div>
                     )}

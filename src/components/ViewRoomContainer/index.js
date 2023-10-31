@@ -34,7 +34,7 @@ function ViewRoomContainer() {
 
     // xu ly search
     const handleSearch = (event) => {
-        const query = event.target.value;
+        const query = event.target.value.trimStart();
         setSearchQuery(query);
 
         const filtered = data.filter(item => {

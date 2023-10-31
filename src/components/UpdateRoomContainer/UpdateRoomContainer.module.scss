@@ -32,7 +32,7 @@
   width: 100%;
   min-height: 50px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .field {
@@ -52,6 +52,11 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.error {
+  text-align: center;
+  color: red;
 }
 
 .btn {
@@ -160,6 +165,10 @@
   .input {
     padding: 0;
     min-width: 165px;
+  }
+
+  .error {
+    font-size: x-small;
   }
 
   .modal-content {
