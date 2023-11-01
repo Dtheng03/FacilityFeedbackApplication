@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import style from './StaffViewReportContainer.module.scss';
 import './datepicker.css';
 import moment from 'moment/moment';
-import { countFeedBack, countFeedBackFalse, countFeedBackTrue } from '../../api/api';
+import { countFeedBack, countFeedBackFalse, countFeedBackTrue, report } from '../../api/api';
 
 const cx = classNames.bind(style);
 
@@ -26,9 +26,10 @@ function Report() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const [countFB, setCountFB] = useState();
-    const [countFBTrue, setCountFBTrue] = useState();
-    const [countFBFalse, setCountFBFalse] = useState();
+    // const [countFB, setCountFB] = useState();
+    // const [countFBTrue, setCountFBTrue] = useState();
+    // const [countFBFalse, setCountFBFalse] = useState();
+    const [reports, setReports] = useState([]);
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -46,24 +47,29 @@ function Report() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log('Start Date:', startDate.toLocaleDateString('en-GB'));
-        // console.log('End Date:', endDate.toLocaleDateString('en-GB'));
-        fetch(countFeedBack(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
+
+        // fetch(countFeedBack(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setCountFB(data)
+        //     })
+        //     .catch(error => console.log(error))
+        // fetch(countFeedBackTrue(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setCountFBTrue(data)
+        //     })
+        //     .catch(error => console.log(error))
+        // fetch(countFeedBackFalse(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setCountFBFalse(data)
+        //     })
+        //     .catch(error => console.log(error))
+        fetch(report(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
             .then(res => res.json())
             .then(data => {
-                setCountFB(data)
-            })
-            .catch(error => console.log(error))
-        fetch(countFeedBackTrue(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
-            .then(res => res.json())
-            .then(data => {
-                setCountFBTrue(data)
-            })
-            .catch(error => console.log(error))
-        fetch(countFeedBackFalse(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
-            .then(res => res.json())
-            .then(data => {
-                setCountFBFalse(data)
+                setReports(data)
             })
             .catch(error => console.log(error))
     };
@@ -102,7 +108,7 @@ function Report() {
                     <button className={cx('button')} type="submit">Submit</button>
                 </form>
 
-                {countFB ? (
+                {reports.map(report => (
                     <div className={cx('report')}>
                         <table className={cx('table')}>
                             <thead>
@@ -114,20 +120,21 @@ function Report() {
                             <tbody>
                                 <tr className={cx('tr')}>
                                     <th className={cx('th1')}>Total feedback</th>
-                                    <td className={cx('td')}>{countFB}</td>
+                                    <td className={cx('td')}>{report.totalFeedback}</td>
                                 </tr>
                                 <tr className={cx('tr')}>
                                     <th className={cx('th1')}>Completed Feedback</th>
-                                    <td className={cx('td')}>{countFBTrue}</td>
+                                    <td className={cx('td')}>{report.trueStatusFeedback}</td>
                                 </tr>
                                 <tr className={cx('tr')}>
                                     <th className={cx('th1')}>Incomplete Feedbacks</th>
-                                    <td className={cx('td')}>{countFBFalse}</td>
+                                    <td className={cx('td')}>{report.falseStatusFeedback}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                ) : <p className={cx('message')}>Please choose date</p>}
+                ))
+                }
             </div>
         </div>
     );

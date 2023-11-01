@@ -101,3 +101,7 @@ export const countFeedBackTrue = (startDate, endDate) => {
 export const countFeedBackFalse = (startDate, endDate) => {
     return `http://localhost:8080/api/feedback/view-report-false?startDate=${startDate}&endDate=${endDate}`
 }
+
+export const report = (startDate, endDate) => {
+    return `http://localhost:8080/api/feedback/report?startDate=${startDate}&endDate=${endDate}`;
+}
