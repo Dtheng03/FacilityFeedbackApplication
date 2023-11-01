@@ -18,6 +18,9 @@ function AddFacilityContainer() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFail, setIsFail] = useState(false);
 
+    // state error
+    const [error, setError] = useState(false);
+
     const [info, setInfo] = useState({
         name: "",
         quantity: 1,
@@ -30,6 +33,11 @@ function AddFacilityContainer() {
             ...info,
             name: e.target.value.trimStart()
         })
+        if (e.target.value.length >= 2) {
+            setError(false)
+        } else {
+            setError(true)
+        }
     }
 
     const handleQuantity = (e) => {
@@ -110,8 +118,19 @@ function AddFacilityContainer() {
                 <form onSubmit={handleSubmit}>
                     <div className={cx('label')}>
                         <label className={cx('field')}>1.Name:</label>
-                        <input className={cx('input')} type="text" name='name' value={info.name} onChange={handleName} required></input>
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            name='name'
+                            value={info.name}
+                            onChange={handleName}
+                            required
+                            maxLength={50}
+                            autoFocus
+                            placeholder="max 50 characters"
+                        />
                     </div>
+                    {error ? <p className={cx('error')}>Must at least 2 characters</p> : ""}
                     <div className={cx('label')}>
                         <label className={cx('field')}>2.Quantity:</label>
                         <input className={cx('input')} type="number" name="quantity" value={info.quantity} onChange={handleQuantity} required></input>
@@ -135,7 +154,7 @@ function AddFacilityContainer() {
                         </select>
                     </div>
                     <div className={cx('label')}>
-                        <button className={cx('btn')} onClick={() => { window.history.back() }}>
+                        <button className={cx('btn')} type="reset" onClick={() => { window.history.back() }}>
                             <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
                         </button>
                         <button className={cx('btn')} type="submit">
@@ -150,7 +169,7 @@ function AddFacilityContainer() {
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
                                 <h2 className={cx('modal-title')}>Add Successfully!</h2>
-                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>Ok</button>
+                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>OK</button>
                             </div>
                         </div>
                     )}
@@ -163,8 +182,8 @@ function AddFacilityContainer() {
                             <div className={cx('modal-content')}>
                                 <h2 className={cx('modal-title')}>Add Failed!</h2>
                                 <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
-                                <p className={cx('modal-info')}>Please check all information again.</p>
-                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>Ok</button>
+                                <p className={cx('modal-info')}>Please try again.</p>
+                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>OK</button>
                             </div>
                         </div>
                     )}

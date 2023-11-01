@@ -38,10 +38,10 @@ function UpdateFacilityContainer() {
 
     // xu ly nhap lieu
     const handleChangeName = (event) => {
-        if (event.target.value.length > 1) {
+        if (event.target.value.length >= 2 && event.target.value[0] != " ") {
             setInfo({
                 ...info,
-                [event.target.name]: event.target.value
+                [event.target.name]: event.target.value.trimStart()
             })
             setErrName(false)
         } else {
@@ -64,24 +64,25 @@ function UpdateFacilityContainer() {
     // xu ly update
     const handleUpdate = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch(updateFacility(param.id), {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    'name': info.name,
-                    'quantity': info.quantity
-                })
-            });
+        if (errName == false && errQuantity == false)
+            try {
+                const response = await fetch(updateFacility(param.id), {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'name': info.name,
+                        'quantity': info.quantity
+                    })
+                });
 
-            if (response.ok) {
-                setIsSuccess(true);
+                if (response.ok) {
+                    setIsSuccess(true);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     // xu ly huy 
@@ -111,13 +112,27 @@ function UpdateFacilityContainer() {
                     </div>
                     <div className={cx('label')}>
                         <label className={cx('field')}>2. Name:</label>
-                        <input className={cx('input')} type="text" name="name" defaultValue={info.name} onChange={handleChangeName}></input>
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            name="name"
+                            maxLength={50}
+                            placeholder="max 50 characters"
+                            defaultValue={info.name}
+                            onChange={handleChangeName}
+                        />
                     </div>
-                    {errName ? <p className={cx('error')}>Name must have at least 2 characters</p> : ""}
+                    {errName ? <p className={cx('error')}>Must at least 2 characters and not begin with space</p> : ""}
 
                     <div className={cx('label')}>
                         <label className={cx('field')}>3. Quantity:</label>
-                        <input className={cx('input')} type="number" name="quantity" defaultValue={info.quantity} onChange={handleChangeQuantity}></input>
+                        <input
+                            className={cx('input')}
+                            type="number"
+                            name="quantity"
+                            defaultValue={info.quantity}
+                            onChange={handleChangeQuantity}
+                        />
                     </div>
                     {errQuantity ? <p className={cx('error')}>Quantity must have at least 1</p> : ""}
 
