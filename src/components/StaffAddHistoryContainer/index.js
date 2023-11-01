@@ -137,7 +137,7 @@ function StaffAddHistoryContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>Add Repair History</h2>
+                <h2 className={cx('title')}>New Repair</h2>
                 <form className={cx('form')} onSubmit={handleSubmit}>
 
                     {/* nhap feedbackId */}
@@ -214,9 +214,9 @@ function StaffAddHistoryContainer() {
                     {isSuccess && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Repair History Successfully!</h2>
-                                <p className={cx('modal-info')}>You can see the list of repair history in the "View History" section.</p>
-                                <button className={cx('close')} onClick={closeSuccessModal}>Ok</button>
+                                <h2 className={cx('modal-title')}>Add Successfully!</h2>
+                                <p className={cx('modal-info')}>You can see the list of repair history in repair section.</p>
+                                <button className={cx('close')} onClick={closeSuccessModal}>OK</button>
                             </div>
                         </div>
                     )}
@@ -227,10 +227,10 @@ function StaffAddHistoryContainer() {
                     {isFail && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Repair History Failed!</h2>
+                                <h2 className={cx('modal-title')}>Add Failed!</h2>
                                 <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
-                                <p className={cx('modal-info')}>Please check all information again.</p>
-                                <button className={cx('close')} onClick={closeFailModal}>Ok</button>
+                                <p className={cx('modal-info')}>Please check again.</p>
+                                <button className={cx('close')} onClick={closeFailModal}>OK</button>
                             </div>
                         </div>
                     )}

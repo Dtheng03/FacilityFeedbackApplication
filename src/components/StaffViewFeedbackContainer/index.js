@@ -34,7 +34,7 @@ function StaffViewFeedbackContainer() {
 
     // xu ly search theo problem
     const handleSearch = (event) => {
-        const query = event.target.value;
+        const query = event.target.value.trimStart();
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
@@ -55,6 +55,7 @@ function StaffViewFeedbackContainer() {
                     type="text"
                     placeholder="Search by problem"
                     value={searchQuery}
+                    maxLength={50}
                     onChange={handleSearch}
                 />
 

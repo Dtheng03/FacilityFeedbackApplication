@@ -40,7 +40,7 @@ function ViewDetailHistoryContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h3 className={cx('title')}>View Detail History</h3>
+                <h3 className={cx('title')}>Detail Repair</h3>
                 {history.map(his => (
                     <div key={his.id} className={cx('info')}>
                         <div className={cx('label')}>

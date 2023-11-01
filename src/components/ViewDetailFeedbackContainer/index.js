@@ -64,7 +64,7 @@ function ViewDetailFeedbackContainer() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h3 className={cx('title')}>View Detail Feedback</h3>
+                <h3 className={cx('title')}>Detail Feedback</h3>
                 {feedback.map(fb => (
                     <div key={fb.id} className={cx('info')}>
                         <div className={cx('label')}>
@@ -112,7 +112,7 @@ function ViewDetailFeedbackContainer() {
                         <div className={cx('label')}>
                             <Link to={`/${role}/add-history`} className={cx('link')}>
                                 <button className={cx('btn')}>
-                                    ADD REPAIR HISTORY
+                                    REPAIR
                                 </button>
                             </Link>
                             <button className={cx('btn')} onClick={handleBack}>BACK</button>
