@@ -35,7 +35,7 @@ function ViewFacilityTypeContainer() {
 
     // xu ly search
     const handleSearch = (event) => {
-        const query = event.target.value;
+        const query = event.target.value.trimStart();
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
@@ -58,6 +58,7 @@ function ViewFacilityTypeContainer() {
                 <input
                     className={cx('search')}
                     type="text"
+                    maxLength={50}
                     placeholder="Search by type name"
                     value={searchQuery}
                     onChange={handleSearch}

@@ -16,10 +16,25 @@ function AddFacilityTypeContainer() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFail, setIsFail] = useState(false);
 
+    // state error
+    const [error, setError] = useState(false);
+
     const [info, setInfo] = useState({
         name: "",
         roomTypeId: 1
     })
+
+    const handleChangeName = (e) => {
+        if (e.target.value.length < 6) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+        setInfo({
+            ...info,
+            [e.target.name]: e.target.value.trimStart()
+        })
+    }
 
     const handleChange = (e) => {
         setInfo({
@@ -30,26 +45,27 @@ function AddFacilityTypeContainer() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        fetch(addFacilityType, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "name": info.name,
-                "roomTypeId": info.roomTypeId
+        if (error == false)
+            fetch(addFacilityType, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "name": info.name,
+                    "roomTypeId": info.roomTypeId
+                })
             })
-        })
-            .then(res => {
-                if (res.ok) {
-                    setIsSuccess(true)
+                .then(res => {
+                    if (res.ok) {
+                        setIsSuccess(true)
+                    }
+                    else {
+                        setIsFail(true)
+                    }
                 }
-                else {
-                    setIsFail(true)
-                }
-            }
-            )
-            .catch(error => setIsFail(true))
+                )
+                .catch(error => setIsFail(true))
     }
 
     useEffect(() => {
@@ -77,8 +93,18 @@ function AddFacilityTypeContainer() {
                 <form onSubmit={handleSubmit}>
                     <div className={cx('label')}>
                         <label className={cx('field')}>1.Name:</label>
-                        <input className={cx('input')} type="text" name="name" value={info.name} onChange={handleChange} required></input>
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            name="name"
+                            value={info.name}
+                            onChange={handleChangeName}
+                            required
+                            maxLength={50}
+                            autoFocus
+                        />
                     </div>
+                    {error ? <p className={cx('error')}>Must at least 6 characters</p> : ""}
                     <div className={cx('label')}>
                         <label className={cx('field')}>2.Room Type:</label>
                         <select className={cx('input')} type="text" name="roomTypeId" onChange={handleChange}>
@@ -88,10 +114,10 @@ function AddFacilityTypeContainer() {
                         </select>
                     </div>
                     <div className={cx('label')}>
-                        <button className={cx('btn')} onClick={() => { window.history.back() }}>
+                        <button className={cx('btn')} type="reset" onClick={() => { window.history.back() }}>
                             <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
                         </button>
-                        <button className={cx('btn')}>
+                        <button className={cx('btn')} type="submit">
                             <FontAwesomeIcon icon={faCirclePlus}></FontAwesomeIcon>
                         </button>
                     </div>
@@ -103,7 +129,7 @@ function AddFacilityTypeContainer() {
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
                                 <h2 className={cx('modal-title')}>Add Successfully!</h2>
-                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>Ok</button>
+                                <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>OK</button>
                             </div>
                         </div>
                     )}
@@ -116,8 +142,8 @@ function AddFacilityTypeContainer() {
                             <div className={cx('modal-content')}>
                                 <h2 className={cx('modal-title')}>Add Failed!</h2>
                                 <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
-                                <p className={cx('modal-info')}>Please check all information again.</p>
-                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>Ok</button>
+                                <p className={cx('modal-info')}>Please try again.</p>
+                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>OK</button>
                             </div>
                         </div>
                     )}
