@@ -34,7 +34,7 @@ function ViewFacilityProblemContainer() {
 
     // xu ly search
     const handleSearch = (event) => {
-        const query = event.target.value;
+        const query = event.target.value.trimStart();
         setSearchQuery(query);
 
         const filtered = data.filter(item => {
@@ -58,6 +58,7 @@ function ViewFacilityProblemContainer() {
                 <input
                     className={cx('search')}
                     type="text"
+                    maxLength={50}
                     placeholder="Search by problem"
                     value={searchQuery}
                     onChange={handleSearch}
