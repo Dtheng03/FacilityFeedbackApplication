@@ -270,15 +270,29 @@
     display: inline-block;
     min-width: 100px;
     font-size: medium;
+    margin-right: 4px;
+  }
+
+  .campus-select,
+  .floor-select,
+  .room-select,
+  .facility-select,
+  .problem-select {
+    width: 220px;
   }
   .img-hold {
     margin-left: 30px;
   }
 
   .img-input {
+    width: 220px;
     p {
       font-size: small;
     }
+  }
+
+  .description-text {
+    width: 220px;
   }
 
   .image {

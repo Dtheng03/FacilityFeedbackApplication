@@ -1,12 +1,16 @@
 import classNames from "classnames/bind";
 import style from "./DeleteRoomContainer.module.scss";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { deleteRoom } from "../../api/api";
 
 const cx = classNames.bind(style);
 
 function DeleteRoomContainer() {
+
+    // navigate
+    const navigate = useNavigate();
+
     // lay param 
     const { id } = useParams();
 
@@ -43,7 +47,7 @@ function DeleteRoomContainer() {
     // xu ly modal success
     const handleSuccesDelete = () => {
         setSuccessDelete(false);
-        window.history.back();
+        navigate("/admin/view-room")
     }
 
     // xu ly modal fail

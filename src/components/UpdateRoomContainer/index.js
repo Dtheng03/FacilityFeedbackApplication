@@ -147,7 +147,7 @@ function UpdateRoomContainer() {
                     <div className={cx('modal')}>
                         <div className={cx('modal-content')}>
                             <h2 className={cx('modal-title')}>Update Successfully!</h2>
-                            <p className={cx('modal-info')}>Click the "OK" button to return to View-Staff.</p>
+                            <p className={cx('modal-info')}>Click the "OK" button to view room</p>
                             <button className={cx('close')} onClick={closeSuccesModal}>OK</button>
                         </div>
                     </div>
