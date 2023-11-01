@@ -110,11 +110,13 @@ function ViewDetailFeedbackContainer() {
                             />
                         </div>
                         <div className={cx('label')}>
-                            <Link to={`/${role}/add-history`} className={cx('link')}>
-                                <button className={cx('btn')}>
-                                    REPAIR
-                                </button>
-                            </Link>
+                            {fb.status == false ? (
+                                <Link to={`/${role}/add-history`} className={cx('link')}>
+                                    <button className={cx('btn')}>
+                                        REPAIR
+                                    </button>
+                                </Link>
+                            ) : ""}
                             <button className={cx('btn')} onClick={handleBack}>BACK</button>
                         </div>
 
