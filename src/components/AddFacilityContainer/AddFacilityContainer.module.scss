@@ -34,9 +34,9 @@
 }
 
 .input {
-  min-width: 300px;
+  width: 300px;
   height: 40px;
-  padding: 0 16px;
+  padding: 0 8px;
   border-radius: 10px;
   border-style: none;
   outline-color: var(--hover);
@@ -155,7 +155,7 @@
   }
 
   .input {
-    min-width: 200px;
+    width: 200px;
   }
 
   .error {

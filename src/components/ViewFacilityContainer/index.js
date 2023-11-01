@@ -71,8 +71,8 @@ function ViewFacilityContainer() {
                             <th className={cx('th2')}>Name</th>
                             <th className={cx('th3')}>Quantity</th>
                             <th className={cx('th4')}>Facility Type</th>
-                            <th className={cx('th6')}>Room Type</th>
-                            <th className={cx('th7')}>Update</th>
+                            <th className={cx('th5')}>Room Type</th>
+                            <th className={cx('th6')}>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,8 +82,8 @@ function ViewFacilityContainer() {
                                 <td className={cx('td2')}>{fac.facilityName}</td>
                                 <td className={cx('td3')}>{fac.quantity}</td>
                                 <td className={cx('td4')}>{fac.facilityTypeName}</td>
-                                <td className={cx('td6')}>{fac.roomTypeName}</td>
-                                <td className={cx('td7')}>
+                                <td className={cx('td5')}>{fac.roomTypeName}</td>
+                                <td className={cx('td6')}>
                                     <Link to={`/admin/update-facility/${fac.id}`}>
                                         <FontAwesomeIcon className={cx('icon')} icon={faPenToSquare} />
                                     </Link>
