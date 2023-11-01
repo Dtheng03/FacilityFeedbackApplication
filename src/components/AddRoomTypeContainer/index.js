@@ -11,6 +11,7 @@ function AddRoomTypeContainer() {
 
     const [name, setName] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isFail, setIsFail] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,8 +22,14 @@ function AddRoomTypeContainer() {
                 "name": name
             })
         })
-            .then(res => res.json())
-            .then(data => setIsSuccess(true))
+            .then(res => {
+                if (res.ok) {
+                    setIsSuccess(true)
+                    setName('')
+                } else {
+                    setIsFail(true)
+                }
+            })
             .catch(error => console.log(error.message))
     }
 
@@ -33,13 +40,22 @@ function AddRoomTypeContainer() {
                 <form onSubmit={handleSubmit}>
                     <div className={cx('label')}>
                         <label className={cx('field')}>1.Room Type:</label>
-                        <input className={cx('input')} type="text" required value={name} onChange={(e) => { setName(e.target.value) }}></input>
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            required
+                            autoFocus
+                            maxLength={10}
+                            placeholder="max 10 characters"
+                            value={name}
+                            onChange={(e) => { setName(e.target.value.trimStart()) }}
+                        />
                     </div>
                     <div className={cx('label')}>
-                        <button className={cx('btn')} onClick={() => { window.history.back() }}>
+                        <button className={cx('btn')} type="reset" onClick={() => { window.history.back() }}>
                             <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
                         </button>
-                        <button className={cx('btn')}>
+                        <button className={cx('btn')} type="submit">
                             <FontAwesomeIcon icon={faCirclePlus}></FontAwesomeIcon>
                         </button>
                     </div>
@@ -52,6 +68,20 @@ function AddRoomTypeContainer() {
                             <div className={cx('modal-content')}>
                                 <h2 className={cx('modal-title')}>Add Successfully!</h2>
                                 <button className={cx('close')} onClick={() => { setIsSuccess(false) }}>Ok</button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Add fail */}
+                <div>
+                    {isFail && (
+                        <div className={cx('modal')}>
+                            <div className={cx('modal-content')}>
+                                <h2 className={cx('modal-title')}>Add Failed!</h2>
+                                <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
+                                <p className={cx('modal-info')}>Please try again.</p>
+                                <button className={cx('close')} onClick={() => { setIsFail(false) }}>OK</button>
                             </div>
                         </div>
                     )}
