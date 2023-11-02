@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { getAllFacilityType } from "../../api/api";
+import { getAllFacilityType, viewAllFacilityType } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -21,7 +21,7 @@ function ViewFacilityTypeContainer() {
 
     useEffect(() => {
         // Fetch data from API
-        fetch(getAllFacilityType)
+        fetch(viewAllFacilityType)
             .then(response => response.json())
             .then(data => {
                 setData(data);
@@ -76,8 +76,8 @@ function ViewFacilityTypeContainer() {
                         {filteredData.map(type => (
                             <tr key={type.id} className={cx('tr')}>
                                 <td className={cx('td1')}>{type.id}</td>
-                                <td className={cx('td2')}>{type.name}</td>
-                                <td className={cx('td3')}>{type.roomTypeId}</td>
+                                <td className={cx('td2')}>{type.facilityTypeName}</td>
+                                <td className={cx('td3')}>{type.roomTypeName}</td>
                             </tr>
                         ))}
                     </tbody>

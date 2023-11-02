@@ -11,17 +11,9 @@ const cx = classNames.bind(style);
 
 function Report() {
 
-    useEffect(() => {
-        // // Fetch report data from API
-        // fetch('https://api.example.com/report')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         setReportData(data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-    }, []);
+    // lay session
+    const sessionToken = sessionStorage.getItem('sessionToken');
+    const sessionData = JSON.parse(sessionToken);
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
@@ -66,7 +58,7 @@ function Report() {
         //         setCountFBFalse(data)
         //     })
         //     .catch(error => console.log(error))
-        fetch(report(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
+        fetch(report(moment(startDate).format('YYYY/MM/DD'), moment(endDate).format('YYYY/MM/DD')))
             .then(res => res.json())
             .then(data => {
                 setReports(data)
@@ -81,7 +73,7 @@ function Report() {
 
                 <form className={cx('form-container')} onSubmit={handleSubmit}>
                     <div className={cx('form-group')}>
-                        <label className={cx('label')} htmlFor="start-date">Start Date:</label>
+                        <label className={cx('label')} htmlFor="start-date">Start:</label>
                         <DatePicker
                             id="start-date"
                             required
@@ -93,7 +85,7 @@ function Report() {
                         />
                     </div>
                     <div className={cx('form-group')}>
-                        <label className={cx('label')} htmlFor="end-date">End Date:</label>
+                        <label className={cx('label')} htmlFor="end-date">End:</label>
                         <DatePicker
                             id="end-date"
                             required
@@ -108,8 +100,8 @@ function Report() {
                     <button className={cx('button')} type="submit">Submit</button>
                 </form>
 
-                {reports.map(report => (
-                    <div className={cx('report')}>
+                {reports.length > 0 ? reports.map((report, index) => (
+                    <div key={index} className={cx('report')}>
                         <table className={cx('table')}>
                             <thead>
                                 <tr className={cx('tr')}>
@@ -119,22 +111,22 @@ function Report() {
                             </thead>
                             <tbody>
                                 <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Total feedback</th>
+                                    <th className={cx('th1')}>Total feedbacks</th>
                                     <td className={cx('td')}>{report.totalFeedback}</td>
                                 </tr>
                                 <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Completed Feedback</th>
+                                    <th className={cx('th1')}>Completed</th>
                                     <td className={cx('td')}>{report.trueStatusFeedback}</td>
                                 </tr>
                                 <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Incomplete Feedbacks</th>
+                                    <th className={cx('th1')}>Incomplete</th>
                                     <td className={cx('td')}>{report.falseStatusFeedback}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 ))
-                }
+                    : <p className={cx('message')}>No report found</p>}
             </div>
         </div>
     );

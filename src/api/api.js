@@ -76,6 +76,8 @@ export const addRoomType = "http://localhost:8080/api/room-type/create";
 
 export const getAllFacilityType = "http://localhost:8080/api/facility-type/view";
 
+export const viewAllFacilityType = "http://localhost:8080/api/facility-type/view-all";
+
 export const addFacility = "http://localhost:8080/api/facility/create";
 
 export const updateFacility = (id) => {

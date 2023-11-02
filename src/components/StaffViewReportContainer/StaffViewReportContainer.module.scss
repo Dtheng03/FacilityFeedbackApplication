@@ -83,6 +83,7 @@
 .label {
   display: block;
   margin-right: 8px;
+  min-width: 50px;
 }
 
 .form-control {
@@ -121,11 +122,29 @@
   }
 }
 
+.message {
+  font-size: medium;
+  text-align: center;
+  font-style: italic;
+}
+
 @media (max-width: 1025px) {
 }
 
 @media (max-width: 821px) {
   .wrapper {
     width: 84%;
+  }
+
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-control {
+    margin-top: 10px;
+  }
+
+  .button {
+    margin-top: 10px;
   }
 }
