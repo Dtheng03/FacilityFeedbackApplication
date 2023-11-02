@@ -41,10 +41,15 @@
 
 .th,
 .th1,
-.td {
+.td,
+.td1 {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid #ddd;
+}
+
+.td1 {
+  text-align: left;
 }
 
 .th,

@@ -104,6 +104,10 @@ export const countFeedBackFalse = (startDate, endDate) => {
     return `http://localhost:8080/api/feedback/view-report-false?startDate=${startDate}&endDate=${endDate}`
 }
 
-export const report = (startDate, endDate) => {
-    return `http://localhost:8080/api/feedback/report?startDate=${startDate}&endDate=${endDate}`;
+export const report = (startDate, endDate, campusId) => {
+    return `http://localhost:8080/api/feedback/report?startDate=${startDate}&endDate=${endDate}&campusId=${campusId}`;
+}
+
+export const reportProblem = (startDate, endDate, campusId) => {
+    return `http://localhost:8080/api/facilityProblem/report-problem?startDate=${startDate}&endDate=${endDate}&campusId=${campusId}`;
 }

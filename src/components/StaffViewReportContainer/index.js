@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import style from './StaffViewReportContainer.module.scss';
 import './datepicker.css';
 import moment from 'moment/moment';
-import { countFeedBack, countFeedBackFalse, countFeedBackTrue, report } from '../../api/api';
+import { report, reportProblem } from '../../api/api';
 
 const cx = classNames.bind(style);
 
@@ -22,6 +22,7 @@ function Report() {
     // const [countFBTrue, setCountFBTrue] = useState();
     // const [countFBFalse, setCountFBFalse] = useState();
     const [reports, setReports] = useState([]);
+    const [problems, setProblems] = useState([]);
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -38,30 +39,21 @@ function Report() {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        const start = moment(startDate).format('YYYY/MM/DD');
+        const end = moment(endDate).format('YYYY/MM/DD');
 
-        // fetch(countFeedBack(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setCountFB(data)
-        //     })
-        //     .catch(error => console.log(error))
-        // fetch(countFeedBackTrue(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setCountFBTrue(data)
-        //     })
-        //     .catch(error => console.log(error))
-        // fetch(countFeedBackFalse(moment(startDate).format('DD-MM-YYYY'), moment(endDate).format('DD-MM-YYYY')))
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setCountFBFalse(data)
-        //     })
-        //     .catch(error => console.log(error))
-        fetch(report(moment(startDate).format('YYYY/MM/DD'), moment(endDate).format('YYYY/MM/DD')))
+        e.preventDefault();
+        fetch(report(start, end, sessionData.campusId))
             .then(res => res.json())
             .then(data => {
                 setReports(data)
+            })
+            .catch(error => console.log(error))
+
+        fetch(reportProblem(start, end, sessionData.campusId))
+            .then(res => res.json())
+            .then(data => {
+                setProblems(data)
             })
             .catch(error => console.log(error))
     };
@@ -127,6 +119,28 @@ function Report() {
                     </div>
                 ))
                     : <p className={cx('message')}>No report found</p>}
+
+                {problems.length > 0 ? (
+                    <div className={cx('report')}>
+                        <table className={cx('table')}>
+                            <thead>
+                                <tr className={cx('tr')}>
+                                    <th className={cx('th')}>Problem</th>
+                                    <th className={cx('th')}>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {problems.map((problem, index) => (
+                                    <tr key={index} className={cx('tr')}>
+                                        <td className={cx('td1')}>{problem.problemName}</td>
+                                        <td className={cx('td')}>{problem.feedbackCount}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )
+                    : ""}
             </div>
         </div>
     );
