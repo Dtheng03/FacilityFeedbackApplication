@@ -92,55 +92,52 @@ function Report() {
                     <button className={cx('button')} type="submit">Submit</button>
                 </form>
 
-                {reports.length > 0 ? reports.map((report, index) => (
-                    <div key={index} className={cx('report')}>
-                        <table className={cx('table')}>
-                            <thead>
-                                <tr className={cx('tr')}>
-                                    <th className={cx('th')}></th>
-                                    <th className={cx('th')}>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Total feedbacks</th>
-                                    <td className={cx('td')}>{report.totalFeedback}</td>
-                                </tr>
-                                <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Completed</th>
-                                    <td className={cx('td')}>{report.trueStatusFeedback}</td>
-                                </tr>
-                                <tr className={cx('tr')}>
-                                    <th className={cx('th1')}>Incomplete</th>
-                                    <td className={cx('td')}>{report.falseStatusFeedback}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                ))
+                {reports.length > 0 && problems.length > 0 ?
+                    (
+                        reports.map((report, index) => (
+                            <div key={index} className={cx('report')}>
+                                <table className={cx('table')}>
+                                    <thead>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('th')}></th>
+                                            <th className={cx('th')}>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('th1')}>Total feedbacks</th>
+                                            <td className={cx('td')}>{report.totalFeedback}</td>
+                                        </tr>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('th1')}>Completed</th>
+                                            <td className={cx('td')}>{report.trueStatusFeedback}</td>
+                                        </tr>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('th1')}>Incomplete</th>
+                                            <td className={cx('td')}>{report.falseStatusFeedback}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table className={cx('table')}>
+                                    <thead>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('th')}>Problem</th>
+                                            <th className={cx('th')}>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {problems.map((problem, index) => (
+                                            <tr key={index} className={cx('tr')}>
+                                                <td className={cx('td1')}>{problem.problemName}</td>
+                                                <td className={cx('td')}>{problem.feedbackCount}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ))
+                    )
                     : <p className={cx('message')}>No report found</p>}
-
-                {problems.length > 0 ? (
-                    <div className={cx('report')}>
-                        <table className={cx('table')}>
-                            <thead>
-                                <tr className={cx('tr')}>
-                                    <th className={cx('th')}>Problem</th>
-                                    <th className={cx('th')}>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {problems.map((problem, index) => (
-                                    <tr key={index} className={cx('tr')}>
-                                        <td className={cx('td1')}>{problem.problemName}</td>
-                                        <td className={cx('td')}>{problem.feedbackCount}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )
-                    : ""}
             </div>
         </div>
     );
