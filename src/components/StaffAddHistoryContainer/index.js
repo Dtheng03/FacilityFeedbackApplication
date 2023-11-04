@@ -6,14 +6,22 @@ import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { addRepairHistory } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
 function StaffAddHistoryContainer() {
 
+    const navigate = useNavigate();
+
     // lay token va chuyen thanh data
     const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
+
+    let role = "admin";
+    if (sessionData.isManager == false) {
+        role = "staff";
+    }
 
     // lay feedbackId dc luu trong local neu co
     const feedbackId = sessionStorage.getItem('feedbackId');
@@ -127,6 +135,7 @@ function StaffAddHistoryContainer() {
     // xu ly dong modal success
     const closeSuccessModal = () => {
         setIsSuccess(false);
+        navigate(`/${role}/view-history`);
     };
 
     // xu ly dong modal fail
