@@ -32,7 +32,7 @@ function AdminHeader() {
             <header className={cx('header')}>
                 <div className={cx('home')}>
                     <FontAwesomeIcon className={cx('icon')} icon={faUserGear} />
-                    <span className={cx('span')}>Admin Page</span>
+                    <span className={cx('span')}>Manager Page</span>
                 </div>
                 <p className={cx('title')}>
                     <FontAwesomeIcon className={cx('icon')} icon={faWrench}></FontAwesomeIcon>

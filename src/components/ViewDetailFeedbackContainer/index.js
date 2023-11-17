@@ -117,6 +117,12 @@ function ViewDetailFeedbackContainer() {
                                     </button>
                                 </Link>
                             ) : ""}
+                            {sessionData.manager == true ? (
+                                <Link to={'/admin/assign'} className={cx('link')}>
+                                    <button className={cx('btn')}>ASSIGN</button>
+                                </Link>
+                            ) : ""
+                            }
                             <button className={cx('btn')} onClick={handleBack}>BACK</button>
                         </div>
 

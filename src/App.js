@@ -33,6 +33,8 @@ import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
 import AdminAddHistoryPage from "./Pages/AdminAddHistoryPage";
 import AdminViewReportPage from './Pages/AdminViewReportPage';
 
+import AssignPage from "./Pages/AssignPage";
+
 import ViewDetailFeedbackPage from "./Pages/ViewDetailFeedbackPage";
 import ViewDetailHistoryPage from "./Pages/ViewDetailHistoryPage";
 
@@ -84,6 +86,8 @@ function App() {
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />
           <Route path="/admin/add-history" element={<AdminAddHistoryPage />} />
           <Route path="/admin/view-report" element={<AdminViewReportPage />} />
+
+          <Route path="admin/assign" element={<AssignPage />} />
 
           <Route path="/view-detail/feedback/:id" element={<ViewDetailFeedbackPage />} />
           <Route path="/view-detail/history/:id" element={<ViewDetailHistoryPage />} />
