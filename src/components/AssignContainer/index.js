@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import style from "./AssignContainer.module.scss";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import { addRepairHistory } from "../../api/api";
 import { useNavigate } from "react-router-dom";
@@ -116,14 +116,14 @@ function AssignContainer() {
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. Staff *</label>
                         <select className={cx('input')} type="text" required value={sessionData.fullName}>
-                            
+
                         </select>
                     </div>
 
                     {/* nut submit */}
                     <button className={cx('btn')} type="submit">
-                        Add
-                        <FontAwesomeIcon className={cx('icon')} icon={faSquarePlus}></FontAwesomeIcon>
+                        ASSIGN
+                        <FontAwesomeIcon className={cx('icon')} icon={faThumbTack}></FontAwesomeIcon>
                     </button>
                 </form>
 

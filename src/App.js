@@ -29,6 +29,7 @@ import ViewFacilityProblemPage from "./Pages/ViewFacilityProblemPage";
 import AddFacilityProblemPage from "./Pages/AddFacilityProblemPage";
 
 import AdminViewFeedbackPage from "./Pages/AdminViewFeedbackPage";
+import AdminTaskPage from "./Pages/AdminTaskPage";
 import AdminViewHistoryPage from "./Pages/AdminViewHistoryPage";
 import AdminAddHistoryPage from "./Pages/AdminAddHistoryPage";
 import AdminViewReportPage from './Pages/AdminViewReportPage';
@@ -83,6 +84,7 @@ function App() {
           <Route path="/admin/add-facility-problem" element={<AddFacilityProblemPage />} />
 
           <Route path="/admin/view-feedback" element={<AdminViewFeedbackPage />} />
+          <Route path="/admin/tasks" element={<AdminTaskPage />} />
           <Route path="/admin/view-history" element={<AdminViewHistoryPage />} />
           <Route path="/admin/add-history" element={<AdminAddHistoryPage />} />
           <Route path="/admin/view-report" element={<AdminViewReportPage />} />

@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import style from './StaffViewFeedbackContainer.module.scss';
+import style from './TaskContainer.module.scss';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
@@ -8,56 +8,16 @@ import { getFeedbackByCampusId } from "../../api/api";
 
 const cx = classNames.bind(style);
 
-function StaffViewFeedbackContainer() {
+function TaskContainer() {
 
-    const [data, setData] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
-
-    // lay Token va chuyen thanh data
-    const sessionToken = sessionStorage.getItem('sessionToken');
-    const sessionData = JSON.parse(sessionToken);
-
-    // call api lay data
     useEffect(() => {
-        // Fetch data from API
-        fetch(getFeedbackByCampusId(sessionData.campusId))
-            .then(response => response.json())
-            .then(data => {
-                setData(data);
-                setFilteredData(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+
     }, []);
-
-    // xu ly search theo problem
-    const handleSearch = (event) => {
-        const query = event.target.value.trimStart();
-        setSearchQuery(query);
-
-        const filtered = data.filter(item => {
-            const { facilityProblemName } = item;
-            return facilityProblemName.toLowerCase().includes(query.toLowerCase())
-        });
-
-        setFilteredData(filtered);
-    };
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h2 className={cx('title')}>Feedback</h2>
-
-                <input
-                    className={cx('search')}
-                    type="text"
-                    placeholder="Search by problem"
-                    value={searchQuery}
-                    maxLength={50}
-                    onChange={handleSearch}
-                />
+                <h2 className={cx('title')}>Tasks</h2>
 
                 <table className={cx('table')}>
                     <thead>
@@ -72,7 +32,7 @@ function StaffViewFeedbackContainer() {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredData.map(feedback => (
+                        {/* {filteredData.map(feedback => (
                             <tr key={feedback.id} className={cx('tr')}>
                                 <td className={cx('td1')}>{feedback.id}</td>
                                 <td className={cx('td2')}>{feedback.roomName}</td>
@@ -86,7 +46,7 @@ function StaffViewFeedbackContainer() {
                                     </Link>
                                 </td>
                             </tr>
-                        ))}
+                        ))} */}
                     </tbody>
                 </table>
             </div>
@@ -94,4 +54,4 @@ function StaffViewFeedbackContainer() {
     );
 }
 
-export default StaffViewFeedbackContainer;
+export default TaskContainer;

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import style from './StaffSidebar.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faChartColumn, faClipboardUser, faMessage, faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
+import { faChartColumn, faClipboardUser, faListCheck, faMessage, faScrewdriverWrench } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(style);
@@ -23,6 +23,14 @@ function StaffSidebar() {
                         <p className={cx('title')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faMessage}></FontAwesomeIcon>
                             <span className={cx('span')}>Feedback</span>
+                        </p>
+                    </Link>
+                </div>
+                <div className={cx('category')}>
+                    <Link to={'/staff/tasks'} className={cx('function')}>
+                        <p className={cx('title')}>
+                            <FontAwesomeIcon className={cx('icon')} icon={faListCheck}></FontAwesomeIcon>
+                            <span className={cx('span')}>Tasks</span>
                         </p>
                     </Link>
                 </div>
