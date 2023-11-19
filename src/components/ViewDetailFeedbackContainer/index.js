@@ -121,7 +121,7 @@ function ViewDetailFeedbackContainer() {
                                     </button>
                                 </Link>
                             ) : ""}
-                            {sessionData.manager == true ? (
+                            {fb.status == false && sessionData.manager == true ? (
                                 <Link to={'/admin/assign'} className={cx('link')}>
                                     <button className={cx('btn')}>ASSIGN</button>
                                 </Link>
