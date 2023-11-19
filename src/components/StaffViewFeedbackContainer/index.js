@@ -34,15 +34,25 @@ function StaffViewFeedbackContainer() {
 
     // xu ly search theo problem
     const handleSearch = (event) => {
-        const query = event.target.value.trimStart();
+        const query = event.target.value;
         setSearchQuery(query);
+        if (query == "Processing") {
 
-        const filtered = data.filter(item => {
-            const { facilityProblemName } = item;
-            return facilityProblemName.toLowerCase().includes(query.toLowerCase())
-        });
+            const filtered = data.filter(item => {
+                const { status } = item;
+                return status == false
+            });
+            setFilteredData(filtered);
+        } else if (query == "Processed") {
+            const filtered = data.filter(item => {
+                const { status } = item;
+                return status == true
+            });
+            setFilteredData(filtered);
+        } else if (query == "All") {
+            setFilteredData(data);
+        }
 
-        setFilteredData(filtered);
     };
 
     return (
@@ -50,14 +60,14 @@ function StaffViewFeedbackContainer() {
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Feedback</h2>
 
-                <input
+                <select
                     className={cx('search')}
-                    type="text"
-                    placeholder="Search by problem"
-                    value={searchQuery}
-                    maxLength={50}
                     onChange={handleSearch}
-                />
+                >
+                    <option value={"All"}>View All</option>
+                    <option value={"Processing"}>View Processing</option>
+                    <option value={"Processed"}>View Processed</option>
+                </select>
 
                 <table className={cx('table')}>
                     <thead>
