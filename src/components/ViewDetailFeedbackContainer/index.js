@@ -101,7 +101,7 @@ function ViewDetailFeedbackContainer() {
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>9.Staff:</label>
-                            <p className={cx('input')}></p>
+                            <p className={cx('input')}>{fb.staffName ? fb.staffName : "Not yet assigned."}</p>
                         </div>
                         <div className={cx('label')}>
                             <label className={cx('field')}>9.Image:</label>
@@ -114,7 +114,7 @@ function ViewDetailFeedbackContainer() {
                             />
                         </div>
                         <div className={cx('label')}>
-                            {fb.status == false ? (
+                            {fb.status == false && fb.staffName == sessionData.fullName ? (
                                 <Link to={`/${role}/add-history`} className={cx('link')}>
                                     <button className={cx('btn')}>
                                         REPAIR

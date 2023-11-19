@@ -13,6 +13,9 @@ export const getFeedbackByCampusId = (campusId) => {
 export const getFeedbackById = (id) => {
     return `http://localhost:8080/api/feedback/get-feedback/${id}`;
 };
+export const assign = (feedbackId) => {
+    return `http://localhost:8080/api/feedback/assign/${feedbackId}`;
+}
 
 // api staff
 export const login = "http://localhost:8080/api/staff/login";

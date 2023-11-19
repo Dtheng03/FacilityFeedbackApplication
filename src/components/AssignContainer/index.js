@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { getStaffByCampusId, assign } from "../../api/api";
 
 const cx = classNames.bind(style);
 
@@ -22,41 +23,38 @@ function AssignContainer() {
     const [isFail, setIsFail] = useState(false);
 
     // tao state chua du lieu
-    const [assign, setAssign] = useState({
-        feedbackId: feedbackId ? feedbackId : 0,
-        staffId: 0
-    });
+    const [staffId, setStaffId] = useState(0);
 
     const [listStaff, setListStaff] = useState([]);
 
     // xu ly nhap du lieu
     const handleInputChange = (event) => {
-        setAssign({
-            ...assign,
-            [event.target.name]: event.target.value
-        });
+        console.log(event.target.value);
+        setStaffId(Number(event.target.value));
     };
 
     // xu ly tao repair history
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // call api
-        // fetch(url, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(response => {
-        //         // Handle the response
-        //         setIsSuccess(true);
-        //     })
-        //     .catch(error => {
-        //         // Handle any errors
-        //         setIsFail(true);
-        //     });
+        fetch(assign(feedbackId), {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "staffId": staffId
+            })
+        })
+            .then(response => {
+                // Handle the response
+                setIsSuccess(true);
+
+            })
+            .catch(error => {
+                // Handle any errors
+                setIsFail(true);
+            });
     };
 
     // xu ly dong modal success
@@ -71,21 +69,21 @@ function AssignContainer() {
     };
 
     useEffect(() => {
-        // fetch('https://api.example.com/data')
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error('Network response was not ok');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         // Handle the JSON data
-        //         setListStaff(data);
-        //     })
-        //     .catch(error => {
-        //         // Handle any errors
-        //         console.log(error.message);
-        //     });
+        fetch(getStaffByCampusId(sessionData.campusId))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the JSON data
+                setListStaff(data);
+            })
+            .catch(error => {
+                // Handle any errors
+                console.log(error.message);
+            });
     }, []);
 
     return (
@@ -97,14 +95,17 @@ function AssignContainer() {
                     {/* nhap feedbackId */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>1. FeedbackId *</label>
-                        <input className={cx('input')} type="number" required name="feedbackId" value={assign.feedbackId} disabled />
+                        <input className={cx('input')} type="number" required name="feedbackId" value={feedbackId} disabled />
                     </div>
 
                     {/* hien thi staff id */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. Staff *</label>
-                        <select className={cx('input')} type="text" required value={sessionData.fullName} onChange={handleInputChange}>
-
+                        <select className={cx('input')} type="text" required onChange={handleInputChange}>
+                            <option value={0}>Choose Staff</option>
+                            {listStaff.map(staff => (
+                                <option key={staff.id} value={staff.id}>{staff.fullName}</option>
+                            ))}
                         </select>
                     </div>
 
