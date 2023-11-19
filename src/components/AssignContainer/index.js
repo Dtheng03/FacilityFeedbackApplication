@@ -3,8 +3,6 @@ import style from "./AssignContainer.module.scss";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
-import axios from 'axios';
-import { addRepairHistory } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
@@ -16,11 +14,6 @@ function AssignContainer() {
     const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
 
-    let role = "admin";
-    if (sessionData.isManager == false) {
-        role = "staff";
-    }
-
     // lay feedbackId dc luu trong local neu co
     const feedbackId = sessionStorage.getItem('feedbackId');
 
@@ -29,18 +22,17 @@ function AssignContainer() {
     const [isFail, setIsFail] = useState(false);
 
     // tao state chua du lieu
-    const [history, setHistory] = useState({
+    const [assign, setAssign] = useState({
         feedbackId: feedbackId ? feedbackId : 0,
-        staffId: sessionData.id,
-        status: false,
-        description: '',
-        image: null
+        staffId: 0
     });
+
+    const [listStaff, setListStaff] = useState([]);
 
     // xu ly nhap du lieu
     const handleInputChange = (event) => {
-        setHistory({
-            ...history,
+        setAssign({
+            ...assign,
             [event.target.name]: event.target.value
         });
     };
@@ -50,56 +42,52 @@ function AssignContainer() {
         event.preventDefault();
 
         // call api
-        try {
-            const formData = new FormData();
-            formData.append("facilityFeedbackId", Number(history.feedbackId));
-            formData.append("staffId", Number(history.staffId));
-            formData.append("image", history.image,);
-            formData.append("description", history.description,);
-            formData.append("status", history.status,);
-
-            const response = await axios.post(addRepairHistory, formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
-
-            if (response) {
-                // if success
-                setIsSuccess(true);
-            } else {
-                // if fail
-                setIsFail(true);
-            }
-
-            // reset data
-            setHistory({
-                ...history,
-                feedbackId: 0,
-                image: null,
-                description: '',
-                status: false
-            });
-
-            // xoa local storage de tranh bi thua du lieu
-            localStorage.removeItem('feedbackId')
-
-        } catch (error) {
-            setIsFail(true);
-        }
+        // fetch(url, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        //     .then(response => {
+        //         // Handle the response
+        //         setIsSuccess(true);
+        //     })
+        //     .catch(error => {
+        //         // Handle any errors
+        //         setIsFail(true);
+        //     });
     };
 
     // xu ly dong modal success
     const closeSuccessModal = () => {
         setIsSuccess(false);
-        navigate(`/${role}/view-history`);
+        navigate(`/admin/view-feedback`);
     };
 
     // xu ly dong modal fail
     const closeFailModal = () => {
         setIsFail(false);
     };
+
+    useEffect(() => {
+        // fetch('https://api.example.com/data')
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         // Handle the JSON data
+        //         setListStaff(data);
+        //     })
+        //     .catch(error => {
+        //         // Handle any errors
+        //         console.log(error.message);
+        //     });
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -109,13 +97,13 @@ function AssignContainer() {
                     {/* nhap feedbackId */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>1. FeedbackId *</label>
-                        <input className={cx('input')} type="number" required name="feedbackId" value={history.feedbackId} disabled onChange={handleInputChange} />
+                        <input className={cx('input')} type="number" required name="feedbackId" value={assign.feedbackId} disabled />
                     </div>
 
                     {/* hien thi staff id */}
                     <div className={cx('label')} >
                         <label className={cx('field')}>2. Staff *</label>
-                        <select className={cx('input')} type="text" required value={sessionData.fullName}>
+                        <select className={cx('input')} type="text" required value={sessionData.fullName} onChange={handleInputChange}>
 
                         </select>
                     </div>
@@ -132,8 +120,7 @@ function AssignContainer() {
                     {isSuccess && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Successfully!</h2>
-                                <p className={cx('modal-info')}>You can see the list of repair history in repair section.</p>
+                                <h2 className={cx('modal-title')}>Assign Successfully!</h2>
                                 <button className={cx('close')} onClick={closeSuccessModal}>OK</button>
                             </div>
                         </div>
@@ -145,8 +132,7 @@ function AssignContainer() {
                     {isFail && (
                         <div className={cx('modal')}>
                             <div className={cx('modal-content')}>
-                                <h2 className={cx('modal-title')}>Add Failed!</h2>
-                                <p className={cx('modal-info')}>The information may not be satisfied or may already exist.</p>
+                                <h2 className={cx('modal-title')}>Assign Failed!</h2>
                                 <p className={cx('modal-info')}>Please check again.</p>
                                 <button className={cx('close')} onClick={closeFailModal}>OK</button>
                             </div>

@@ -42,6 +42,7 @@ import ViewDetailHistoryPage from "./Pages/ViewDetailHistoryPage";
 import StaffPage from "./Pages/StaffPage";
 import StaffViewStaffPage from "./Pages/StaffViewStaffPage";
 import StaffViewFeedbackPage from "./Pages/StaffViewFeedbackPage";
+import StaffTaskPage from "./Pages/StaffTaskPage";
 import StaffAddHistoryPage from "./Pages/StaffAddHistoryPage";
 import StaffViewHistoryPage from "./Pages/StaffViewHistoryPage";
 import StaffViewReportPage from './Pages/StaffViewReportPage';
@@ -97,6 +98,7 @@ function App() {
           <Route path="/staff" element={<StaffPage />} />
           <Route path="/staff/view-staff" element={<StaffViewStaffPage />} />
           <Route path="/staff/view-feedback" element={<StaffViewFeedbackPage />} />
+          <Route path="/staff/tasks" element={<StaffTaskPage />} />
           <Route path="/staff/add-history" element={<StaffAddHistoryPage />} />
           <Route path="/staff/view-history" element={<StaffViewHistoryPage />} />
           <Route path="/staff/view-report" element={<StaffViewReportPage />} />
