@@ -16,12 +16,14 @@ export const getFeedbackById = (id) => {
 export const assign = (feedbackId) => {
     return `http://localhost:8080/api/feedback/assign/${feedbackId}`;
 }
-
 export const viewFBbyStaffIdTrue = (staffId) => {
     return `http://localhost:8080/api/feedback/get-feedback-by-staff-true/${staffId}`;
 }
 export const viewFBbyStaffIdFalse = (staffId) => {
     return `http://localhost:8080/api/feedback/get-feedback-by-staff-false/${staffId}`;
+}
+export const viewFBbyStaffId = (staffId) => {
+    return `http://localhost:8080/api/feedback/get-feedback-by-staffId/${staffId}`;
 }
 
 // api staff
