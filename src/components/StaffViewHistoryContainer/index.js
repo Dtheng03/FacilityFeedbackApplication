@@ -4,15 +4,15 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
-import { getAllRepairHistoryByCampusId } from "../../api/api"
+import { getAllRepairHistoryByCampusId, getStaffByCampusId } from "../../api/api"
 
 const cx = classNames.bind(style);
 
 function StaffViewHistoryContainer() {
 
     const [data, setData] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [listStaff, setListStaff] = useState([]);
 
     const sessionToken = sessionStorage.getItem('sessionToken');
     const sessionData = JSON.parse(sessionToken);
@@ -28,18 +28,26 @@ function StaffViewHistoryContainer() {
             .catch(error => {
                 console.error('Error:', error);
             });
+
+        fetch(getStaffByCampusId(sessionData.campusId))
+            .then(response => response.json())
+            .then(data => {
+                setListStaff(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []);
 
     const handleSearch = (event) => {
         const query = event.target.value;
-        setSearchQuery(query);
 
         const filtered = data.filter(item => {
-            const { facilityFeedbackId } = item;
-            if (query == "") {
+            const { staffName } = item;
+            if (query == 0) {
                 return data;
             } else {
-                return facilityFeedbackId == query
+                return staffName == query
             }
         });
 
@@ -51,13 +59,15 @@ function StaffViewHistoryContainer() {
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Repair History</h2>
 
-                <input
+                <select
                     className={cx('search')}
-                    type="number"
-                    placeholder="Search by feedback Id"
-                    value={searchQuery}
                     onChange={handleSearch}
-                />
+                >
+                    <option value={0}>View All</option>
+                    {listStaff.map(staff => (
+                        <option key={staff.id} value={staff.fullName}>{staff.fullName}</option>
+                    ))}
+                </select>
 
                 <table className={cx('table')}>
                     <thead>
