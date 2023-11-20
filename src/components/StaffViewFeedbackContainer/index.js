@@ -11,7 +11,6 @@ const cx = classNames.bind(style);
 function StaffViewFeedbackContainer() {
 
     const [data, setData] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
     // lay Token va chuyen thanh data
@@ -35,7 +34,6 @@ function StaffViewFeedbackContainer() {
     // xu ly search theo problem
     const handleSearch = (event) => {
         const query = event.target.value;
-        setSearchQuery(query);
         if (query == "Processing") {
 
             const filtered = data.filter(item => {

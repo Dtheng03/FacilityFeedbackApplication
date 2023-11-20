@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import style from './AdminSidebar.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartColumn, faClipboardUser, faHouse, faLightbulb, faListCheck, faMessage, faScrewdriverWrench, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faChartColumn, faClipboardUser, faHouse, faLightbulb, faListCheck, faMessage, faScrewdriverWrench, faSignal } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(style);
@@ -47,6 +47,14 @@ function AdminSidebar() {
                         <p className={cx('title')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faListCheck}></FontAwesomeIcon>
                             <span className={cx('span')}>Tasks</span>
+                        </p>
+                    </Link>
+                </div>
+                <div className={cx('category')}>
+                    <Link to={'/admin/statistics'} className={cx('function')}>
+                        <p className={cx('title')}>
+                            <FontAwesomeIcon className={cx('icon')} icon={faSignal}></FontAwesomeIcon>
+                            <span className={cx('span')}>Statistics</span>
                         </p>
                     </Link>
                 </div>
