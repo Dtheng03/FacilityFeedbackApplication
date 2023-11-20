@@ -123,3 +123,7 @@ export const report = (startDate, endDate, campusId) => {
 export const reportProblem = (startDate, endDate, campusId) => {
     return `http://localhost:8080/api/facilityProblem/report-problem?startDate=${startDate}&endDate=${endDate}&campusId=${campusId}`;
 }
+
+export const reportRepair = (startDate, endDate, campusId) => {
+    return `http://localhost:8080/api/repair/view-repair-history?campusId=${campusId}&startDate=${startDate}&endDate=${endDate}`;
+}

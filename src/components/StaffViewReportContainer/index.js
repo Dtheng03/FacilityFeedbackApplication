@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import classNames from 'classnames/bind';
 import style from './StaffViewReportContainer.module.scss';
 import './datepicker.css';
 import moment from 'moment/moment';
-import { report, reportProblem } from '../../api/api';
+import { report, reportProblem, reportRepair } from '../../api/api';
 
 const cx = classNames.bind(style);
 
@@ -18,11 +18,9 @@ function Report() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    // const [countFB, setCountFB] = useState();
-    // const [countFBTrue, setCountFBTrue] = useState();
-    // const [countFBFalse, setCountFBFalse] = useState();
     const [reports, setReports] = useState([]);
     const [problems, setProblems] = useState([]);
+    const [repairs, setRepairs] = useState([]);
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -54,6 +52,13 @@ function Report() {
             .then(res => res.json())
             .then(data => {
                 setProblems(data)
+            })
+            .catch(error => console.log(error))
+
+        fetch(reportRepair(start, end, sessionData.campusId))
+            .then(res => res.json())
+            .then(data => {
+                setRepairs(data)
             })
             .catch(error => console.log(error))
     };
@@ -118,6 +123,7 @@ function Report() {
                                         </tr>
                                     </tbody>
                                 </table>
+
                                 <table className={cx('table')}>
                                     <thead>
                                         <tr className={cx('tr')}>
@@ -130,6 +136,29 @@ function Report() {
                                             <tr key={index} className={cx('tr')}>
                                                 <td className={cx('td1')}>{problem.problemName}</td>
                                                 <td className={cx('td')}>{problem.feedbackCount}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+
+                                <table className={cx('table')}>
+                                    <thead>
+                                        <tr className={cx('tr')}>
+                                            <th className={cx('h1')}>ID</th>
+                                            <th className={cx('h2')}>FeedbackId</th>
+                                            <th className={cx('h3')}>Staff</th>
+                                            <th className={cx('h4')}>RepairDate</th>
+                                            <th className={cx('h5')}>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {repairs.map(repair => (
+                                            <tr key={repair.id} className={cx('tr')}>
+                                                <td className={cx('d1')}>{repair.id}</td>
+                                                <td className={cx('d2')}>{repair.facilityFeedbackId}</td>
+                                                <td className={cx('d3')}>{repair.staffName}</td>
+                                                <td className={cx('d4')}>{repair.repairDate}</td>
+                                                <td className={cx('d5')}>{repair.status ? "Finished" : "Not finished"}</td>
                                             </tr>
                                         ))}
                                     </tbody>
